@@ -51,7 +51,7 @@ class laravel_app
 
 	exec { 'install packages':
         command => "/bin/sh -c 'cd /var/www/ && composer install'",
-        require => Package['git-core'],
+        require => [Package['git-core'], Package['php5'], Exec['global composer']],
         onlyif => [ "test -f /var/www/composer.json" ],
         creates => "/var/www/vendor/autoload.php",
         timeout => 900,
