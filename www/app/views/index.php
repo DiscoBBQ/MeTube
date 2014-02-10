@@ -21,7 +21,7 @@
 				</div>
 				<div id = "mt-header-signin">
 					<a class = "button" href = "/signin.php">
-						Sign In
+						SIGN IN
 					</a>
 				</div>
 			</div>
@@ -30,32 +30,32 @@
 				<div class = "mt-sidebar-block">
 						<div class = "mt-sidebar-block-header"> BROWSE </div>
 						<div class = "mt-sidebar-block-body">
-							Music<br>
-							Sports<br>
-							Gaming<br>
-							Education<br>
-							Movies<br>
-							TV Shows<br>
-							News
+							<div class = "mt-sidebar-block-button">Music</div>
+							<div class = "mt-sidebar-block-button">Sports</div>
+							<div class = "mt-sidebar-block-button">Gaming</div>
+							<div class = "mt-sidebar-block-button">Education</div>
+							<div class = "mt-sidebar-block-button">Movies</div>
+							<div class = "mt-sidebar-block-button">TV Shows</div>
+							<div class = "mt-sidebar-block-button">News</div>
 						</div>
 				</div>
 				<br>
 				<div class = "mt-sidebar-block">
 						<div class = "mt-sidebar-block-header"> USER </div>
 						<div class = "mt-sidebar-block-body">
-							Uploaded<br>
-							Downloaded<br>
-							Viewed<br>
-							Favorited
+							<div class = "mt-sidebar-block-button">Uploaded</div>
+							<div class = "mt-sidebar-block-button">Downloaded</div>
+							<div class = "mt-sidebar-block-button">Viewed</div>
+							<div class = "mt-sidebar-block-button">Favorited</div>
 						</div>
 				</div>
 				<br>
 				<div class = "mt-sidebar-block">
 						<div class = "mt-sidebar-block-header"> PLAYLISTS </div>
 						<div class = "mt-sidebar-block-body">
-							To do<br>
-							To do<br>
-							To do<br>
+							<div class = "mt-sidebar-block-button">To do</div>
+							<div class = "mt-sidebar-block-button">To do</div>
+							<div class = "mt-sidebar-block-button">To do</div>
 						</div>
 				</div>
 			</div>

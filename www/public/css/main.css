@@ -17,6 +17,10 @@ a {
 	text-decoration:none;
 }
 
+a:hover {
+	color: black;
+}
+
 input:focus {
 	outline: none;
 	box-shadow: none;
@@ -36,23 +40,8 @@ input:focus {
 	
 }
 
-.mt-sidebar-block {
-	background-color: white;
-}
-
-.mt-sidebar-block-header {
-	text-align: center;
-	background-color: #49B3FA;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	letter-spacing: 5px;
-	font-size:18px;
-}
-
-.mt-sidebar-block-body {
-	padding: 10px;
-	font-size: 20px;
-	letter-spacing: 2px;
+.button:hover {
+	color: #DBF1FF;
 }
 
 #mt-container {
@@ -61,7 +50,7 @@ input:focus {
 	margin-right: auto;
 	height: inherit;
 
-	min-width: 825px;
+	min-width: 1024px;
 }
 
 #mt-header {
@@ -75,19 +64,13 @@ input:focus {
 #mt-header-logo {
 	position: absolute;
 	top: 12px;
-	left: 12px;
+	left: 21px;
 }
 
 #mt-header-content {
 	position: absolute;
 	top:23px;
 	left:275px;
-}
-
-#mt-header-signin {
-	position: absolute;
-	right: 12px;
-	top: 26px;
 }
 
 #mt-header-content-searchbar {
@@ -99,7 +82,8 @@ input:focus {
 	width: 400px;
 	height: 30px;
 
-	font-size: 30px;
+	color: #2490FA;
+	font-size: 24px;
 
 	border: 1px solid #49B3FA;
 }
@@ -118,6 +102,12 @@ input:focus {
 	padding-top: 4px;
 }
 
+#mt-header-signin {
+	position: absolute;
+	right: 21px;
+	top: 26px;
+}
+
 #mt-sidebar {
 	position: absolute;
 	top: 80px;
@@ -130,6 +120,31 @@ input:focus {
 
 	padding-left: 25px;
 	padding-right: 25px;
+}
+
+.mt-sidebar-block {
+	background-color: white;
+}
+
+.mt-sidebar-block-header {
+	text-align: center;
+	background-color: #49B3FA;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	letter-spacing: 5px;
+	font-size:18px;
+	color: white;
+}
+
+.mt-sidebar-block-body {
+	padding: 10px;
+	font-size: 20px;
+	letter-spacing: 2px;
+	color: #2490FA;
+}
+
+.mt-sidebar-block-button:hover {
+	background-color: #DBF1FF;
 }
 
 #mt-welcome {
