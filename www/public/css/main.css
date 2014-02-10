@@ -85,7 +85,7 @@ input:focus {
 	color: #2490FA;
 	font-size: 24px;
 
-	border: 1px solid #49B3FA;
+	border: 1px solid #2490CC;
 }
 
 #mt-header-content-searchbutton {
@@ -96,7 +96,7 @@ input:focus {
 
 	background-color: #49B3FA;
 
-	border: 0px solid black;
+	border: 1px solid #2490CC;
 
 	height: 34px;
 	padding-top: 4px;
@@ -106,6 +106,7 @@ input:focus {
 	position: absolute;
 	right: 21px;
 	top: 26px;
+	border: 1px solid #2490CC;
 }
 
 #mt-sidebar {
@@ -120,9 +121,12 @@ input:focus {
 
 	padding-left: 25px;
 	padding-right: 25px;
+
+	border-top: 1px solid #2490CC;
 }
 
 .mt-sidebar-block {
+	border: 1px solid #2490CC;
 	background-color: white;
 }
 
@@ -134,6 +138,7 @@ input:focus {
 	letter-spacing: 5px;
 	font-size:18px;
 	color: white;
+	border-bottom: 1px solid #2490CC;
 }
 
 .mt-sidebar-block-body {
@@ -157,4 +162,6 @@ input:focus {
 	height: 800px;
 
 	background-color: #F7F6F1;
+	border-left: 1px solid #2490CC;
+	border-top: 1px solid #2490CC;
 }
