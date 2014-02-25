@@ -15,8 +15,8 @@ class phpmyadmin
         "/etc/apache2/conf-enabled/phpmyadmin.conf":
             ensure => link,
             target => "/etc/phpmyadmin/apache.conf",
-            require => Package['apache2'],
-            notify => Service["apache2"]
+            require => Service["apache2"],
+            # notify => Service["apache2"]
     }
 
     file 
