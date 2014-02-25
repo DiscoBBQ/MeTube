@@ -1,7 +1,7 @@
 <?php
 
-class HomeController extends BaseController {
-	protected $layout = 'home';
+class ChannelController extends BaseController {
+	protected $layout = 'channel';
 
 	public function index()
 	{

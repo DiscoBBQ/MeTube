@@ -1,7 +1,7 @@
 <?php
 
-class HomeController extends BaseController {
-	protected $layout = 'home';
+class SearchController extends BaseController {
+	protected $layout = 'search';
 
 	public function index()
 	{

@@ -11,7 +11,20 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', 'HomeController@index');
+
+Route::get('/signin', function()
 {
-	return View::make('index');
+	return View::make('signin');
 });
+
+Route::get('/register', function()
+{
+	return View::make('register');
+});
+
+Route::get('/search', 'SearchController@index');
+
+Route::get('/upload', 'UploadController@index');
+
+Route::get('/channel', 'ChannelController@index');

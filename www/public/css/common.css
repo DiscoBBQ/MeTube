@@ -5,7 +5,7 @@
 html, body {
 	font-family: "Helvetica Neue", Arial;
 
-	background-color: #DBF1FF;
+	background-color: #FFFFFF;
 
 	padding: 0px;
 	border: 0px;
@@ -21,27 +21,104 @@ a:hover {
 	color: black;
 }
 
+input[type=text], input[type=password] {
+	border: 1px solid #2490CC;
+}
+
 input:focus {
 	outline: none;
 	box-shadow: none;
 	border: none;
+	border: 1px solid #2490CC
 }
 
 .button {
 	color: #ffffff;
 
 	font-family: "Helvetica Neue", Arial;
-	font-size: 24px;
 
 	background-color: #49B3FA;
 	padding: 3px;
 	padding-left: 5px;
 	padding-right: 5px;
-	
+	border: 1px solid #2490CC;
 }
 
 .button:hover {
 	color: #DBF1FF;
+}
+
+#mt-signin-body {
+	position: absolute;
+	top: 80px;
+	left: 0px;
+	width: 100%;
+	height: 800px;
+
+	border: 1px solid #2490CC;
+	background-color: #DBF1FF;
+}
+
+#mt-signin-inner {
+	width: 350px;
+	margin: 0 auto;
+	display: table;
+	margin-top: 50px;
+
+	border: 1px solid #2490CC;
+	background-color: #F7F6F1;
+}
+
+.mt-block-title {
+	text-align: center;
+	background-color: #49B3FA;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	letter-spacing: 5px;
+	font-size:14px;
+	color: white;
+	border-bottom: 1px solid #2490CC;
+}
+
+.mt-block-title-left {
+	text-align: left;
+	background-color: #49B3FA;
+	padding: 10px;
+	letter-spacing: 5px;
+	font-size:14px;
+	color: white;
+	border-bottom: 1px solid #2490CC;
+}
+
+.mt-form-box {
+	padding: 10px;
+	font-size: 16px;
+	line-height: 26px;
+	letter-spacing: 2px;
+	color: #000000;
+}
+
+.mt-form-submit-body {
+	padding-top: 10px;
+}
+
+.mt-form-submit {
+	margin: 0 auto;
+	display: table;
+
+	outline: none;
+	box-shadow: none;
+	border: none;
+	border: 1px solid #2490CC;
+
+	color: #ffffff;
+
+	font-family: "Helvetica Neue", Arial;
+	font-size: 16px;
+	background-color: #49B3FA;
+	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 #mt-container {
@@ -82,7 +159,6 @@ input:focus {
 	width: 400px;
 	height: 30px;
 
-	color: #2490FA;
 	font-size: 24px;
 
 	border: 1px solid #2490CC;
@@ -99,14 +175,22 @@ input:focus {
 	border: 1px solid #2490CC;
 
 	height: 34px;
+	width:40px;
 	padding-top: 4px;
+
+	background-image: url("/images/search.png");
+	background-repeat: no-repeat;
+	background-position: center;
+
+	color: transparent;
+	font-size: 0px;
 }
 
 #mt-header-signin {
 	position: absolute;
 	right: 21px;
 	top: 26px;
-	border: 1px solid #2490CC;
+	font-size: 24px;
 }
 
 #mt-sidebar {
@@ -115,7 +199,7 @@ input:focus {
 	left: 0px;
 
 	width: 225px;
-	height: 800px;
+	height: 1100px;
 
 	background-color: #DBF1FF;
 
@@ -123,6 +207,7 @@ input:focus {
 	padding-right: 25px;
 
 	border-top: 1px solid #2490CC;
+	border-bottom: 1px solid #2490CC;
 }
 
 .mt-sidebar-block {
@@ -130,20 +215,9 @@ input:focus {
 	background-color: white;
 }
 
-.mt-sidebar-block-header {
-	text-align: center;
-	background-color: #49B3FA;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	letter-spacing: 5px;
-	font-size:18px;
-	color: white;
-	border-bottom: 1px solid #2490CC;
-}
-
 .mt-sidebar-block-body {
 	padding: 10px;
-	font-size: 20px;
+	font-size: 16px;
 	letter-spacing: 2px;
 	color: #2490FA;
 }
@@ -159,9 +233,19 @@ input:focus {
 	left: 275px;
 	right: 0px;
 
-	height: 800px;
+	height: 1060px;
 
 	background-color: #F7F6F1;
 	border-left: 1px solid #2490CC;
 	border-top: 1px solid #2490CC;
+	border-bottom: 1px solid #2490CC;
+
+	padding: 20px;
+}
+
+#welcome-browse-block {
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 160px;
+	border: 1px solid #2490CC;
 }
