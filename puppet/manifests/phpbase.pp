@@ -11,7 +11,7 @@ exec
 { 
     'apt-get update':
         command => '/usr/bin/apt-get update',
-        require => Exec['add php55 apt-repo']
+        require => Package['python-software-properties']
 }
 
 include bootstrap
