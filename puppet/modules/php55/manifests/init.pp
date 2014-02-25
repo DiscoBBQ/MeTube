@@ -11,12 +11,12 @@ class php55
 	}
 
 	#https://launchpad.net/~ondrej/+archive/php5
-	exec 
-	{ 
-		'add php55 apt-repo':
-			command => '/usr/bin/add-apt-repository ppa:ondrej/php5 -y',
-			require => [Package['python-software-properties']],
-	}
+	# exec 
+	# { 
+	# 	'add php55 apt-repo':
+	# 		command => '/usr/bin/add-apt-repository ppa:ondrej/php5 -y',
+	# 		require => [Package['python-software-properties']],
+	# }
 
 	exec { "php55 apt update":
 		command => 'apt-get update',
