@@ -83,6 +83,12 @@ return array(
 			'prefix'   => '',
 		),
 
+		'test' => array(
+      'driver'   => 'sqlite',
+      'database' => 'memory:',
+      'prefix'   => '',
+    ),
+
 	),
 
 	/*

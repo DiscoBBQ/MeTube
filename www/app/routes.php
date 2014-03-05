@@ -23,6 +23,8 @@ Route::get('/register', function()
 	return View::make('register');
 });
 
+Route::post('/register', 'UserController@create');
+
 Route::get('/search', 'SearchController@index');
 
 Route::get('/upload', 'UploadController@index');
