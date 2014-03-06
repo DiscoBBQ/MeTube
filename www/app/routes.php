@@ -25,6 +25,10 @@ Route::get('/register', function()
 
 Route::post('/register', 'UserController@create');
 
+Route::post('/signin', 'AuthenticationController@authenticate');
+
+Route::get('/signout', 'AuthenticationController@logout');
+
 Route::get('/search', 'SearchController@index');
 
 Route::get('/upload', 'UploadController@index');
