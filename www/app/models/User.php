@@ -12,7 +12,7 @@ class User implements UserInterface, RemindableInterface {
 	public $id;
 	protected $errors = array();
 	// protected $salt;
-	protected $crypted_passwoed;
+	protected $crypted_password;
 
 	public function save(){
 		if($this->validate() == false){
@@ -22,13 +22,13 @@ class User implements UserInterface, RemindableInterface {
 
 		if($this->id == NULL){
 			//insert the record into the DB
-			DB::insert("INSERT INTO users (email, username, crypted_passwoed) VALUES (?,?,?)", array($this->email, $this->username, $this->crypted_passwoed));
+			DB::insert("INSERT INTO users (email, username, password) VALUES (?,?,?)", array($this->email, $this->username, $this->crypted_password));
 		 	//get the ID of the last inserted record
 			$this->id = DB::statement('SELECT LAST_INSERT_ID()');
 			return true;
 		} else{
 			//update the existing record in the DB
-			DB::update("UPDATE users SET email = ?, username = ?, crypted_passwoed = ?", array($this->email, $this->username, $this->crypted_passwoed));
+			DB::update("UPDATE users SET email = ?, username = ?, password = ?", array($this->email, $this->username, $this->crypted_password));
 			return true;
 		}
 	}
@@ -38,7 +38,7 @@ class User implements UserInterface, RemindableInterface {
 	}
 
 	public function getCryptedPassword(){
-		$this->crypted_passwoed;
+		$this->crypted_password;
 	}
 
 	static public function getByID($id){
@@ -50,7 +50,7 @@ class User implements UserInterface, RemindableInterface {
 			$user->id 	 						= $result[0]->id;
 			$user->email 						= $result[0]->email;
 			$user->username 				= $result[0]->username;
-			$user->crypted_passwoed = $result[0]->crypted_passwoed;
+			$user->crypted_password = $result[0]->password;
 		}
 
 		return $user;
@@ -59,7 +59,7 @@ class User implements UserInterface, RemindableInterface {
 	protected function regenerate_password(){
 		//generate the salt
 		// $this->salt = time();
-		$this->crypted_passwoed = Hash::make($this->password);
+		$this->crypted_password = Hash::make($this->password);
 	}
 
 	public function validate(){
@@ -108,7 +108,7 @@ class User implements UserInterface, RemindableInterface {
 	 */
 	public function getAuthPassword()
 	{
-		return $this->password;
+		return $this->crypted_password;
 	}
 
 	/**
