@@ -34,3 +34,5 @@ Route::get('/search', 'SearchController@index');
 Route::get('/upload', 'UploadController@index');
 
 Route::get('/channel', 'ChannelController@index');
+
+Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
