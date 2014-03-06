@@ -2,6 +2,7 @@ class mysql
 {
     $mysqlPassword = ""
     $databaseName  = "metube"
+    $testDatabaseName = "metube_test"
 
     package 
     { 
@@ -40,6 +41,21 @@ class mysql
     { 
         "grant-default-db":
             command => "/usr/bin/mysql -uroot -p$mysqlPassword -e 'grant all on `$databaseName`.* to `root@localhost`;'",
+            require => [Service["mysql"], Exec["create-default-db"]]
+    }
+
+    exec 
+    { 
+        "create-test-db":
+            unless => "/usr/bin/mysql -uroot -p$mysqlPassword $testDatabaseName",
+            command => "/usr/bin/mysql -uroot -p$mysqlPassword -e 'create database `$testDatabaseName`;'",
+            require => [Service["mysql"], Exec["set-mysql-password"]]
+    }
+
+    exec 
+    { 
+        "grant-test-db":
+            command => "/usr/bin/mysql -uroot -p$mysqlPassword -e 'grant all on `$testDatabaseName`.* to `root@localhost`;'",
             require => [Service["mysql"], Exec["create-default-db"]]
     }
 }
