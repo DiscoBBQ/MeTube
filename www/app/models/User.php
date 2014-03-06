@@ -38,7 +38,7 @@ class User implements UserInterface, RemindableInterface {
 	}
 
 	public function getCryptedPassword(){
-		$this->crypted_password;
+		return $this->crypted_password;
 	}
 
 	static public function getByID($id){
