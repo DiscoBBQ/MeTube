@@ -12,9 +12,15 @@
 		</form>
 	</div>
 	<div id = "mt-header-signin">
-		<a class = "button" href = "/signin">
-			SIGN IN
-		</a>
+		@if(Auth::check())
+			<a class = "button" href = "/signout">
+				SIGN OUT
+			</a>
+		@else
+			<a class = "button" href = "/signin">
+				SIGN IN
+			</a>
+		@endif
 		&nbsp;
 		<a class = "button" href = "/register">
 			REGISTER
