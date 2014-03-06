@@ -27,4 +27,6 @@ Route::get('/search', 'SearchController@index');
 
 Route::get('/upload', 'UploadController@index');
 
+Route::post('/upload_post', 'MediaController@upload');
+
 Route::get('/channel', 'ChannelController@index');
