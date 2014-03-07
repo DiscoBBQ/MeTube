@@ -1,21 +1,28 @@
 <?php
 
 class MediaController extends BaseController {
+	protected $layout = 'media';
+
+	public function index($id)
+	{
+		$this->layout->with('id', $id);
+		$this->layout->content = View::make('includes.common');
+	}
+
 	public function upload() {
-		$file = Input::file('file');
-        $extension = $file->getClientOriginalExtension();
+		$media = new Media(Input::get('title'),
+						   Input::get('description'),
+						   Input::get('category'),
+						   Input::get('keywords'),
+						   Input::file('file')->getClientOriginalExtension(),
+						   User::getByUsername(Auth::user()->username)->getID());
 
-		DB::table('media')->insert(array('title' => Input::get('title'),
-										 'description' => Input::get('description'),
-										 'extension' => $extension));
+		$id = $media->save(Input::file('file'));
 
-		$destinationPath = 'uploaded_media/';
-
-		//$id = DB::table('media')->where('')
-
-		$filename = Input::get('title').'.'.$extension;
-		$uploadSuccess = Input::file('file')->move($destinationPath, $filename);
-
-        return "done";
-	} 
+		if ($id != -1) {
+			return Redirect::to('/media/'.$id);
+		} else {
+			return Redirect::to('/upload')->with('error_messages', 'test');
+		}
+	}
 }

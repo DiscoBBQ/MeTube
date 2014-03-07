@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'database',
+			'database'  => 'metube',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',
@@ -82,6 +82,12 @@ return array(
 			'password' => '',
 			'prefix'   => '',
 		),
+
+		'test' => array(
+      'driver'   => 'sqlite',
+      'database' => 'memory:',
+      'prefix'   => '',
+    ),
 
 	),
 

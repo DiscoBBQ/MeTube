@@ -12,13 +12,23 @@
 		</form>
 	</div>
 	<div id = "mt-header-signin">
-		<a class = "button" href = "/signin">
-			SIGN IN
-		</a>
-		&nbsp;
-		<a class = "button" href = "/register">
-			REGISTER
-		</a>
+		@if(Auth::check())
+			<a class = "button" href = "/signout">
+				SIGN OUT
+			</a>
+			&nbsp;
+			<a class = "button" href = "/upload">
+				UPLOAD
+			</a>
+		@else
+			<a class = "button" href = "/signin">
+				SIGN IN
+			</a>
+			&nbsp;
+			<a class = "button" href = "/register">
+				REGISTER
+			</a>
+		@endif
 	</div>
 </div>
 <div id = "mt-sidebar">
@@ -35,24 +45,26 @@
 			<div class = "mt-sidebar-block-button">News</div>
 		</div>
 	</div>
-	<br>
-	<div class = "mt-sidebar-block">
-		<div class = "mt-block-title"> USER </div>
-		<div class = "mt-sidebar-block-body">
-			<div class = "mt-sidebar-block-button">Uploaded</div>
-			<div class = "mt-sidebar-block-button">Downloaded</div>
-			<div class = "mt-sidebar-block-button">Viewed</div>
-			<div class = "mt-sidebar-block-button">Favorited</div>
+	@if(Auth::check())
+		<br>
+		<div class = "mt-sidebar-block">
+			<div class = "mt-block-title"> USER </div>
+			<div class = "mt-sidebar-block-body">
+				<div class = "mt-sidebar-block-button">Uploaded</div>
+				<div class = "mt-sidebar-block-button">Downloaded</div>
+				<div class = "mt-sidebar-block-button">Viewed</div>
+				<div class = "mt-sidebar-block-button">Favorited</div>
+			</div>
 		</div>
-	</div>
-	<br>
-	<div class = "mt-sidebar-block">
-		<div class = "mt-block-title"> PLAYLISTS </div>
-		<div class = "mt-sidebar-block-body">
-			<div class = "mt-sidebar-block-button">To do</div>
-			<div class = "mt-sidebar-block-button">To do</div>
-			<div class = "mt-sidebar-block-button">To do</div>
+		<br>
+		<div class = "mt-sidebar-block">
+			<div class = "mt-block-title"> PLAYLISTS </div>
+			<div class = "mt-sidebar-block-body">
+				<div class = "mt-sidebar-block-button">To do</div>
+				<div class = "mt-sidebar-block-button">To do</div>
+				<div class = "mt-sidebar-block-button">To do</div>
+			</div>
 		</div>
-	</div>
+	@endif
 </div>
 @stop

@@ -23,10 +23,19 @@ Route::get('/register', function()
 	return View::make('register');
 });
 
+Route::post('/register', 'UserController@create');
+
+Route::post('/signin', 'AuthenticationController@authenticate');
+
+Route::get('/signout', 'AuthenticationController@logout');
+
 Route::get('/search', 'SearchController@index');
 
 Route::get('/upload', 'UploadController@index');
-
-Route::post('/upload_post', 'MediaController@upload');
+Route::post('/upload', 'MediaController@upload');
 
 Route::get('/channel', 'ChannelController@index');
+
+Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
+
+Route::get('/media/{id}', 'MediaController@index');
