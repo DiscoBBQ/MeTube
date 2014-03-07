@@ -36,13 +36,13 @@
 	<div class = "mt-sidebar-block">
 		<div class = "mt-block-title"> BROWSE </div>
 		<div class = "mt-sidebar-block-body">
-			<div class = "mt-sidebar-block-button">Music</div>
-			<div class = "mt-sidebar-block-button">Sports</div>
-			<div class = "mt-sidebar-block-button">Gaming</div>
-			<div class = "mt-sidebar-block-button">Education</div>
-			<div class = "mt-sidebar-block-button">Movies</div>
-			<div class = "mt-sidebar-block-button">TV Shows</div>
-			<div class = "mt-sidebar-block-button">News</div>
+			<a href = "/browse/music/1"><div class = "mt-sidebar-block-button">Music</div></a>
+			<a href = "/browse/sports/1"><div class = "mt-sidebar-block-button">Sports</div></a>
+			<a href = "/browse/gaming/1"><div class = "mt-sidebar-block-button">Gaming</div></a>
+			<a href = "/browse/education/1"><div class = "mt-sidebar-block-button">Education</div></a>
+			<a href = "/browse/movies/1"><div class = "mt-sidebar-block-button">Movies</div></a>
+			<a href = "/browse/tv/1"><div class = "mt-sidebar-block-button">TV Shows</div></a>
+			<a href = "/browse/news/1"><div class = "mt-sidebar-block-button">News</div></a>
 		</div>
 	</div>
 	@if(Auth::check())

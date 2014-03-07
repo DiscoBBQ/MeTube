@@ -41,4 +41,5 @@ Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test
 Route::get('/media/{id}', 'MediaController@index');
 
 Route::get('/download/{id}', 'MediaController@download');
-	//return Response::download('uploaded_media/1.png');
+
+Route::get('/browse/{category}/{page}', 'BrowseController@index');

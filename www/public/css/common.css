@@ -15,6 +15,7 @@ html, body {
 
 a {
 	text-decoration:none;
+	color: inherit;
 }
 
 a:hover {
@@ -270,9 +271,25 @@ input:focus {
 
 #welcome-browse-block {
 	background-color: #FFFFFF;
-	width: 100%;
+	width: 500px;
 	height: 160px;
 	border: 1px solid #2490CC;
+}
+
+#welcome-browse-block-indv {
+	background-color: #FFFFFF;
+	width: 700px;
+	height: 200px;
+	border: 1px solid #2490CC;
+	font-size:18px;
+}
+
+#welcome-browse-block-body {
+	position: relative;
+	background-color: #FFFFFF;
+	width: 680px;
+	height: 140px;
+	padding: 10px;
 }
 
 #mt-welcome-media-block {
@@ -338,4 +355,35 @@ input:focus {
     margin:auto;
     max-height:405px;
     max-width: 720px;
+}
+
+#welcome-browse-block-info {
+	position: absolute;
+	left: 200px;
+	top: 20px;
+	width: 450px;
+	height: 143px;
+	overflow: hidden;
+}
+
+.browse-img-border {
+	border: 1px solid #2490CC;
+	width: 170px;
+	height: 140px;
+}
+
+.browse-img {
+	max-width: 170px;
+	max-height: 140px;
+}
+
+.page-bar {
+	text-align: center;
+	background-color: #49B3FA;
+	padding: 10px;
+	letter-spacing: 5px;
+	font-size:14px;
+	color: white;
+	border: 1px solid #2490CC;
+	width: 680px;
 }
