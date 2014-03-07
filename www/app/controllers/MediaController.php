@@ -25,4 +25,10 @@ class MediaController extends BaseController {
 			return Redirect::to('/upload')->with('error_messages', 'test');
 		}
 	}
+
+	public function download($id) {
+		$media = Media::getByID($id);
+
+		return Response::download('uploaded_media/'.$id.'.'.$media->getExtension(), $media->getTitle());
+	}
 }
