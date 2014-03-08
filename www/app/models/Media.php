@@ -11,10 +11,10 @@ class Media {
 
 	private $errors = array();
 
-	private $picture_formats = array("png", "jpeg", "jpg", "gif", "bmp");
-	private $audio_formats = array("m4a", "m4b", "m4p", "mp3", "aiff", "au", "wav");
-	private $qt_video_formats = array("mov", "mp4", "m4v", "avi");
-	private $wmp_video_formats = array("wmv", "wma", "wm");
+	static private $picture_formats = array("png", "jpeg", "jpg", "gif", "bmp");
+	static private $audio_formats = array("m4a", "m4b", "m4p", "mp3", "aiff", "au", "wav");
+	static private $qt_video_formats = array("mov", "mp4", "m4v", "avi");
+	static private $wmp_video_formats = array("wmv", "wma", "wm");
 
 	function __construct($title, $description, $category, $keywords, $extension, $authorid) {
 		$this->title = $title;
@@ -70,42 +70,68 @@ class Media {
 		return $id;
 	}
 
+	static public function getThumbnail($id, $extension) {
+		$thumbnail = "";
+
+		foreach (Media::$picture_formats as $format) {
+			if ($extension == $format) {
+				$thumbnail = '/uploaded_media/'.$id.'.'.$extension;
+				return $thumbnail;
+			}
+		}
+
+		foreach (Media::$audio_formats as $format) {
+			if ($extension == $format) {
+				$thumbnail = "/thumbnails/audio.png";
+				return $thumbnail;
+			}
+		}
+
+		foreach (Media::$qt_video_formats as $format) {
+			if ($extension == $format) {
+				$thumbnail = "/thumbnails/video.png";
+				return $thumbnail;
+			}
+		}
+
+		foreach (Media::$wmp_video_formats as $format) {
+			if ($extension == $format) {
+				$thumbnail = "/thumbnails/video.png";
+				return $thumbnail;
+			}
+		}
+
+		return $thumbnail;
+	}
+
 	public function getPlayer() {
 		$player = NULL;
 
-		if ($player == null) {
-			foreach ($this->picture_formats as $format) {
-				if ($this->extension == $format) {
-					$player = "picture";
-					break;
-				}
+		foreach (Media::$picture_formats as $format) {
+			if ($this->extension == $format) {
+				$player = "picture";
+				return $player;
+			}
+		}
+		
+		foreach (Media::$audio_formats as $format) {
+			if ($this->extension == $format) {
+				$player = "qt";
+				return $player;
+			}
+		}
+		
+		foreach (Media::$qt_video_formats as $format) {
+			if ($this->extension == $format) {
+				$player = "qt";
+				return $player;
 			}
 		}
 
-		if ($player == null) {
-			foreach ($this->audio_formats as $format) {
-				if ($this->extension == $format) {
-					$player = "qt";
-					break;
-				}
-			}
-		}
-
-		if ($player == null) {
-			foreach ($this->qt_video_formats as $format) {
-				if ($this->extension == $format) {
-					$player = "qt";
-					break;
-				}
-			}
-		}
-
-		if ($player == null) {
-			foreach ($this->wmp_video_formats as $format) {
-				if ($this->extension == $format) {
-					$player = "wmp";
-					break;
-				}
+		foreach (Media::$wmp_video_formats as $format) {
+			if ($this->extension == $format) {
+				$player = "wmp";
+				return $player;
 			}
 		}
 

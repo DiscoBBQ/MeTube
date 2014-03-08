@@ -26,8 +26,7 @@
 																'Gaming' => 'Gaming',
 																'Education' => 'Education',
 																'Movies' => 'Movies',
-																'TV' => 'TV Shows',
-																'News' => 'News')); }}
+																'TV' => 'TV Shows')); }}
 						<br>
 						Keywords: <input type = "text" name = "keywords">
 						<br>

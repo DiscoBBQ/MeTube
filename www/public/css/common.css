@@ -271,7 +271,7 @@ input:focus {
 
 #welcome-browse-block {
 	background-color: #FFFFFF;
-	width: 500px;
+	width: 700px;
 	height: 160px;
 	border: 1px solid #2490CC;
 }
@@ -367,14 +367,34 @@ input:focus {
 }
 
 .browse-img-border {
+	position: absolute;
 	border: 1px solid #2490CC;
 	width: 170px;
 	height: 140px;
 }
 
+.home-img-border {
+	position: absolute;
+	border: 1px solid #2490CC;
+	width: 140px;
+	height: 110px;
+}
+
+.home-title-box {
+	position: absolute;
+	width: 140px;
+	top: 130px;
+	overflow: hidden;
+}
+
 .browse-img {
 	max-width: 170px;
 	max-height: 140px;
+}
+
+.home-img {
+	max-width: 140px;
+	max-height: 110px;
 }
 
 .page-bar {

@@ -24,7 +24,7 @@
 							<div id = "welcome-browse-block-body">
 								<a href = "/media/'.$result->id.'">
 								<div class = "browse-img-border">
-								<img class = "browse-img" src="/uploaded_media/'.$result->id.'.'.'png'.'">
+								<img class = "browse-img" src="'.Media::getThumbnail($result->id, $result->extension).'">
 								</div>
 								</a>
 

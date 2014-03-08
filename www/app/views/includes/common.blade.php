@@ -42,7 +42,6 @@
 			<a href = "/browse/education/1"><div class = "mt-sidebar-block-button">Education</div></a>
 			<a href = "/browse/movies/1"><div class = "mt-sidebar-block-button">Movies</div></a>
 			<a href = "/browse/tv/1"><div class = "mt-sidebar-block-button">TV Shows</div></a>
-			<a href = "/browse/news/1"><div class = "mt-sidebar-block-button">News</div></a>
 		</div>
 	</div>
 	@if(Auth::check())
