@@ -4,12 +4,12 @@
 		<a href = "/"><img src = "/images/logo1.png"></a>
 	</div>
 	<div id = "mt-header-content">
-		<form>
-			<input id = "mt-header-content-searchbar" type = "text"> 
+		{{ Form::open(array('url' => 'search')) }}
+			<input id = "mt-header-content-searchbar" type = "text" name = "phrase"> 
 			<input id = "mt-header-content-searchbutton" type = "submit">
 				<img src = "images/search.png">
 			</input>
-		</form>
+		{{ Form::close() }}
 	</div>
 	<div id = "mt-header-signin">
 		@if(Auth::check())

@@ -29,7 +29,8 @@ Route::post('/signin', 'AuthenticationController@authenticate');
 
 Route::get('/signout', 'AuthenticationController@logout');
 
-Route::get('/search', 'SearchController@index');
+Route::get('/search/{phrase}/{page}', 'SearchController@index');
+Route::post('/search', 'SearchController@search');
 
 Route::get('/upload', 'UploadController@index');
 Route::post('/upload', 'MediaController@upload');

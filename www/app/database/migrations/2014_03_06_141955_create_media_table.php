@@ -22,7 +22,7 @@ class CreateMediaTable extends Migration {
  		`category` varchar(127) DEFAULT NULL,
  		`keywords` varchar(255) DEFAULT NULL,
  		PRIMARY KEY (`id`)
-		) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;");
+		) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;");
 	}
 
 	/**
