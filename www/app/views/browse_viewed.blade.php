@@ -10,7 +10,7 @@
 			@yield('includes.common')
 			<div id = "mt-welcome">
 				<?php
-					$results = DB::select("SELECT * FROM media,interactions WHERE user_id = ? AND interactions.category = 'viewed' AND authorid = user_id AND media_id = id ORDER BY created_on desc limit ?,6", array($userid, ($page - 1) * 6));
+					$results = DB::select("SELECT * FROM interactions,media WHERE user_id = ? AND interactions.category = 'viewed' AND authorid = user_id AND media_id = id ORDER BY created_on desc limit ?,6", array($userid, ($page - 1) * 6));
 
 					foreach ($results as $result) {
 					$user = User::getByID($result->authorid);
@@ -29,8 +29,8 @@
 								</a>
 
 								<div id = "welcome-browse-block-info">
-									Author: '.$user->username.'<br>
-									Category: '.$result->category.'<br>
+									Author: <a class = "text-link" href = "/profile/'.$result->authorid.'">'.$user->username.'</a><br>
+									Category: <a class = "text-link" href = "/browse/'.$result->category.'/1">'.$result->category.'</a><br>
 									Description: '.$result->description.'
 								</div>
 

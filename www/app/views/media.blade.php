@@ -73,14 +73,14 @@
 
 					<div class = "mt-welcome-media-block-footer">
 
-						Author: <?php
+						Author: <a href = "/profile/<?php echo $media->getAuthorId(); ?>" class = "text-link"><?php
 							$user = User::getByID($media->getAuthorId());
 							echo $user->username;
-						?>
+						?></a>
 						<br>
-						Category: <?php
+						Category: <a href = "/browse/<?php echo $media->getCategory(); ?>/1" class = "text-link"><?php
 							echo $media->getCategory();
-						?>
+						?></a>
 
 						<a class = "button abs-right" href = "/download/
 							<?php

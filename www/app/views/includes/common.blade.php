@@ -49,6 +49,8 @@
 		<div class = "mt-sidebar-block">
 			<div class = "mt-block-title"> USER </div>
 			<div class = "mt-sidebar-block-body">
+				<a href = "/profile/<?php echo Auth::user()->id; ?>"><div class = "mt-sidebar-block-button">Profile</div></a>
+				<a href = "/channel/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Channel</div></a>
 				<a href = "/uploaded/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Uploaded</div></a>
 				<a href = "/downloaded/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Downloaded</div></a>
 				<a href = "/viewed/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Viewed</div></a>
@@ -56,14 +58,14 @@
 			</div>
 		</div>
 		<br>
-		<div class = "mt-sidebar-block">
+		<!--<div class = "mt-sidebar-block">
 			<div class = "mt-block-title"> PLAYLISTS </div>
 			<div class = "mt-sidebar-block-body">
 				<div class = "mt-sidebar-block-button">To do</div>
 				<div class = "mt-sidebar-block-button">To do</div>
 				<div class = "mt-sidebar-block-button">To do</div>
 			</div>
-		</div>
+		</div>-->
 	@endif
 </div>
 @stop

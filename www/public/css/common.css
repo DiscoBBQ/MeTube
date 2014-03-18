@@ -414,3 +414,19 @@ input:focus {
 	border: 1px solid #2490CC;
 	width: 680px;
 }
+
+#profile-links {
+	border: 1px solid #2490CC;
+	background-color: #49B3FA;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	letter-spacing: 5px;
+	font-size:14px;
+	color: white;
+}
+
+.text-link {
+	color: #49B3FA;
+	text-decoration: underline;
+}

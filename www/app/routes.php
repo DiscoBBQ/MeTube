@@ -35,7 +35,7 @@ Route::post('/search', 'SearchController@search');
 Route::get('/upload', 'UploadController@index');
 Route::post('/upload', 'MediaController@upload');
 
-Route::get('/channel', 'ChannelController@index');
+Route::get('/channel/{id}/{page}', 'ChannelController@index');
 
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
 
@@ -51,3 +51,7 @@ Route::get('/uploaded/{userid}/{page}', 'BrowseUploadedController@index');
 Route::get('/downloaded/{userid}/{page}', 'BrowseDownloadedController@index');
 Route::get('/viewed/{userid}/{page}', 'BrowseViewedController@index');
 Route::get('/favorited/{userid}/{page}', 'BrowseFavoritedController@index');
+
+Route::get('/profile/{id}', 'ProfileController@index');
+
+Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');

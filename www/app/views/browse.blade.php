@@ -29,8 +29,8 @@
 								</a>
 
 								<div id = "welcome-browse-block-info">
-									Author: '.$user->username.'<br>
-									Category: '.$result->category.'<br>
+									Author: <a class = "text-link" href = "/profile/'.$result->authorid.'">'.$user->username.'</a><br>
+									Category: <a class = "text-link" href = "/browse/'.$result->category.'/1">'.$result->category.'</a><br>
 									Description: '.$result->description.'
 								</div>
 
