@@ -341,6 +341,13 @@ input:focus {
 	margin-top: -15px;
 }
 
+.abs-right2 {
+	position: relative;
+	float: right;
+	right: 25px;
+	margin-top: -15px;
+}
+
 .mt-welcome-media-block-footer {
 	padding: 10px;
 	background-color: white;

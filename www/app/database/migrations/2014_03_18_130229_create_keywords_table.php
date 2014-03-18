@@ -28,7 +28,7 @@ class CreateKeywordsTable extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement("DROP TABLE `keywords`;");
+		DB::statement("DROP TABLE `keywords`");
 	}
 
 }

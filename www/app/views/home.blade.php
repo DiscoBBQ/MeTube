@@ -9,8 +9,6 @@
 		<div id = "mt-container">
 			@yield('includes.common')
 			<div id = "mt-welcome">
-
-
 				<div id = "welcome-browse-block-indv">
 					<div class = "mt-block-title-left">
 						<a href = "/browse/music/1">Music</a>

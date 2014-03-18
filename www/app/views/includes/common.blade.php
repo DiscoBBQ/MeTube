@@ -49,10 +49,10 @@
 		<div class = "mt-sidebar-block">
 			<div class = "mt-block-title"> USER </div>
 			<div class = "mt-sidebar-block-body">
-				<div class = "mt-sidebar-block-button">Uploaded</div>
-				<div class = "mt-sidebar-block-button">Downloaded</div>
-				<div class = "mt-sidebar-block-button">Viewed</div>
-				<div class = "mt-sidebar-block-button">Favorited</div>
+				<a href = "/uploaded/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Uploaded</div></a>
+				<a href = "/downloaded/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Downloaded</div></a>
+				<a href = "/viewed/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Viewed</div></a>
+				<a href = "/favorited/<?php echo Auth::user()->id; ?>/1"><div class = "mt-sidebar-block-button">Favorited</div></a>
 			</div>
 		</div>
 		<br>

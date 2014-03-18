@@ -43,4 +43,11 @@ Route::get('/media/{id}', 'MediaController@index');
 
 Route::get('/download/{id}', 'MediaController@download');
 
+Route::get('/favorite/{id}', 'MediaController@favorite');
+
 Route::get('/browse/{category}/{page}', 'BrowseController@index');
+
+Route::get('/uploaded/{userid}/{page}', 'BrowseUploadedController@index');
+Route::get('/downloaded/{userid}/{page}', 'BrowseDownloadedController@index');
+Route::get('/viewed/{userid}/{page}', 'BrowseViewedController@index');
+Route::get('/favorited/{userid}/{page}', 'BrowseFavoritedController@index');

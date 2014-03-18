@@ -3,6 +3,13 @@
 	<head>
 		<?php
 			$media = Media::getByID($id);
+
+			if(Auth::check()) {
+				$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'viewed'", array(Auth::user()->id, $id));
+
+				if (sizeof($result) == 0)
+					DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'viewed')", array(Auth::user()->id, $id));
+			}
 		?>
 		<title>MeTube - <?php echo $media->getTitle(); ?></title>
 		<link href = "/css/common.css" rel = "stylesheet" type = "text/css">
@@ -82,6 +89,15 @@
 						">
 							DOWNLOAD
 						</a>
+						@if(Auth::check())
+						<a class = "button abs-right2" href = "/favorite/
+							<?php
+								echo $id;
+							?>
+						">
+							FAVORITE
+						</a>
+						@endif
 					</div>
 					<div class = "mt-welcome-media-block-header">
 						DESCRIPTION
