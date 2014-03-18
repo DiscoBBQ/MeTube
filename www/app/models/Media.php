@@ -45,8 +45,28 @@ class Media {
 			return NULL;
 		}
 
+		$keyword_result = DB::select("SELECT keyword FROM keywords WHERE mediaid = ?", array($result[0]->id));
+
+		$keywords = array();
+		foreach($keyword_result as $keyword) {
+			array_push($keywords, $keyword->keyword);
+		}
+
+		$titlewords = array();
+		foreach(explode(' ', $result[0]->title) as $titleword) {
+			array_push($titlewords, $titleword);
+		}
+
+		$keywords = array_diff($keywords, $titlewords);
+
+		$keywords_string = "";
+		foreach($keywords as $keyword) {
+			$keywords_string .= $keyword . ' ';
+		}
+		$keywords_string = trim($keywords_string, ' ');
+
 		return new self($result[0]->title, $result[0]->description, $result[0]->category,
-			$result[0]->keywords, $result[0]->extension, $result[0]->authorid);
+			$keywords_string, $result[0]->extension, $result[0]->authorid);
 	}
 
 	public function save($file) {
@@ -59,8 +79,12 @@ class Media {
 										 'extension' => $this->extension,
 										 'authorid' => $this->authorid,
 										 'created_on' => $this->created_on,
-										 'category' => $this->category,
-										 'keywords' => $this->keywords));
+										 'category' => $this->category));
+
+		$keywords = array_unique(explode(' ', $this->keywords . ' ' . $this->title));
+		foreach($keywords as $keyword) {
+			DB::statement("INSERT INTO keywords (mediaid, keyword) VALUES (?,?)", array($id, $keyword));
+		}
 
 		$destinationPath = 'uploaded_media/';
 

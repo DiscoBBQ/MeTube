@@ -10,10 +10,21 @@
 			@yield('includes.common')
 			<div id = "mt-welcome">
 				<?php
-					$results = DB::select('select *, MATCH(title, keywords, description, category, extension) AGAINST 
-						(? IN BOOLEAN MODE) AS score from media WHERE MATCH(title, keywords, description, category, extension) AGAINST 
-						(? IN BOOLEAN MODE) having score > 0 ORDER BY score DESC limit ?,6', array($phrase, $phrase, ($page - 1) * 6));
-				
+					$select_query = "SELECT *, COUNT(*) FROM keywords,media WHERE media.id = keywords.mediaid AND (";
+
+					$keywords = explode(' ', $phrase);
+					for ($i = 0; $i < count($keywords); $i++) {
+						if ($i != count($keywords) - 1) {
+							$select_query .= "keyword = '" . $keywords[$i] . "' OR ";
+						} else {
+							$select_query .= "keyword = '" . $keywords[$i] . "') ";
+						}
+					}
+
+					$select_query .= "GROUP BY mediaid ORDER BY COUNT(*) desc";
+
+					$results = DB::select($select_query . " LIMIT " . (($page - 1) * 6) . ",6");
+
 					foreach ($results as $result) {
 					$user = User::getByID($result->authorid);
 					echo '
@@ -42,45 +53,41 @@
 					}
 
 					if (sizeof($results) > 0) {
+						$results = DB::select($select_query);
+						$size = sizeof($results);
 
-					$results = DB::select('select *, MATCH(title, keywords, description, category, extension) AGAINST 
-						(? IN BOOLEAN MODE) AS score from media WHERE MATCH(title, keywords, description, category, extension) AGAINST 
-						(? IN BOOLEAN MODE) having score > 0', array($phrase, $phrase));
-					$size = sizeof($results);
+						echo '<div class = "page-bar">';
 
-					echo '<div class = "page-bar">';
+						if ($page > 1) {
+							echo '<a href = "/search/'.$phrase.'/'.($page - 1).'"><</a>';
+							echo ' ';
+						}
 
-					if ($page > 1) {
-						echo '<a href = "/search/'.$phrase.'/'.($page - 1).'"><</a>';
-						echo ' ';
+						$min = 0;
+						if ($page - 5 > 0) {
+							$min = $page - 5;
+						}
+
+						$max = $size/6;
+						if ($page + 5 < $size/6) {
+							$max = $page + 5;
+						}
+
+						for ($i = $min; $i < $max; $i++)
+						{
+							echo '<a href = "/search/'.$phrase.'/'.($i+1).'">';
+							echo $i+1;
+							echo '</a>';
+							echo ' ';
+						}
+
+						if ($page < $size/6) {
+							echo '<a href = "/search/'.$phrase.'/'.($page + 1).'">></a>';
+							echo ' ';
+						}
+
+						echo '</div>';
 					}
-
-					$min = 0;
-					if ($page - 5 > 0) {
-						$min = $page - 5;
-					}
-
-					$max = $size/6;
-					if ($page + 5 < $size/6) {
-						$max = $page + 5;
-					}
-
-					for ($i = $min; $i < $max; $i++)
-					{
-						echo '<a href = "/search/'.$phrase.'/'.($i+1).'">';
-						echo $i+1;
-						echo '</a>';
-						echo ' ';
-					}
-
-					if ($page < $size/6) {
-						echo '<a href = "/search/'.$phrase.'/'.($page + 1).'">></a>';
-						echo ' ';
-					}
-
-					echo '</div>';
-				}
-
 
 				?>
 			</div>
