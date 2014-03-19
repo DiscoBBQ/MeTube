@@ -40,6 +40,7 @@ Route::get('/channel/{id}/{page}', 'ChannelController@index');
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
 
 Route::get('/media/{id}', 'MediaController@index');
+Route::post('/media/{id}', 'PlaylistController@add');
 
 Route::get('/download/{id}', 'MediaController@download');
 
@@ -55,3 +56,10 @@ Route::get('/favorited/{userid}/{page}', 'BrowseFavoritedController@index');
 Route::get('/profile/{id}', 'ProfileController@index');
 
 Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');
+
+Route::get('/createplaylist', 'CreatePlaylistController@index');
+Route::post('/createplaylist', 'CreatePlaylistController@create');
+
+Route::get('/playlist/up/{id}/{order}/{page}', 'PlaylistController@up');
+Route::get('/playlist/down/{id}/{order}/{page}', 'PlaylistController@down');
+Route::get('/playlist/{id}/{page}', 'PlaylistController@index');

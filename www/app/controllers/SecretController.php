@@ -11,5 +11,4 @@ class SecretController extends BaseController {
 	{
 		return "You're logged in!";
 	}
-
 }

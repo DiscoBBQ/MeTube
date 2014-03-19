@@ -58,14 +58,18 @@
 			</div>
 		</div>
 		<br>
-		<!--<div class = "mt-sidebar-block">
+		<div class = "mt-sidebar-block">
 			<div class = "mt-block-title"> PLAYLISTS </div>
 			<div class = "mt-sidebar-block-body">
-				<div class = "mt-sidebar-block-button">To do</div>
-				<div class = "mt-sidebar-block-button">To do</div>
-				<div class = "mt-sidebar-block-button">To do</div>
+				<a href = "/createplaylist"><div class = "mt-sidebar-block-button">Create Playlist</div></a>
+				<?php
+					$result = DB::select("SELECT * FROM playlist WHERE user_id = ? ORDER BY id", array(Auth::user()->id));
+					foreach($result as $playlist) {
+						echo '<a href = "/playlist/'.$playlist->id.'/1"><div class = "mt-sidebar-block-button">'.$playlist->title.'</div></a>';
+					}
+				?>
 			</div>
-		</div>-->
+		</div>
 	@endif
 </div>
 @stop

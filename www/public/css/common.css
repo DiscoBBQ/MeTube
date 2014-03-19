@@ -348,6 +348,14 @@ input:focus {
 	margin-top: -15px;
 }
 
+.abs-right3 {
+	position: relative;
+	float: right;
+	right: 60px;
+	margin-top: -32px;
+	line-height: 30px;
+}
+
 .mt-welcome-media-block-footer {
 	padding: 10px;
 	background-color: white;
@@ -429,4 +437,19 @@ input:focus {
 .text-link {
 	color: #49B3FA;
 	text-decoration: underline;
+	text-decoration: none;
+}
+
+.arrow-up {
+	position: absolute;
+	float: right;
+	right: 150px;
+	margin-top: 10px;
+}
+
+.arrow-down {
+	position: absolute;
+	float: right;
+	right: 50px;
+	margin-top: 10px;
 }

@@ -97,6 +97,25 @@
 						">
 							FAVORITE
 						</a>
+
+						<div class = "abs-right3">
+							
+						{{ Form::open(array('url' => 'media/'.$id)) }}
+
+						<?php
+							$playlists = array();
+
+							$results = DB::select("SELECT * FROM playlist WHERE user_id = ?", array(Auth::user()->id));
+							foreach($results as $playlist) {
+								$playlists[$playlist->id] = $playlist->title;
+							}
+						?>
+
+						Playlist: {{ Form::select('playlist', $playlists); }}<br>
+						<input type = "submit" class = "mt-form-submit" value = "ADD">
+						{{ Form::close() }}
+
+						</div>
 						@endif
 					</div>
 					<div class = "mt-welcome-media-block-header">
