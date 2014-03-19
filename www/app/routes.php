@@ -63,3 +63,5 @@ Route::post('/createplaylist', 'CreatePlaylistController@create');
 Route::get('/playlist/up/{id}/{order}/{page}', 'PlaylistController@up');
 Route::get('/playlist/down/{id}/{order}/{page}', 'PlaylistController@down');
 Route::get('/playlist/{id}/{page}', 'PlaylistController@index');
+
+Route::post('/comment/{id}', 'CommentController@create');

@@ -132,10 +132,28 @@
 					</div>
 
 					<div class = "mt-welcome-media-block-comments">
-						
-					</div>
-					<div class = "mt-welcome-media-block-header-bottom">
-						1 2 3 4 5 6
+						<?php
+							$results = DB::select("SELECT comment,user_id FROM comments WHERE media_id = ? ORDER BY timestamp DESC", array($id));
+
+							foreach($results as $result) {
+								echo '<div class = "mt-sidebar-block">
+										<div class = "mt-block-title">';
+
+								echo User::getById($result->user_id)->username;
+
+								echo '</div>
+										<div class = "mt-sidebar-block-body">';
+
+								echo $result->comment;
+
+								echo "</div></div><br>";
+							}
+						?>
+
+						{{ Form::open(array('url' => 'comment/'.$id)) }}
+						<center><textarea name = "comment" rows = '4' cols = '50'></textarea></center>
+						<input type = "submit" class = "mt-form-submit" value = "COMMENT">
+						{{ Form::close() }}
 					</div>
 				</div>
 			</div>

@@ -301,9 +301,9 @@ input:focus {
 
 .mt-welcome-media-block-comments {
 	background-color: #FFFFFF;
-	width: 720px;
-	height: 655px;
+	width: 700px;
 	border: 1px solid #2490CC;
+	padding: 10px;
 }
 
 .mt-welcome-media-block-header {
