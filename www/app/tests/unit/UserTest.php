@@ -2,14 +2,6 @@
 
 //Unit Tests for the user model
 class UserUnitTest extends TestCase {
-  //User Creation
-
-  // public function testValidationError(){
-  //   Xdebug_break();
-
-  //   1+1;
-  // }
-
   public function testCreateUser(){
     $user = new User();
     $user->username             = "tcannon";
