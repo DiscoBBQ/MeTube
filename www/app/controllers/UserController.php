@@ -4,11 +4,11 @@ class UserController extends BaseController {
   protected $layout = 'channel';
   protected $user;
 
-   public function __construct()
-    {
-        $this->beforeFilter('@find_user_by_ID_or_raise_404', array('only' => array('show', 'edit', 'update')));
-        $this->beforeFilter('@authed_user_matches_this_user', array('only' => array('edit', 'update')));
-    }
+  public function __construct()
+  {
+      $this->beforeFilter('@find_user_by_ID_or_raise_404', array('only' => array('show', 'edit', 'update')));
+      $this->beforeFilter('@authed_user_matches_this_user', array('only' => array('edit', 'update')));
+  }
 
   public function create()
   {
