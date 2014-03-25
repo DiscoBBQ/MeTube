@@ -36,3 +36,8 @@ Route::get('/upload', 'UploadController@index');
 Route::get('/channel', 'ChannelController@index');
 
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
+
+Route::get('/profile/update', array('as' => 'profile_edit', 'before' => 'auth',  'uses' => 'UserController@edit'));
+Route::post('/profile/update', array('before' => 'auth', 'uses' => 'UserController@update'));
+
+Route::get('/channels/{id}', array('as' => 'user_show', 'uses' => 'UserController@show'));
