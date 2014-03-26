@@ -16,15 +16,12 @@
           {{ Form::button('Search', array('type' => 'submit', 'id' => 'searchbutton'))}}
         {{ Form::close() }}
       </div>
-      <div id = "signin">
-        
-      </div>
     </div>
     <div id = "sidebar">
       <div class = "sidebar-block">
         <div class = "sidebar-block-title">
           @if(Auth::check())
-            You're signed in!
+            <span id='username-title'>{{ Auth::user()->username }}</span>
           @else
             User
           @endif
