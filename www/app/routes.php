@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'MeTubeController@index');
 
 Route::get('/signin', function()
 {
