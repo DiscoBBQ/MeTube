@@ -13,17 +13,13 @@
 
 Route::get('/', 'MeTubeController@index');
 
-Route::get('/signin', function()
-{
-	return View::make('signin');
-});
+Route::get('/signin', 'AuthenticationController@signin');
+Route::post('/signin', 'AuthenticationController@authenticate');
+Route::get('/signout', 'AuthenticationController@logout');
+
 
 Route::get( '/register', 'UserController@register');
 Route::post('/register', 'UserController@create');
-
-Route::post('/signin', 'AuthenticationController@authenticate');
-
-Route::get('/signout', 'AuthenticationController@logout');
 
 Route::get('/search', 'SearchController@index');
 

@@ -1,7 +1,7 @@
 <?php
 
 class AuthenticationController extends BaseController {
-	protected $layout = 'channel';
+	protected $layout = 'application';
 
 	public function authenticate()
 	{
@@ -13,6 +13,10 @@ class AuthenticationController extends BaseController {
       return Redirect::to('/signin');
     }
 	}
+
+  public function signin(){
+    $this->layout->content = View::make('authentication.signin');
+  }
 
   public function logout(){
     Auth::logout();
