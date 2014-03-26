@@ -18,11 +18,7 @@ Route::get('/signin', function()
 	return View::make('signin');
 });
 
-Route::get('/register', function()
-{
-	return View::make('register');
-});
-
+Route::get( '/register', 'UserController@register');
 Route::post('/register', 'UserController@create');
 
 Route::post('/signin', 'AuthenticationController@authenticate');
