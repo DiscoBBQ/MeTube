@@ -69,6 +69,31 @@ input:focus {
 	background-color: #F7F6F1;
 }
 
+#mt-signin2-inner {
+	width: 350px;
+	margin: 0 auto;
+	display: table;
+	margin-top: 50px;
+
+	border: 1px solid #2490CC;
+	background-color: #F7F6F1;
+}
+
+#mt-welcome-media-container {
+	margin: 0 auto;
+	display: table;
+}
+
+#mt-upload-inner {
+	width: 350px;
+	margin: 0 auto;
+	display: table;
+	margin-top: 50px;
+
+	border: 1px solid #2490CC;
+	background-color: white;
+}
+
 .mt-block-title {
 	text-align: center;
 	background-color: #49B3FA;
@@ -199,7 +224,7 @@ input:focus {
 	left: 0px;
 
 	width: 225px;
-	height: 1100px;
+	height: 1400px;
 
 	background-color: #DBF1FF;
 
@@ -233,7 +258,7 @@ input:focus {
 	left: 275px;
 	right: 0px;
 
-	height: 1060px;
+	height: 1360px;
 
 	background-color: #F7F6F1;
 	border-left: 1px solid #2490CC;
@@ -248,4 +273,69 @@ input:focus {
 	width: 100%;
 	height: 160px;
 	border: 1px solid #2490CC;
+}
+
+#mt-welcome-media-block {
+	background-color: #FFFFFF;
+	width: 720px;
+	height: 405px;
+	border: 1px solid #2490CC;
+}
+
+.mt-welcome-media-block-comments {
+	background-color: #FFFFFF;
+	width: 720px;
+	height: 655px;
+	border: 1px solid #2490CC;
+}
+
+.mt-welcome-media-block-header {
+	text-align: left;
+	width: 700px;
+	background-color: #49B3FA;
+	padding: 10px;
+	letter-spacing: 5px;
+	font-size:18px;
+	color: white;
+	border-left: 1px solid #2490CC;
+	border-right: 1px solid #2490CC;
+}
+
+.mt-welcome-media-block-header-bottom {
+	text-align: center;
+	width: 700px;
+	background-color: #49B3FA;
+	padding: 10px;
+	letter-spacing: 5px;
+	font-size:18px;
+	color: white;
+	border-left: 1px solid #2490CC;
+	border-right: 1px solid #2490CC;
+	border-bottom: 1px solid #2490CC;
+}
+
+.border-top {
+	border-top: 1px solid #2490CC;
+}
+
+.abs-right {
+	position: relative;
+	float: right;
+	margin-top: -15px;
+}
+
+.mt-welcome-media-block-footer {
+	padding: 10px;
+	background-color: white;
+	width: 700px;
+	border: 1px solid #2490CC;
+	margin-top: -1px;
+	color: black;
+}
+
+.mt-media-img {
+	display:block;
+    margin:auto;
+    max-height:405px;
+    max-width: 720px;
 }
