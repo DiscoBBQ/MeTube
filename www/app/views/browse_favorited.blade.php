@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>MeTube - Search</title>
+		<title>MeTube - Browse Favorited</title>
 		<link href = "/css/common.css" rel = "stylesheet" type = "text/css">
 	</head>
 
@@ -10,20 +10,7 @@
 			@yield('includes.common')
 			<div id = "mt-welcome">
 				<?php
-					$select_query = "SELECT *, COUNT(*) FROM keywords,media WHERE media.id = keywords.mediaid AND (";
-
-					$keywords = explode(' ', $phrase);
-					for ($i = 0; $i < count($keywords); $i++) {
-						if ($i != count($keywords) - 1) {
-							$select_query .= "keyword = '" . $keywords[$i] . "' OR ";
-						} else {
-							$select_query .= "keyword = '" . $keywords[$i] . "') ";
-						}
-					}
-
-					$select_query .= "GROUP BY mediaid ORDER BY COUNT(*) desc";
-
-					$results = DB::select($select_query . " LIMIT " . (($page - 1) * 6) . ",6");
+					$results = DB::select("SELECT * FROM media,interactions WHERE user_id = ? AND interactions.category = 'favorited' AND authorid = user_id AND media_id = id ORDER BY created_on desc limit ?,6", array($userid, ($page - 1) * 6));
 
 					foreach ($results as $result) {
 					$user = User::getByID($result->authorid);
@@ -53,13 +40,13 @@
 					}
 
 					if (sizeof($results) > 0) {
-						$results = DB::select($select_query);
+						$results = DB::select("SELECT * FROM media,interactions WHERE user_id = ? AND interactions.category = 'favorited' AND authorid = user_id AND media_id = id", array($userid));
 						$size = sizeof($results);
 
 						echo '<div class = "page-bar">';
 
 						if ($page > 1) {
-							echo '<a href = "/search/'.$phrase.'/'.($page - 1).'"><</a>';
+							echo '<a href = "/favorited/'.$userid.'/'.($page - 1).'"><</a>';
 							echo ' ';
 						}
 
@@ -75,20 +62,19 @@
 
 						for ($i = $min; $i < $max; $i++)
 						{
-							echo '<a href = "/search/'.$phrase.'/'.($i+1).'">';
+							echo '<a href = "/favorited/'.$userid.'/'.($i+1).'">';
 							echo $i+1;
 							echo '</a>';
 							echo ' ';
 						}
 
 						if ($page < $size/6) {
-							echo '<a href = "/search/'.$phrase.'/'.($page + 1).'">></a>';
+							echo '<a href = "/favorited/'.$userid.'/'.($page + 1).'">></a>';
 							echo ' ';
 						}
 
 						echo '</div>';
 					}
-
 				?>
 			</div>
 		</div>
