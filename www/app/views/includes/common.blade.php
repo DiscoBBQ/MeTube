@@ -12,13 +12,23 @@
 		</form>
 	</div>
 	<div id = "mt-header-signin">
-		<a class = "button" href = "/signin">
-			SIGN IN
-		</a>
-		&nbsp;
-		<a class = "button" href = "/register">
-			REGISTER
-		</a>
+		@if(Auth::check())
+			<a class = "button" href = "/signout">
+				SIGN OUT
+			</a>
+			&nbsp;
+			<a class = "button" href = "/upload">
+				UPLOAD
+			</a>
+		@else
+			<a class = "button" href = "/signin">
+				SIGN IN
+			</a>
+			&nbsp;
+			<a class = "button" href = "/register">
+				REGISTER
+			</a>
+		@endif
 	</div>
 </div>
 <div id = "mt-sidebar">
@@ -26,33 +36,34 @@
 	<div class = "mt-sidebar-block">
 		<div class = "mt-block-title"> BROWSE </div>
 		<div class = "mt-sidebar-block-body">
-			<div class = "mt-sidebar-block-button">Music</div>
-			<div class = "mt-sidebar-block-button">Sports</div>
-			<div class = "mt-sidebar-block-button">Gaming</div>
-			<div class = "mt-sidebar-block-button">Education</div>
-			<div class = "mt-sidebar-block-button">Movies</div>
-			<div class = "mt-sidebar-block-button">TV Shows</div>
-			<div class = "mt-sidebar-block-button">News</div>
+			<a href = "/browse/music/1"><div class = "mt-sidebar-block-button">Music</div></a>
+			<a href = "/browse/sports/1"><div class = "mt-sidebar-block-button">Sports</div></a>
+			<a href = "/browse/gaming/1"><div class = "mt-sidebar-block-button">Gaming</div></a>
+			<a href = "/browse/education/1"><div class = "mt-sidebar-block-button">Education</div></a>
+			<a href = "/browse/movies/1"><div class = "mt-sidebar-block-button">Movies</div></a>
+			<a href = "/browse/tv/1"><div class = "mt-sidebar-block-button">TV Shows</div></a>
 		</div>
 	</div>
-	<br>
-	<div class = "mt-sidebar-block">
-		<div class = "mt-block-title"> USER </div>
-		<div class = "mt-sidebar-block-body">
-			<div class = "mt-sidebar-block-button">Uploaded</div>
-			<div class = "mt-sidebar-block-button">Downloaded</div>
-			<div class = "mt-sidebar-block-button">Viewed</div>
-			<div class = "mt-sidebar-block-button">Favorited</div>
+	@if(Auth::check())
+		<br>
+		<div class = "mt-sidebar-block">
+			<div class = "mt-block-title"> USER </div>
+			<div class = "mt-sidebar-block-body">
+				<div class = "mt-sidebar-block-button">Uploaded</div>
+				<div class = "mt-sidebar-block-button">Downloaded</div>
+				<div class = "mt-sidebar-block-button">Viewed</div>
+				<div class = "mt-sidebar-block-button">Favorited</div>
+			</div>
 		</div>
-	</div>
-	<br>
-	<div class = "mt-sidebar-block">
-		<div class = "mt-block-title"> PLAYLISTS </div>
-		<div class = "mt-sidebar-block-body">
-			<div class = "mt-sidebar-block-button">To do</div>
-			<div class = "mt-sidebar-block-button">To do</div>
-			<div class = "mt-sidebar-block-button">To do</div>
+		<br>
+		<div class = "mt-sidebar-block">
+			<div class = "mt-block-title"> PLAYLISTS </div>
+			<div class = "mt-sidebar-block-body">
+				<div class = "mt-sidebar-block-button">To do</div>
+				<div class = "mt-sidebar-block-button">To do</div>
+				<div class = "mt-sidebar-block-button">To do</div>
+			</div>
 		</div>
-	</div>
+	@endif
 </div>
 @stop
