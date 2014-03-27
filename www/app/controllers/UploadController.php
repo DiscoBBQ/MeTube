@@ -5,6 +5,9 @@ class UploadController extends BaseController {
 
 	public function index()
 	{
-		$this->layout->content = View::make('includes.common');
+		if(Auth::check())
+			$this->layout->content = View::make('includes.common');
+		else
+			return Redirect::to('/signin');
 	}
 }

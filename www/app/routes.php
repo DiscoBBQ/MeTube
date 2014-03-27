@@ -23,8 +23,43 @@ Route::get('/register', function()
 	return View::make('register');
 });
 
-Route::get('/search', 'SearchController@index');
+Route::post('/register', 'UserController@create');
+
+Route::post('/signin', 'AuthenticationController@authenticate');
+
+Route::get('/signout', 'AuthenticationController@logout');
+
+Route::get('/search/{phrase}/{page}', 'SearchController@index');
+Route::post('/search', 'SearchController@search');
 
 Route::get('/upload', 'UploadController@index');
+Route::post('/upload', 'MediaController@upload');
 
-Route::get('/channel', 'ChannelController@index');
+Route::get('/channel/{id}/{page}', 'ChannelController@index');
+
+Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
+
+Route::get('/media/{id}', 'MediaController@index');
+Route::post('/media/{id}', 'PlaylistController@add');
+
+Route::get('/download/{id}', 'MediaController@download');
+
+Route::get('/favorite/{id}', 'MediaController@favorite');
+
+Route::get('/browse/{category}/{page}', 'BrowseController@index');
+
+Route::get('/uploaded/{userid}/{page}', 'BrowseUploadedController@index');
+Route::get('/downloaded/{userid}/{page}', 'BrowseDownloadedController@index');
+Route::get('/viewed/{userid}/{page}', 'BrowseViewedController@index');
+Route::get('/favorited/{userid}/{page}', 'BrowseFavoritedController@index');
+
+Route::get('/profile/{id}', 'ProfileController@index');
+
+Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');
+
+Route::get('/createplaylist', 'CreatePlaylistController@index');
+Route::post('/createplaylist', 'CreatePlaylistController@create');
+
+Route::get('/playlist/up/{id}/{order}/{page}', 'PlaylistController@up');
+Route::get('/playlist/down/{id}/{order}/{page}', 'PlaylistController@down');
+Route::get('/playlist/{id}/{page}', 'PlaylistController@index');

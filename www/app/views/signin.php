@@ -18,9 +18,9 @@
 						Sign In
 					</div>
 					<div class = "mt-form-box">
-						<form>
-							Username: <input type = "text" name = "account"><br>
-							Password: <input type = "password" naem = "password"><br>
+						<form method="post">
+							Username: <input type = "text" name = "username"><br>
+							Password: <input type = "password" name = "password"><br>
 							<div class = "mt-form-submit-body">
 								<input type = "submit" class = "mt-form-submit" value = "SIGN IN">
 							</div>
