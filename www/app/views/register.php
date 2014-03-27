@@ -18,8 +18,8 @@
 						Register
 					</div>
 					<div class = "mt-form-box">
-						<form>
-							Username: <input type = "text" name = "account"><br>
+						<form method="post">
+							Username: <input type = "text" name = "username"><br>
 							Password: <input type = "password" name = "password"><br>
 							Confirm Password: <input type = "password" name = "password_confirm"><br>
 							E-mail: <input type = "text" name = "email"><br>

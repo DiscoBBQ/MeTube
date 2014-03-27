@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>MeTube - My Channel</title>
+		<title>MeTube - <?php echo $category; ?></title>
 		<link href = "/css/common.css" rel = "stylesheet" type = "text/css">
 	</head>
 
@@ -10,8 +10,7 @@
 			@yield('includes.common')
 			<div id = "mt-welcome">
 				<?php
-				$results = DB::select('SELECT * FROM media,subscriptions WHERE authorid = subscription_user_id AND subscribing_user_id = ?
-				 ORDER BY created_on DESC LIMIT ?,6', array($id, ($page - 1) * 6));
+				$results = DB::select('select * from media where category = ? order by id desc limit ?,6', array($category, ($page - 1) * 6));
 
 				foreach ($results as $result) {
 					$user = User::getByID($result->authorid);
@@ -41,13 +40,14 @@
 				}
 
 				if (sizeof($results) > 0) {
-					$results = DB::select('SELECT * FROM media,subscriptions WHERE authorid = subscription_user_id AND subscribing_user_id = ?', array($id));
+
+					$results = DB::select('select * from media where category = ?', array($category));
 					$size = sizeof($results);
 
 					echo '<div class = "page-bar">';
 
 					if ($page > 1) {
-						echo '<a href = "/channel/'.$id.'/'.($page - 1).'"><</a>';
+						echo '<a href = "/browse/'.$category.'/'.($page - 1).'"><</a>';
 						echo ' ';
 					}
 
@@ -63,14 +63,14 @@
 
 					for ($i = $min; $i < $max; $i++)
 					{
-						echo '<a href = "/channel/'.$id.'/'.($i+1).'">';
+						echo '<a href = "/browse/'.$category.'/'.($i+1).'">';
 						echo $i+1;
 						echo '</a>';
 						echo ' ';
 					}
 
 					if ($page < $size/6) {
-						echo '<a href = "/channel/'.$id.'/'.($page + 1).'">></a>';
+						echo '<a href = "/browse/'.$category.'/'.($page + 1).'">></a>';
 						echo ' ';
 					}
 
