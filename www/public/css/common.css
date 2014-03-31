@@ -15,6 +15,7 @@ html, body {
 
 a {
 	text-decoration:none;
+	color: inherit;
 }
 
 a:hover {
@@ -67,6 +68,31 @@ input:focus {
 
 	border: 1px solid #2490CC;
 	background-color: #F7F6F1;
+}
+
+#mt-signin2-inner {
+	width: 350px;
+	margin: 0 auto;
+	display: table;
+	margin-top: 50px;
+
+	border: 1px solid #2490CC;
+	background-color: #F7F6F1;
+}
+
+#mt-welcome-media-container {
+	margin: 0 auto;
+	display: table;
+}
+
+#mt-upload-inner {
+	width: 350px;
+	margin: 0 auto;
+	display: table;
+	margin-top: 50px;
+
+	border: 1px solid #2490CC;
+	background-color: white;
 }
 
 .mt-block-title {
@@ -199,7 +225,7 @@ input:focus {
 	left: 0px;
 
 	width: 225px;
-	height: 1100px;
+	height: 1400px;
 
 	background-color: #DBF1FF;
 
@@ -233,7 +259,7 @@ input:focus {
 	left: 275px;
 	right: 0px;
 
-	height: 1060px;
+	height: 1360px;
 
 	background-color: #F7F6F1;
 	border-left: 1px solid #2490CC;
@@ -245,7 +271,185 @@ input:focus {
 
 #welcome-browse-block {
 	background-color: #FFFFFF;
-	width: 100%;
+	width: 700px;
 	height: 160px;
 	border: 1px solid #2490CC;
+}
+
+#welcome-browse-block-indv {
+	background-color: #FFFFFF;
+	width: 700px;
+	height: 200px;
+	border: 1px solid #2490CC;
+	font-size:18px;
+}
+
+#welcome-browse-block-body {
+	position: relative;
+	background-color: #FFFFFF;
+	width: 680px;
+	height: 140px;
+	padding: 10px;
+}
+
+#mt-welcome-media-block {
+	background-color: #FFFFFF;
+	width: 720px;
+	height: 405px;
+	border: 1px solid #2490CC;
+}
+
+.mt-welcome-media-block-comments {
+	background-color: #FFFFFF;
+	width: 700px;
+	border: 1px solid #2490CC;
+	padding: 10px;
+}
+
+.mt-welcome-media-block-header {
+	text-align: left;
+	width: 700px;
+	background-color: #49B3FA;
+	padding: 10px;
+	letter-spacing: 5px;
+	font-size:18px;
+	color: white;
+	border-left: 1px solid #2490CC;
+	border-right: 1px solid #2490CC;
+}
+
+.mt-welcome-media-block-header-bottom {
+	text-align: center;
+	width: 700px;
+	background-color: #49B3FA;
+	padding: 10px;
+	letter-spacing: 5px;
+	font-size:18px;
+	color: white;
+	border-left: 1px solid #2490CC;
+	border-right: 1px solid #2490CC;
+	border-bottom: 1px solid #2490CC;
+}
+
+.border-top {
+	border-top: 1px solid #2490CC;
+}
+
+.abs-right {
+	position: relative;
+	float: right;
+	margin-top: -15px;
+}
+
+.abs-right2 {
+	position: relative;
+	float: right;
+	right: 25px;
+	margin-top: -15px;
+}
+
+.abs-right3 {
+	position: relative;
+	float: right;
+	right: 60px;
+	margin-top: -32px;
+	line-height: 30px;
+}
+
+.mt-welcome-media-block-footer {
+	padding: 10px;
+	background-color: white;
+	width: 700px;
+	border: 1px solid #2490CC;
+	margin-top: -1px;
+	color: black;
+}
+
+.mt-media-img {
+	display:block;
+    margin:auto;
+    max-height:405px;
+    max-width: 720px;
+}
+
+#welcome-browse-block-info {
+	position: absolute;
+	left: 200px;
+	top: 20px;
+	width: 450px;
+	height: 143px;
+	overflow: hidden;
+}
+
+.browse-img-border {
+	position: absolute;
+	border: 1px solid #2490CC;
+	width: 170px;
+	height: 140px;
+}
+
+.home-img-border {
+	position: absolute;
+	border: 1px solid #2490CC;
+	width: 140px;
+	height: 110px;
+}
+
+.home-title-box {
+	position: absolute;
+	width: 140px;
+	top: 130px;
+	overflow: hidden;
+}
+
+.browse-img {
+	max-width: 170px;
+	max-height: 140px;
+}
+
+.home-img {
+	max-width: 140px;
+	max-height: 110px;
+}
+
+.page-bar {
+	text-align: center;
+	background-color: #49B3FA;
+	padding: 10px;
+	letter-spacing: 5px;
+	font-size:14px;
+	color: white;
+	border: 1px solid #2490CC;
+	width: 680px;
+}
+
+#profile-links {
+	border: 1px solid #2490CC;
+	background-color: #49B3FA;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	letter-spacing: 5px;
+	font-size:14px;
+	color: white;
+}
+
+.text-link {
+	color: #49B3FA;
+	text-decoration: underline;
+	text-decoration: none;
+}
+
+.arrow-up {
+	position: absolute;
+	float: right;
+	right: 150px;
+	margin-top: 10px;
+}
+
+.arrow-down {
+	position: absolute;
+	float: right;
+	right: 50px;
+	margin-top: 10px;
 }
