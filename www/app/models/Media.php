@@ -21,7 +21,7 @@ class Media {
 		$this->description = $description;
 		$this->category = $category;
 		$this->keywords = $keywords;
-		$this->extension = $extension;
+		$this->extension = strtolower($extension);
 		$this->authorid = $authorid;
 
 		$this->created_on = date("Y-m-d");
@@ -96,30 +96,31 @@ class Media {
 
 	static public function getThumbnail($id, $extension) {
 		$thumbnail = "";
+		$extension = strtolower($extension);
 
 		foreach (Media::$picture_formats as $format) {
-			if ($extension == $format) {
+			if ($extension == strtolower($format)) {
 				$thumbnail = '/uploaded_media/'.$id.'.'.$extension;
 				return $thumbnail;
 			}
 		}
 
 		foreach (Media::$audio_formats as $format) {
-			if ($extension == $format) {
+			if ($extension == strtolower($format)) {
 				$thumbnail = "/thumbnails/audio.png";
 				return $thumbnail;
 			}
 		}
 
 		foreach (Media::$qt_video_formats as $format) {
-			if ($extension == $format) {
+			if ($extension == strtolower($format)) {
 				$thumbnail = "/thumbnails/video.png";
 				return $thumbnail;
 			}
 		}
 
 		foreach (Media::$wmp_video_formats as $format) {
-			if ($extension == $format) {
+			if ($extension == strtolower($format)) {
 				$thumbnail = "/thumbnails/video.png";
 				return $thumbnail;
 			}
@@ -132,28 +133,28 @@ class Media {
 		$player = NULL;
 
 		foreach (Media::$picture_formats as $format) {
-			if ($this->extension == $format) {
+			if ($this->extension == strtolower($format)) {
 				$player = "picture";
 				return $player;
 			}
 		}
 		
 		foreach (Media::$audio_formats as $format) {
-			if ($this->extension == $format) {
+			if ($this->extension == strtolower($format)) {
 				$player = "qt";
 				return $player;
 			}
 		}
 		
 		foreach (Media::$qt_video_formats as $format) {
-			if ($this->extension == $format) {
+			if ($this->extension == strtolower($format)) {
 				$player = "qt";
 				return $player;
 			}
 		}
 
 		foreach (Media::$wmp_video_formats as $format) {
-			if ($this->extension == $format) {
+			if ($this->extension == strtolower($format)) {
 				$player = "wmp";
 				return $player;
 			}
