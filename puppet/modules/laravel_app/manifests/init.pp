@@ -21,8 +21,8 @@ class laravel_app
 	# We need to clean the directory in case a .DS_STORE file or other junk pops up before
 	# the composer create-project is called
 	exec { 'clean www directory':
-		command => "/bin/sh -c 'cd /var/www && find -mindepth 1 -delete'",
-		unless => [ "test -f /var/www/composer.json", "test -d /var/www/app" ],
+		command => "/bin/sh -c 'cd /var/www/spring14/u5 && find -mindepth 1 -delete'",
+		unless => [ "test -f /var/www/spring14/u5/composer.json", "test -d /var/www/spring14/u5/app" ],
 		require => Package['apache2']
 	}
 
@@ -34,31 +34,31 @@ class laravel_app
 
 
 	exec { 'create laravel project':
-		command => "/bin/sh -c 'cd /var/www/ && laravel new temp && mv temp/* . && rm -rf temp'",
+		command => "/bin/sh -c 'cd /var/www/spring14/u5/ && laravel new temp && mv temp/* . && rm -rf temp'",
 		require => [Exec['setup laravel installer'], Package['php5'], Package['git-core']], #Exec['clean www directory']
-		creates => "/var/www/composer.json",
+		creates => "/var/www/spring14/u5/composer.json",
 		timeout => 1800,
 		logoutput => true
 	}
 
 	exec { 'update packages':
-        command => "/bin/sh -c 'cd /var/www/ && composer --verbose --prefer-dist update'",
+        command => "/bin/sh -c 'cd /var/www/spring14/u5/ && composer --verbose --prefer-dist update'",
         require => [Package['git-core'], Package['php5'], Exec['global composer']],
-        onlyif => [ "test -f /var/www/composer.json", "test -d /var/www/vendor" ],
+        onlyif => [ "test -f /var/www/spring14/u5/composer.json", "test -d /var/www/spring14/u5/vendor" ],
         timeout => 900,
         logoutput => true
 	}
 
 	exec { 'install packages':
-        command => "/bin/sh -c 'cd /var/www/ && composer install'",
+        command => "/bin/sh -c 'cd /var/www/spring14/u5/ && composer install'",
         require => [Package['git-core'], Package['php5'], Exec['global composer']],
-        onlyif => [ "test -f /var/www/composer.json" ],
-        creates => "/var/www/vendor/autoload.php",
+        onlyif => [ "test -f /var/www/spring14/u5/composer.json" ],
+        creates => "/var/www/spring14/u5/vendor/autoload.php",
         timeout => 900,
 	}
 
 
-	file { '/var/www/app/storage':
+	file { '/var/www/spring14/u5/app/storage':
 		mode => 0777
 	}
 }
