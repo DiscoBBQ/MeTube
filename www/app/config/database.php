@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'metube',
-			'username'  => 'root',
-			'password'  => '',
+			'database'  => 'u5',
+			'username'  => 'u5',
+			'password'  => 'u5',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
