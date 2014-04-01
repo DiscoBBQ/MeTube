@@ -1,4 +1,5 @@
 <?php
+$_SERVER['SCRIPT_NAME'] = '/spring14/u5/index.php';
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
