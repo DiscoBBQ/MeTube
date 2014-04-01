@@ -54,7 +54,10 @@ class apache
 
     exec{
         "sudo service apache2 restart":
-        require => [File["/etc/apache2/sites-enabled/000-default"], service['apache2']],
+        require => [
+            File["/etc/apache2/sites-enabled/000-default"],
+            service['apache2']
+        ],
     }
 
     exec 
