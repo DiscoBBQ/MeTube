@@ -33,7 +33,7 @@ class mysql
     exec{
         "create-user":
             unless => "/usr/bin/mysql -u$mysqlUser -p$mysqlPassword",
-            command => "/usr/bin/mysql -uroot -e \"CREATE USER '$mysqlUser' IDENTIFIED BY '$mysqlPassword';\"",
+            command => "/usr/bin/mysql -uroot -e \"CREATE USER '$mysqlUser'@'localhost' IDENTIFIED BY '$mysqlPassword';\"",
             require => Service["mysql"],
     }
 
