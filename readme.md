@@ -1,7 +1,7 @@
 # MeTube
 
 ## Machine slow? Make sure to have an Xdebug debugger running on Port 9001
-
+ 
 Otherwise, the requests hang up waiting for an Xdebug remote session.
 
 ## Required Features
