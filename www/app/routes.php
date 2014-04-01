@@ -11,31 +11,31 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 
 Route::get('/signin', function()
 {
 	return View::make('signin');
 });
 
-Route::get('/register', function()
+Route::get('/register', array('as' => 'register', function()
 {
 	return View::make('register');
-});
+}));
 
 Route::post('/register', 'UserController@create');
 
-Route::post('/signin', 'AuthenticationController@authenticate');
+Route::post('/signin', array('as' => 'signin', 'uses' => 'AuthenticationController@authenticate'));
 
-Route::get('/signout', 'AuthenticationController@logout');
+Route::get('/signout', array('as' => 'signout', 'uses' => 'AuthenticationController@logout'));
 
 Route::get('/search/{phrase}/{page}', 'SearchController@index');
 Route::post('/search', 'SearchController@search');
 
-Route::get('/upload', 'UploadController@index');
+Route::get('/upload', array('as' => 'upload_form', 'uses' => 'UploadController@index'));
 Route::post('/upload', 'MediaController@upload');
 
-Route::get('/channel/{id}/{page}', 'ChannelController@index');
+Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@index'));
 
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
 
@@ -46,22 +46,22 @@ Route::get('/download/{id}', 'MediaController@download');
 
 Route::get('/favorite/{id}', 'MediaController@favorite');
 
-Route::get('/browse/{category}/{page}', 'BrowseController@index');
+Route::get('/browse/{category}/{page}', array('as' => 'browse_category', 'uses' =>'BrowseController@index'));
 
-Route::get('/uploaded/{userid}/{page}', 'BrowseUploadedController@index');
-Route::get('/downloaded/{userid}/{page}', 'BrowseDownloadedController@index');
-Route::get('/viewed/{userid}/{page}', 'BrowseViewedController@index');
-Route::get('/favorited/{userid}/{page}', 'BrowseFavoritedController@index');
+Route::get('/uploaded/{userid}/{page}', array('as' => 'uploaded', 'uses' => 'BrowseUploadedController@index'));
+Route::get('/downloaded/{userid}/{page}', array('as' => 'downloaded', 'uses' => 'BrowseDownloadedController@index'));
+Route::get('/viewed/{userid}/{page}', array('as' => 'viewed', 'uses' => 'BrowseViewedController@index'));
+Route::get('/favorited/{userid}/{page}', array('as' => 'favorited', 'uses' => 'BrowseFavoritedController@index'));
 
-Route::get('/profile/{id}', 'ProfileController@index');
+Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'ProfileController@index'));
 
 Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');
 
-Route::get('/createplaylist', 'CreatePlaylistController@index');
+Route::get('/createplaylist', array('as' => 'create_playlist_form', 'uses' => 'CreatePlaylistController@index'));
 Route::post('/createplaylist', 'CreatePlaylistController@create');
 
 Route::get('/playlist/up/{id}/{order}/{page}', 'PlaylistController@up');
 Route::get('/playlist/down/{id}/{order}/{page}', 'PlaylistController@down');
-Route::get('/playlist/{id}/{page}', 'PlaylistController@index');
+Route::get('/playlist/{id}/{page}', array('as' => 'playlist', 'uses' => 'PlaylistController@index'));
 
 Route::post('/comment/{id}', 'CommentController@create');

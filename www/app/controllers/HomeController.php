@@ -1,10 +1,10 @@
 <?php
 
 class HomeController extends BaseController {
-	protected $layout = 'home';
+	protected $layout = 'application';
 
 	public function index()
 	{
-		$this->layout->content = View::make('includes.common');
+		$this->layout->content = View::make('home.index');
 	}
 }
