@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>MeTube</title>
-		<link href = "/css/common.css" rel = "stylesheet" type = "text/css">
+		<link href = "{{ asset('/css/common.css')}}" rel = "stylesheet" type = "text/css">
 	</head>
 
 	<body>
