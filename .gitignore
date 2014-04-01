@@ -41,3 +41,5 @@ dwsync.xml
 /www/public/uploaded_media
 composer.phar
 composer.lock
+
+www/index.html
