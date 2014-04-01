@@ -1,7 +1,7 @@
 @section('includes.common')
 <div id = "mt-header" class>
 	<div id = "mt-header-logo">
-		<a href = "/"><img src = "{{asset('/images/logo1.png')}}"></a>
+		<a href = "/"><img src = "{{asset('images/logo1.png')}}"></a>
 	</div>
 	<div id = "mt-header-content">
 		{{ Form::open(array('url' => 'search')) }}
