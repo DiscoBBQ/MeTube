@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'u5',
 			'username'  => 'u5',
-			'password'  => 'u5',
+			'password'  => 'discolocke',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

@@ -1,6 +1,6 @@
 class mysql 
 {
-    $mysqlPassword = "u5"
+    $mysqlPassword = "discolocke"
     $mysqlUser     = "u5"
     $databaseName  = "u5"
     $testDatabaseName = "metube_test"
