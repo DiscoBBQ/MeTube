@@ -1,13 +1,14 @@
 <?php
 
 class Media {
-	private $title;
-	private $description;
-	private $category;
-	private $keywords;
-	private $authorid;
-	private $created_on;
-	private $extension;
+	public $title;
+	public $description;
+	public $category;
+	public $keywords;
+	public $authorid;
+	public $created_on;
+	public $extension;
+	public $id;
 
 	private $errors = array();
 
@@ -27,6 +28,7 @@ class Media {
 		$this->created_on = date("Y-m-d");
 	}
 
+	public function getID() { return $this->id; }
 	public function getTitle() { return $this->title; }
 	public function getDescription() { return $this->description; }
 	public function getCategory() { return $this->category; }
@@ -34,13 +36,14 @@ class Media {
 	public function getAuthorId() { return $this->authorid; }
 	public function getCreatedOn() { return $this->created_on; }
 	public function getExtension() { return $this->extension; }
+	public function getAuthor() { return  User::getByID($this->authorid); }
 
 	static public function getByID($id){
 		$result = DB::select("SELECT * FROM media WHERE id = ? LIMIT 1", array($id));
-		return self::buildUserFromResult($result);
+		return self::buildMediaFromResult($result);
 	}
 
-	static protected function buildUserFromResult($result){
+	static protected function buildMediaFromResult($result){
 		if (count($result) == 0) {
 			return NULL;
 		}
@@ -65,8 +68,12 @@ class Media {
 		}
 		$keywords_string = trim($keywords_string, ' ');
 
-		return new self($result[0]->title, $result[0]->description, $result[0]->category,
+		$media =  new self($result[0]->title, $result[0]->description, $result[0]->category,
 			$keywords_string, $result[0]->extension, $result[0]->authorid);
+
+		$media->id = $result[0]->id;
+
+		return $media;
 	}
 
 	public function save($file) {
