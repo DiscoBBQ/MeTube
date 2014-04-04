@@ -19,7 +19,7 @@ $_SERVER['SCRIPT_NAME'] = '/spring14/u5/index.php';
 |
 */
 
-require __DIR__.'/../bootstrap/autoload.php';
+require __DIR__.'/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,7 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/start.php';
+$app = require_once __DIR__.'/bootstrap/start.php';
 
 /*
 |--------------------------------------------------------------------------
