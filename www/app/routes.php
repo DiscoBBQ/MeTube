@@ -46,17 +46,24 @@ Route::get('/download/{id}', 'MediaController@download');
 
 Route::get('/favorite/{id}', 'MediaController@favorite');
 
-Route::get('/browse/{category}/{page}', array('as' => 'browse_category', 'uses' =>'BrowseController@index'));
+// Browsing
 
-Route::get('/uploaded/{userid}/{page}', array('as' => 'uploaded', 'uses' => 'BrowseUploadedController@index'));
-Route::get('/downloaded/{userid}/{page}', array('as' => 'downloaded', 'uses' => 'BrowseDownloadedController@index'));
-Route::get('/viewed/{userid}/{page}', array('as' => 'viewed', 'uses' => 'BrowseViewedController@index'));
-Route::get('/favorited/{userid}/{page}', array('as' => 'favorited', 'uses' => 'BrowseFavoritedController@index'));
+Route::get('/browse/{category}/{page}', array('as' => 'browse_category', 'uses' =>'BrowseController@browseCategory'));
+
+Route::get('/uploaded/{userid}/{page}', array('as' => 'uploaded', 'uses' => 'BrowseController@browseUploaded'));
+Route::get('/downloaded/{userid}/{page}', array('as' => 'downloaded', 'uses' => 'BrowseController@browseDownloaded'));
+Route::get('/viewed/{userid}/{page}', array('as' => 'viewed', 'uses' => 'BrowseController@browseViewed'));
+Route::get('/favorited/{userid}/{page}', array('as' => 'favorited', 'uses' => 'BrowseController@browseFavorited'));
+
+
+//Profile
 
 Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'ProfileController@index'));
 
 Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');
 
+
+// Playlists
 Route::get('/createplaylist', array('as' => 'create_playlist_form', 'uses' => 'CreatePlaylistController@index'));
 Route::post('/createplaylist', 'CreatePlaylistController@create');
 
