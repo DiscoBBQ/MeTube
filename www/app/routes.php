@@ -39,7 +39,7 @@ Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelCon
 
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
 
-Route::get('/media/{id}', 'MediaController@index');
+Route::get('/media/{id}', array('as' => 'media', 'uses' => 'MediaController@index'));
 Route::post('/media/{id}', 'PlaylistController@add');
 
 Route::get('/download/{id}', 'MediaController@download');
