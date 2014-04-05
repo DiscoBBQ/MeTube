@@ -28,7 +28,7 @@ class User implements UserInterface, RemindableInterface {
 			return true;
 		} else{
 			//update the existing record in the DB
-			DB::statement("UPDATE users SET email = ?, username = ?, password = ?", array($this->email, $this->username, $this->crypted_password));
+			DB::statement("UPDATE users SET email = ?, username = ?, password = ? WHERE id = ?", array($this->email, $this->username, $this->crypted_password, $this->id));
 			return true;
 		}
 	}

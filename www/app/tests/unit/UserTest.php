@@ -51,6 +51,33 @@ class UserUnitTest extends TestCase {
     $this->assertEquals($new_user->username, "rcannon");
   }
 
+  public function testOnlyUpdatesOneUser(){
+    $user = new User();
+    $user->username             = "tcannon";
+    $user->password             = "test1234";
+    $user->passwordConfirmation = "test1234";
+
+    $user->save();
+
+    $other_user_id = $user->getID();
+
+    $user = new User();
+    $user->username             = "jcannon";
+    $user->password             = "test1234";
+    $user->passwordConfirmation = "test1234";
+
+    $user->save();
+    $old_id = $user->getID();
+
+    $user->username = "rcannon";
+    $this->assertTrue($user->save());
+    $this->assertEquals($user->getID(), $old_id);
+
+    $this->assertNotNull($user->getID());
+    $new_user = User::getByID($other_user_id);
+    $this->assertEquals($new_user->username, "tcannon");
+  }
+
 
   public function testPasswordChange(){
     $user = new User();
