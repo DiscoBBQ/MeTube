@@ -2,6 +2,9 @@
 
 return array(
 
+	//File Upload Path
+	'file_upload_path' => '/var/www/spring14/u5/public/uploaded_media',
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode

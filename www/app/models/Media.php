@@ -93,10 +93,8 @@ class Media {
 			DB::statement("INSERT INTO keywords (mediaid, keyword) VALUES (?,?)", array($id, $keyword));
 		}
 
-		$destinationPath = 'uploaded_media/';
-
 		$filename = $id.'.'.$this->extension;
-		$uploadSuccess = $file->move($destinationPath, $filename);
+		$uploadSuccess = $file->move(Config::get('app.file_upload_path'), $filename);
 
 		return $id;
 	}
@@ -175,7 +173,7 @@ class Media {
 	}
 
 	public function getAssetFilepath(){
-		return "uploaded_media/" . $this->getFilename();
+		return "public/uploaded_media/" . $this->getFilename();
 	}
 
 	private function validate() {
