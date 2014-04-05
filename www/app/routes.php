@@ -36,8 +36,8 @@ Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController
 
 //Subscription
 
-Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@show'));
-Route::get('/subscribe/{id}', array('as' => 'subscribe_to_user', 'uses' =>'SubscriptionController@subscribe'));
+Route::get('/channel/{id}/{page}', array('before' => 'auth', 'as' => 'channel', 'uses' =>'ChannelController@show'));
+Route::get('/subscribe/{id}', array('before' => 'auth', 'as' => 'subscribe_to_user', 'uses' =>'SubscriptionController@subscribe'));
 
 //Messages
 
@@ -49,14 +49,14 @@ Route::post('/messages/new', array('before' => 'auth', 'as' => 'create_message',
 
 // Media
 
-Route::get('/media/new', array('as' => 'new_media', 'uses' => 'MediaController@newMedia'));
-Route::post('/media', array('as' => 'create_media', 'uses' => 'MediaController@create'));
+Route::get('/media/new', array('before' => 'auth', 'as' => 'new_media', 'uses' => 'MediaController@newMedia'));
+Route::post('/media', array('before' => 'auth', 'as' => 'create_media', 'uses' => 'MediaController@create'));
 
 Route::get('/media/{id}', array('as' => 'media', 'uses' => 'MediaController@show'));
 Route::get('/media/{id}/download', array('as' => 'download_media', 'uses' => 'MediaController@download'));
-Route::get('/media/{id}/favorite', array('as' => 'favorite_media', 'uses' => 'MediaController@favorite'));
-Route::post('/media/{id}/add_to_playlist', array('as' => 'add_media_to_playlist', 'uses' => 'PlaylistController@add'));
-Route::post('/media/{id}/add_comment', array('as' => 'add_comment_to_media', 'uses'=>'CommentController@create'));
+Route::get('/media/{id}/favorite', array('before' => 'auth', 'as' => 'favorite_media', 'uses' => 'MediaController@favorite'));
+Route::post('/media/{id}/add_to_playlist', array('before' => 'auth', 'as' => 'add_media_to_playlist', 'uses' => 'PlaylistController@add'));
+Route::post('/media/{id}/add_comment', array('before' => 'auth', 'as' => 'add_comment_to_media', 'uses'=>'CommentController@create'));
 
 
 // Browsing
@@ -74,8 +74,8 @@ Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'UserController@sh
 
 
 // Playlists
-Route::get('/playlists/new', array('as' => 'new_playlist', 'uses' => 'PlaylistController@newPlaylist'));
-Route::post('/playlists', array('as' => 'create_playlist' ,'uses' => 'PlaylistController@create'));
-Route::get('/playlists/{id}', array('as' => 'playlist', 'uses' => 'PlaylistController@show'));
-Route::get('/playlists/{id}/up/{order}', array( 'as' => 'move_playlist_item_up', 'uses' => 'PlaylistController@up'));
-Route::get('/playlists/{id}/down/{order}', array( 'as' => 'move_playlist_item_down', 'uses' => 'PlaylistController@down'));
+Route::get('/playlists/new', array('before' => 'auth', 'as' => 'new_playlist', 'uses' => 'PlaylistController@newPlaylist'));
+Route::post('/playlists', array('before' => 'auth', 'as' => 'create_playlist' ,'uses' => 'PlaylistController@create'));
+Route::get('/playlists/{id}', array('before' => 'auth', 'as' => 'playlist', 'uses' => 'PlaylistController@show'));
+Route::get('/playlists/{id}/up/{order}', array('before' => 'auth', 'as' => 'move_playlist_item_up', 'uses' => 'PlaylistController@up'));
+Route::get('/playlists/{id}/down/{order}', array('before' => 'auth', 'as' => 'move_playlist_item_down', 'uses' => 'PlaylistController@down'));

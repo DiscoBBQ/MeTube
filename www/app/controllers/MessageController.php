@@ -7,8 +7,8 @@ class MessageController extends BaseController {
 
   public function __construct()
   {
-      $this->beforeFilter('@find_message_by_ID_or_raise_404', array('only' => array('show')));
-      $this->beforeFilter('@authed_user_matches_sender_or_recipient', array('only' => array('show')));
+    $this->beforeFilter('@find_message_by_ID_or_raise_404', array('only' => array('show')));
+    $this->beforeFilter('@authed_user_matches_sender_or_recipient', array('only' => array('show')));
   }
 
   public function newMessage(){

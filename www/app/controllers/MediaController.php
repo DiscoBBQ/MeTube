@@ -31,7 +31,7 @@ class MediaController extends BaseController {
 						   Input::get('category'),
 						   Input::get('keywords'),
 						   Input::file('file')->getClientOriginalExtension(),
-						   User::getByUsername(Auth::user()->username)->getID());
+						   Auth::user()->getAuthIdentifier());
 
 		$id = $media->save(Input::file('file'));
 
