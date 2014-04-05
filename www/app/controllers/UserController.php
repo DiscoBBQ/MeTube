@@ -1,7 +1,7 @@
 <?php
 
 class UserController extends BaseController {
-	protected $layout = 'channel';
+	protected $layout = 'application';
 
 	public function create()
 	{
@@ -17,4 +17,13 @@ class UserController extends BaseController {
       return Redirect::to('/register');
     }
 	}
+
+  public function show($id){
+    $user = User::getById($id);
+    if($user == NULL){
+      App:abort(404);
+    }
+
+    $this->layout->content = View::make('users.show')->with(array('user' => $user));
+  }
 }

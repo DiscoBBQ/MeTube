@@ -59,10 +59,9 @@ Route::get('/favorited/{userid}/{page}', array('as' => 'favorited', 'uses' => 'B
 
 
 //Profile
+Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'UserController@show'));
 
-Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'ProfileController@index'));
-
-Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');
+Route::get('/subscribe/{id}', array('as' => 'subscribe_to_user', 'uses' =>'SubscriptionController@subscribe'));
 
 
 // Playlists
