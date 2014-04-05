@@ -11,7 +11,7 @@ class UserController extends BaseController {
     $user->passwordConfirmation = Input::get('password_confirm');
 		if($user->save()){
       //login the newly created user automatically
-      Auth::attempt(array('channel_name' => $user->channel_name, 'password' => $user->password), true);
+      Auth::attempt(array('email' => $user->email, 'password' => $user->password), true);
       return Redirect::route('home');
     } else{
       return Redirect::route('register');

@@ -5,12 +5,12 @@ class AuthenticationController extends BaseController {
 
 	public function authenticate()
 	{
-    $channel_name = Input::get('channel_name');
+    $email = Input::get('email');
     $password = Input::get('password');
-    if(Auth::attempt(array('channel_name' => $channel_name, 'password' => $password), true)){
+    if(Auth::attempt(array('email' => $email, 'password' => $password), true)){
       return Redirect::route('home');
     } else{
-      return Redirect::to('/signin');
+      return Redirect::route('signin');
     }
 	}
 
