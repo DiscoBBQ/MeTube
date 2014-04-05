@@ -8,6 +8,7 @@ class Message {
   public $to_user_id;
   protected $id;
   public $errors = array();
+  protected $created_at;
 
   public function save(){
     if($this->validate() == false){
@@ -37,6 +38,10 @@ class Message {
 
   public function getRecipient(){
     return User::getByID($this->to_user_id);
+  }
+
+  public function getCreatedAt(){
+    return $this->created_at;
   }
 
   static public function getByID($id){
@@ -81,6 +86,7 @@ class Message {
       $message->message          = $result->message;
       $message->from_user_id     = $result->from_user_id;
       $message->to_user_id       = $result->to_user_id;
+      $message->created_at       = new DateTime($result->created_at);
     }
 
     return $message;
