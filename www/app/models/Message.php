@@ -31,6 +31,14 @@ class Message {
     return $this->id;
   }
 
+  public function getSender(){
+    return User::getByID($this->from_user_id);
+  }
+
+  public function getRecipient(){
+    return User::getByID($this->to_user_id);
+  }
+
   static public function getByID($id){
     $result = DB::select("SELECT * FROM messages WHERE ID = ? LIMIT 1", array($id));
     if(count($result) == 0){

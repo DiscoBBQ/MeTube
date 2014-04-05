@@ -39,6 +39,14 @@ Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController
 Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@show'));
 Route::get('/subscribe/{id}', array('as' => 'subscribe_to_user', 'uses' =>'SubscriptionController@subscribe'));
 
+//Messages
+
+Route::get('/messages', array('before' => 'auth', 'as' => 'messages', 'uses' => 'MessageController@index'));
+Route::get('/messages/sent', array('before' => 'auth', 'as' => 'sent_messages', 'uses' => 'MessageController@sent'));
+Route::get('/messages/new', array('before' => 'auth', 'as' => 'new_message', 'uses' => 'MessageController@newMessage'));
+Route::get('/messages/{id}', array('before' => 'auth', 'as' => 'message', 'uses' => 'MessageController@show'));
+Route::post('/messages/new', array('before' => 'auth', 'as' => 'create_message', 'uses' => 'MessageController@create'));
+
 // Media
 
 Route::get('/media/new', array('as' => 'new_media', 'uses' => 'MediaController@newMedia'));
