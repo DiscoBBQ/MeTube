@@ -49,7 +49,7 @@ class MediaController extends BaseController {
 				DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'downloaded')", array(Auth::user()->id, $id));
 		}
 
-		return Response::download('uploaded_media/'.$id.'.'.$media->getExtension(), $media->getTitle());
+		return Response::download($media->getFullFilename(), $media->getDownloadFilename());
 	}
 
 	public function favorite($id) {

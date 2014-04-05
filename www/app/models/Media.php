@@ -168,12 +168,20 @@ class Media {
 		return $player;
 	}
 
+	public function getDownloadFilename(){
+		return $this->getTitle() . "." . $this->getExtension();
+	}
+
 	public function getFilename(){
 		return $this->getId() . "." . $this->getExtension();
 	}
 
 	public function getAssetFilepath(){
 		return "public/uploaded_media/" . $this->getFilename();
+	}
+
+	public function getFullFilename(){
+		return Config::get('app.file_upload_path') . "/" . $this->getFilename();
 	}
 
 	private function validate() {
