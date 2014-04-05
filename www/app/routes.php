@@ -36,8 +36,9 @@ Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController
 
 //Subscription
 
-Route::get('/channel/{id}/{page}', array('before' => 'auth', 'as' => 'channel', 'uses' =>'ChannelController@show'));
 Route::get('/subscribe/{id}', array('before' => 'auth', 'as' => 'subscribe_to_user', 'uses' =>'SubscriptionController@subscribe'));
+Route::get('/unsubscribe/{id}', array('before' => 'auth', 'as' => 'unsubscribe_from_user', 'uses' =>'SubscriptionController@unsubscribe'));
+Route::get('/my_subscriptions', array('before' => 'auth', 'as' => 'my_subscriptions', 'uses' => 'SubscriptionController@index'));
 
 //Messages
 

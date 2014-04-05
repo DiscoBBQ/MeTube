@@ -18,7 +18,14 @@
   </div>
   <br>
   <center>
-    <a href = "{{route('subscribe_to_user', array('id' => $user->getID()))}}" class = "button">SUBSCRIBE</a>
+
+    @if(Auth::check())
+      @if(Subscription::isUserSubscribedToThisUser(Auth::user()->getAuthIdentifier(), $user->getID()))
+        <a href = "{{route('unsubscribe_from_user', array('id' => $user->getID()))}}" class = "button">UNSUBSCRIBE</a>
+      @else
+        <a href = "{{route('subscribe_to_user', array('id' => $user->getID()))}}" class = "button">SUBSCRIBE</a>
+      @endif
+    @endif
   </center>
 </div>
 
