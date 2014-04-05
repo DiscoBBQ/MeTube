@@ -99,6 +99,10 @@ class Media {
 		return $id;
 	}
 
+	public function destroy(){
+		DB::statement("DELETE FROM media WHERE id = ?", array($this->id));
+	}
+
 	static public function getThumbnailByID($id) {
 		return Media::getByID($id)->getThumbnail();
 	}
@@ -176,7 +180,7 @@ class Media {
 	}
 
 	public function getFilename(){
-		return $this->getId() . "." . $this->getExtension();
+		return $this->getID() . "." . $this->getExtension();
 	}
 
 	public function getAssetFilepath(){

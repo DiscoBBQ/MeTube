@@ -50,6 +50,10 @@
 			<div class = "abs-right3">
 				@include('media.add-to-playlist-form', array('media' => $media))
 			</div>
+
+			@if(Auth::user()->getAuthIdentifier() == $media->getAuthor()->getAuthIdentifier())
+				<a class="button" href="{{ route('delete_media', array('id' => $media->getID())) }}">Delete</a>
+			@endif
 		@endif
 	</div>
 	<div class = "mt-welcome-media-block-header">DESCRIPTION</div>
