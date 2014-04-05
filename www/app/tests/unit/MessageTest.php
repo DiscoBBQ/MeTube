@@ -126,8 +126,12 @@ class MessageUnitTest extends TestCase {
 
   public function testfindAllMessagesSendFromUser(){
     $this->valid_message->save();
-    $result = array($this->valid_message);
-    $this->assertEquals(Message::getAllMessagesSentFromUser($this->user_1->getID()), $result);
+    $result = array($this->valid_message->getID());
+    $message_ids = array();
+    foreach(Message::getAllMessagesSentFromUser($this->user_1->getID()) as $message){
+      array_push($message_ids, $message->getID());
+    }
+    $this->assertEquals($message_ids, $result);
   }
 
   public function testreturnEmptyArrayIfNoMessagesSentByUser(){
@@ -151,8 +155,12 @@ class MessageUnitTest extends TestCase {
     $other_message->from_user_id = $this->user_1->getID();
     $other_message->to_user_id   = $this->user_3->getID();
 
-    $result = array($this->valid_message);
-    $this->assertEquals(Message::getAllMessagesSentToUser($this->user_2->getID()), $result);
+    $result = array($this->valid_message->getID());
+    $message_ids = array();
+    foreach(Message::getAllMessagesSentToUser($this->user_2->getID()) as $message){
+      array_push($message_ids, $message->getID());
+    }
+    $this->assertEquals($message_ids, $result);
   }
 
   public function testonlyReturnMessagesThatWereSentByUser(){
@@ -164,8 +172,12 @@ class MessageUnitTest extends TestCase {
     $other_message->from_user_id = $this->user_2->getID();
     $other_message->to_user_id   = $this->user_3->getID();
 
-    $result = array($this->valid_message);
-    $this->assertEquals(Message::getAllMessagesSentFromUser($this->user_1->getID()), $result);
+    $result = array($this->valid_message->getID());
+    $message_ids = array();
+    foreach(Message::getAllMessagesSentFromUser($this->user_1->getID()) as $message){
+      array_push($message_ids, $message->getID());
+    }
+    $this->assertEquals($message_ids, $result);
   }
 
 }
