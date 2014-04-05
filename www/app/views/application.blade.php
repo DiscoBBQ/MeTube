@@ -29,7 +29,7 @@
               UPLOAD
             </a>
           @else
-            <a class = "button" href = "{{route('signin')}}">
+            <a class = "button" href = "{{route('signin_form')}}">
               SIGN IN
             </a>
             &nbsp;

@@ -12,7 +12,7 @@ class UserController extends BaseController {
 		if($user->save()){
       //login the newly created user automatically
       Auth::attempt(array('username' => $user->username, 'password' => $user->password), true);
-      return Redirect::to('/');
+      return Redirect::route('home');
     } else{
       return Redirect::to('/register');
     }

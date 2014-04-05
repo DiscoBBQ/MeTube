@@ -13,17 +13,17 @@
 
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 
-Route::get('/signin', function()
+Route::get('/signin', array('as' => 'signin_form', function()
 {
 	return View::make('signin');
-});
+}));
 
 Route::get('/register', array('as' => 'register', function()
 {
 	return View::make('register');
 }));
 
-Route::post('/register', 'UserController@create');
+Route::post('/register', array('as' => 'create_user', 'uses'=> 'UserController@create'));
 
 Route::post('/signin', array('as' => 'signin', 'uses' => 'AuthenticationController@authenticate'));
 
