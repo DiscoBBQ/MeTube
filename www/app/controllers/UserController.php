@@ -14,7 +14,7 @@ class UserController extends BaseController {
       Auth::attempt(array('username' => $user->username, 'password' => $user->password), true);
       return Redirect::route('home');
     } else{
-      return Redirect::to('/register');
+      return Redirect::route('register');
     }
 	}
 
