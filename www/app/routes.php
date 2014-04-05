@@ -68,7 +68,6 @@ Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');
 // Playlists
 Route::get('/playlists/new', array('as' => 'new_playlist', 'uses' => 'PlaylistController@newPlaylist'));
 Route::post('/playlists', array('as' => 'create_playlist' ,'uses' => 'PlaylistController@create'));
-
-Route::get('/playlist/up/{id}/{order}/{page}', 'PlaylistController@up');
-Route::get('/playlist/down/{id}/{order}/{page}', 'PlaylistController@down');
-Route::get('/playlist/{id}/{page}', array('as' => 'playlist', 'uses' => 'PlaylistController@index'));
+Route::get('/playlists/{id}', array('as' => 'playlist', 'uses' => 'PlaylistController@show'));
+Route::get('/playlists/{id}/up/{order}', array( 'as' => 'move_playlist_item_up', 'uses' => 'PlaylistController@up'));
+Route::get('/playlists/{id}/down/{order}', array( 'as' => 'move_playlist_item_down', 'uses' => 'PlaylistController@down'));

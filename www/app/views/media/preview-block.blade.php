@@ -13,6 +13,8 @@
       Author: <a class = "text-link" href = "{{ route('profile', array('id' => $media->getAuthor()->getID())) }}">{{$media->getAuthor()->username}}</a><br>
       Category: <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category, 'page' => 1)) }}">{{$media->category}}</a><br>
       Description: {{ $media->description }}
+
+      @yield('playlist-ordering','')
     </div>
   </div>
 </div><br/>
