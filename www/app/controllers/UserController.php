@@ -28,11 +28,11 @@ class UserController extends BaseController {
 	}
 
   public function show($id){
-    $this->layout->content = View::make('users.show')->with(array('user' => $user));
+    $this->layout->content = View::make('users.show')->with(array('user' => $this->user));
   }
 
   public function find_user_by_ID_or_raise_404(){
-    $this->user = User::getById($id);
+    $this->user = User::getById(Route::input('id'));
     if($this->user == NULL){
       App:abort(404);
     }
