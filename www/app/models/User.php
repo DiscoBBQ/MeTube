@@ -43,23 +43,41 @@ class User implements UserInterface, RemindableInterface {
 
 	static public function getByID($id){
 		$result = DB::select("SELECT * FROM users WHERE ID = ? LIMIT 1", array($id));
-		return self::buildUserFromResult($result);
+		if(count($result) == 0){
+      return NULL;
+    }
+		return self::buildUserFromResult($result[0]);
 	}
 
 	static public function getByUsername($username){
 		$result = DB::select("SELECT * FROM users WHERE username = ? LIMIT 1", array($username));
-		return self::buildUserFromResult($result);
+		if(count($result) == 0){
+      return NULL;
+    }
+		return self::buildUserFromResult($result[0]);
+	}
+
+	static public function getAll(){
+		$results = DB::select("SELECT * FROM users");
+
+		$users = array();
+
+		foreach ($results as $result) {
+			array_push($users, self::buildUserFromResult($result));
+		}
+
+		return $users;
 	}
 
 	static protected function buildUserFromResult($result){
 		$user = new self();
-		if(count($result) == 0){
+		if($result == NULL){
 			return NULL;
 		} else{
-			$user->id 	 						= intval($result[0]->id);
-			$user->email 						= $result[0]->email;
-			$user->username 				= $result[0]->username;
-			$user->crypted_password = $result[0]->password;
+			$user->id 	 						= intval($result->id);
+			$user->email 						= $result->email;
+			$user->username 				= $result->username;
+			$user->crypted_password = $result->password;
 		}
 
 		return $user;

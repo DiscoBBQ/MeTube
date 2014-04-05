@@ -10,6 +10,27 @@ class UserUnitTest extends TestCase {
   //   1+1;
   // }
 
+  public $user_1;
+  public $user_2;
+
+  public function setUp(){
+    parent::setUp();
+
+    $this->user_1 = new User();
+    $this->user_1->username = "text";
+    $this->user_1->email = "text@test.com";
+    $this->user_1->password = "test1234";
+    $this->user_1->passwordConfirmation = "test1234";
+    $this->user_1->save();
+
+    $this->user_2 = new User();
+    $this->user_2->username = "next";
+    $this->user_2->email = "next@test.com";
+    $this->user_2->password = "test1234";
+    $this->user_2->passwordConfirmation = "test1234";
+    $this->user_2->save();
+  }
+
   public function testCreateUser(){
     $user = new User();
     $user->username             = "tcannon";
@@ -139,5 +160,16 @@ class UserUnitTest extends TestCase {
 
     $user->username             = "tcannon";
     $this->assertTrue($user->save());
+  }
+
+  public function testReturnsAllUsers(){
+    $result = array($this->user_1->getID(), $this->user_2->getID());
+
+    $users = User::getAll();
+    $this->assertEquals(count($users), 2);
+
+    $user_ids = array($users[0]->getID(), $users[1]->getID());
+
+    $this->assertEquals($user_ids, $result);
   }
 }
