@@ -6,6 +6,7 @@ class UserController extends BaseController {
 	public function create()
 	{
     $user = new User();
+    $user->email = Input::get('email');
     $user->channel_name = Input::get('channel_name');
     $user->password = Input::get('password');
     $user->passwordConfirmation = Input::get('password_confirm');
