@@ -69,7 +69,7 @@
           <div class = "mt-sidebar-block">
             <div class = "mt-block-title"> PLAYLISTS </div>
             <div class = "mt-sidebar-block-body">
-              <a href = "{{route('create_playlist_form')}}"><div class = "mt-sidebar-block-button">Create Playlist</div></a>
+              <a href = "{{route('new_playlist')}}"><div class = "mt-sidebar-block-button">Create Playlist</div></a>
               <?php
                 $result = DB::select("SELECT * FROM playlist WHERE user_id = ? ORDER BY id", array(Auth::user()->id));
                 foreach($result as $playlist) {

@@ -64,8 +64,8 @@ Route::get('/subscribe/{id}', 'SubscriptionController@subscribe');
 
 
 // Playlists
-Route::get('/createplaylist', array('as' => 'create_playlist_form', 'uses' => 'CreatePlaylistController@index'));
-Route::post('/createplaylist', 'CreatePlaylistController@create');
+Route::get('/playlists/new', array('as' => 'new_playlist', 'uses' => 'PlaylistController@newPlaylist'));
+Route::post('/playlists', array('as' => 'create_playlist' ,'uses' => 'PlaylistController@create'));
 
 Route::get('/playlist/up/{id}/{order}/{page}', 'PlaylistController@up');
 Route::get('/playlist/down/{id}/{order}/{page}', 'PlaylistController@down');

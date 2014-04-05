@@ -1,7 +1,25 @@
 <?php
 
 class PlaylistController extends BaseController {
-	protected $layout = 'playlist';
+	protected $layout = 'application';
+
+	public function newPlaylist() {
+		$this->layout->content = View::make('playlists.new');
+	}
+
+	public function create() {
+		$result = DB::select("SELECT * FROM playlist WHERE user_id = ? AND title = ?", array(Auth::user()->id, Input::get('title')));
+
+		if (sizeof($result) == 0) {
+			$id = DB::table('playlist')->insertGetId(array('user_id' => Auth::user()->id,
+										 'title' => Input::get('title'),
+										 'description' => Input::get('description')));
+
+			return Redirect::route('playlist', array('id' => $id, 'page' => 1));
+		} else {
+			return Redirect::route('new_playlist');
+		}
+	}
 
 	public function index($id, $page)
 	{
