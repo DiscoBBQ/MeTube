@@ -22,7 +22,7 @@ Route::get('/signin', array('as' => 'signin_form', function()
 
 Route::get('/register', array('as' => 'register', function()
 {
-	return View::make('register');
+	return View::make('register')->with(array('error_messages' => Session::get('errors')));
 }));
 
 Route::post('/register', array('as' => 'create_user', 'uses'=> 'UserController@create'));

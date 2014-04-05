@@ -1,10 +1,15 @@
 @extends('gate')
 
+@section('error-explanation')
+The following errors prevented you from registering
+@stop
+
 @section('content')
   <div class = "mt-block-title">
     Register
   </div>
   <div class = "mt-form-box">
+    @include('partials.error-messages', array('error_messages' => $error_messages))
   	{{ Form::open(array('route' => 'create_user')) }}
       E-mail: <input type = "text" name = "email"><br>
       Channel Name: <input type = "text" name = "channel_name"><br>
