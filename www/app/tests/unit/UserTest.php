@@ -117,16 +117,30 @@ class UserUnitTest extends TestCase {
     $this->assertTrue($user->save());
   }
 
-  public function testDoNotConsiderChangingThechannel_nameToTheSameValueInvalid(){
-    $user = new User();
-    $user->channel_name             = "tcannon";
-    $user->password             = "testtest";
-    $user->passwordConfirmation = "testtest";
-    $user->save();
+  public function testEmailMustBeUnique(){
+    $this->user_1->save();
 
-    $user = User::getByID($user->getID());
+    $duplicate_user = new User();
+    $duplicate_user->channel_name         = "Email Stuff";
+    $duplicate_user->email                = $this->user_1->email;
+    $duplicate_user->password             = "helloworld";
+    $duplicate_user->passwordConfirmation = "helloworld";
 
-    $user->channel_name             = "tcannon";
+    $this->assertFalse($duplicate_user->save());
+
+    $this->assertTrue($this->user_2->save());
+
+    $this->user_2->email = $this->user_1->email;
+
+    $this->assertFalse($this->user_2->save());
+  }
+
+  public function testDoNotConsiderChangingTheEmailTheSameValueInvalid(){
+    $this->user_1->save();
+
+    $user = User::getByID($this->user_1->getID());
+
+    $user->email             = $this->user_1->email;
     $this->assertTrue($user->save());
   }
 

@@ -10,7 +10,7 @@ class User implements UserInterface, RemindableInterface {
 	public $password;
 	public $passwordConfirmation;
 	protected $id;
-	protected $errors = array();
+	public $errors = array();
 	// protected $salt;
 	protected $crypted_password;
 
@@ -100,6 +100,15 @@ class User implements UserInterface, RemindableInterface {
 		return intval($result[0]->count) > 0;
 	}
 
+	protected function isEmailTaken(){
+		if($this->id == NULL){
+			$result = DB::select("SELECT COUNT(*) AS count FROM users WHERE email = :email", array("email" => $this->email));
+		} else{
+			$result = DB::select("SELECT COUNT(*) AS count FROM users WHERE email = :email AND id  != :id", array("email" => $this->email, "id" => $this->id));
+		}
+		return intval($result[0]->count) > 0;
+	}
+
 	protected function sanitizeData(){
 		$this->channel_name = trim($this->channel_name);
 		if(isset($this->password) || isset($this->passwordConfirmation)){
@@ -112,11 +121,19 @@ class User implements UserInterface, RemindableInterface {
 		$this->sanitizeData();
 
 		if($this->channel_name === ""){
-			$this->errors["channel_name"] = "Cannot be blank";
+			$this->errors["channel_name"] = "Channel Name cannot be blank";
 		}
 
 		if($this->isChannelNameTaken()){
-			$this->errors["channel_name"] = "has already been taken";
+			$this->errors["channel_name"] = "Channel Name has already been taken";
+		}
+
+		if($this->email === ""){
+			$this->errors["email"] = "Email cannot be blank";
+		}
+
+		if($this->isEmailTaken()){
+			$this->errors["email"] = "Email has already been used to register for an account";
 		}
 
 		//run the password validations if the user has not been created, or if one of the password updating fields has been set
