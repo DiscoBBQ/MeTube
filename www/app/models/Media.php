@@ -40,15 +40,32 @@ class Media {
 
 	static public function getByID($id){
 		$result = DB::select("SELECT * FROM media WHERE id = ? LIMIT 1", array($id));
-		return self::buildMediaFromResult($result);
-	}
 
-	static protected function buildMediaFromResult($result){
 		if (count($result) == 0) {
 			return NULL;
 		}
 
-		$keyword_result = DB::select("SELECT keyword FROM keywords WHERE mediaid = ?", array($result[0]->id));
+		return self::buildMediaFromResult($result[0]);
+	}
+
+	static public function getUploadedByUserID($user_id){
+		$results = DB::select('SELECT * FROM media WHERE authorid = ? ORDER BY created_on desc', array($user_id));
+
+		$medias = array();
+
+		foreach ($results as $result) {
+			array_push($medias, self::buildMediaFromResult($result));
+		}
+
+		return $medias;
+	}
+
+	static protected function buildMediaFromResult($result){
+		if($result == NULL){
+			return NULL;
+		}
+
+		$keyword_result = DB::select("SELECT keyword FROM keywords WHERE mediaid = ?", array($result->id));
 
 		$keywords = array();
 		foreach($keyword_result as $keyword) {
@@ -56,7 +73,7 @@ class Media {
 		}
 
 		$titlewords = array();
-		foreach(explode(' ', $result[0]->title) as $titleword) {
+		foreach(explode(' ', $result->title) as $titleword) {
 			array_push($titlewords, $titleword);
 		}
 
@@ -68,10 +85,10 @@ class Media {
 		}
 		$keywords_string = trim($keywords_string, ' ');
 
-		$media =  new self($result[0]->title, $result[0]->description, $result[0]->category,
-			$keywords_string, $result[0]->extension, $result[0]->authorid);
+		$media =  new self($result->title, $result->description, $result->category,
+			$keywords_string, $result->extension, $result->authorid);
 
-		$media->id = $result[0]->id;
+		$media->id = $result->id;
 
 		return $media;
 	}
