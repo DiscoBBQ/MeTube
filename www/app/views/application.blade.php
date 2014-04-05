@@ -25,7 +25,7 @@
               SIGN OUT
             </a>
             &nbsp;
-            <a class = "button" href = "{{route('upload_form')}}">
+            <a class = "button" href = "{{route('new_media')}}">
               UPLOAD
             </a>
           @else

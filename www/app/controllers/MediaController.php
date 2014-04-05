@@ -3,6 +3,10 @@
 class MediaController extends BaseController {
 	protected $layout = 'application';
 
+	public function newMedia(){
+		$this->layout->content = View::make('media.new');
+	}
+
 	public function show($id)
 	{
 		$media = Media::getByID($id);
@@ -19,7 +23,7 @@ class MediaController extends BaseController {
 		$this->layout->content = View::make('media.show')->with(array('media' => $media));
 	}
 
-	public function upload() {
+	public function create() {
 		$media = new Media(Input::get('title'),
 						   Input::get('description'),
 						   Input::get('category'),
@@ -32,7 +36,7 @@ class MediaController extends BaseController {
 		if ($id != -1) {
 			return Redirect::route('media', array('id' => $id));
 		} else {
-			return Redirect::route('upload_form')->with('error_messages', 'test');
+			return Redirect::route('new_media')->with('error_messages', 'test');
 		}
 	}
 

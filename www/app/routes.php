@@ -32,14 +32,14 @@ Route::get('/signout', array('as' => 'signout', 'uses' => 'AuthenticationControl
 Route::get('/search/{phrase}/{page}', array('as' => 'search', 'uses' => 'SearchController@index'));
 Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController@search'));
 
-Route::get('/upload', array('as' => 'upload_form', 'uses' => 'UploadController@index'));
-Route::post('/upload', 'MediaController@upload');
-
 Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@show'));
 
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
 
 // Media
+
+Route::get('/media/new', array('as' => 'new_media', 'uses' => 'MediaController@newMedia'));
+Route::post('/media', array('as' => 'create_media', 'uses' => 'MediaController@create'));
 
 Route::get('/media/{id}', array('as' => 'media', 'uses' => 'MediaController@show'));
 Route::get('/media/{id}/download', array('as' => 'download_media', 'uses' => 'MediaController@download'));
