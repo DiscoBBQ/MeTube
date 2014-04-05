@@ -35,7 +35,7 @@ Route::post('/search', 'SearchController@search');
 Route::get('/upload', array('as' => 'upload_form', 'uses' => 'UploadController@index'));
 Route::post('/upload', 'MediaController@upload');
 
-Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@index'));
+Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@show'));
 
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
 
