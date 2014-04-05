@@ -1291,6 +1291,8 @@ return array(
     'Psr\\Log\\NullLogger' => $vendorDir . '/psr/log/Psr/Log/NullLogger.php',
     'RemoveKeywordsFromMediaTable' => $baseDir . '/app/database/migrations/2014_03_18_131523_remove_keywords_from_media_table.php',
     'RenameCryptedPasswordToPassword' => $baseDir . '/app/database/migrations/2014_03_06_022416_rename_crypted_password_to_password.php',
+    'RenameUsernameToChannelName' => $baseDir . '/app/database/migrations/2014_04_05_183300_rename_username_to_channel_name.php',
+    'RequireUniqueEmailInUsers' => $baseDir . '/app/database/migrations/2014_04_05_183614_require_unique_email_in_users.php',
     'SearchController' => $baseDir . '/app/controllers/SearchController.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'SetUsersCreatedAtDefaultValueToNonNull' => $baseDir . '/app/database/migrations/2014_04_05_160639_set_users_created_at_default_value_to_non_null.php',
