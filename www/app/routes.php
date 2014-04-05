@@ -39,12 +39,14 @@ Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelCon
 
 Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
 
-Route::get('/media/{id}', array('as' => 'media', 'uses' => 'MediaController@index'));
-Route::post('/media/{id}', 'PlaylistController@add');
+// Media
 
-Route::get('/download/{id}', 'MediaController@download');
+Route::get('/media/{id}', array('as' => 'media', 'uses' => 'MediaController@show'));
+Route::get('/media/{id}/download', array('as' => 'download_media', 'uses' => 'MediaController@download'));
+Route::get('/media/{id}/favorite', array('as' => 'favorite_media', 'uses' => 'MediaController@favorite'));
+Route::post('/media/{id}/add_to_playlist', array('as' => 'add_media_to_playlist', 'uses' => 'PlaylistController@add'));
+Route::post('/media/{id}/add_comment', array('as' => 'add_comment_to_media', 'uses'=>'CommentController@create'));
 
-Route::get('/favorite/{id}', 'MediaController@favorite');
 
 // Browsing
 
@@ -70,5 +72,3 @@ Route::post('/playlists', array('as' => 'create_playlist' ,'uses' => 'PlaylistCo
 Route::get('/playlist/up/{id}/{order}/{page}', 'PlaylistController@up');
 Route::get('/playlist/down/{id}/{order}/{page}', 'PlaylistController@down');
 Route::get('/playlist/{id}/{page}', array('as' => 'playlist', 'uses' => 'PlaylistController@index'));
-
-Route::post('/comment/{id}', 'CommentController@create');

@@ -1,12 +1,22 @@
 <?php
 
 class MediaController extends BaseController {
-	protected $layout = 'media';
+	protected $layout = 'application';
 
-	public function index($id)
+	public function show($id)
 	{
-		$this->layout->with('id', $id);
-		$this->layout->content = View::make('includes.common');
+		$media = Media::getByID($id);
+		if($media == NULL){
+			App::abort(404);
+		}
+
+		$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'viewed'", array(Auth::user()->id, $id));
+
+		if (sizeof($result) == 0){
+			DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'viewed')", array(Auth::user()->id, $id));
+		}
+
+		$this->layout->content = View::make('media.show')->with(array('media' => $media));
 	}
 
 	public function upload() {
@@ -20,9 +30,9 @@ class MediaController extends BaseController {
 		$id = $media->save(Input::file('file'));
 
 		if ($id != -1) {
-			return Redirect::to('/media/'.$id);
+			return Redirect::route('media', array('id' => $id));
 		} else {
-			return Redirect::to('/upload')->with('error_messages', 'test');
+			return Redirect::route('upload_form')->with('error_messages', 'test');
 		}
 	}
 
@@ -31,7 +41,6 @@ class MediaController extends BaseController {
 
 		if(Auth::check()) {
 			$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'downloaded'", array(Auth::user()->id, $id));
-				
 			if (sizeof($result) == 0)
 				DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'downloaded')", array(Auth::user()->id, $id));
 		}
@@ -42,10 +51,9 @@ class MediaController extends BaseController {
 	public function favorite($id) {
 		if(Auth::check()) {
 			$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'favorited'", array(Auth::user()->id, $id));
-				
 			if (sizeof($result) == 0)
 				DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'favorited')", array(Auth::user()->id, $id));
 		}
-		return Redirect::to('/media/'.$id);
+		return Redirect::route('media', array('id' => $id));
 	}
 }

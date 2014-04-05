@@ -170,6 +170,14 @@ class Media {
 		return $player;
 	}
 
+	public function getFilename(){
+		return $this->getId() . "." . $this->getExtension();
+	}
+
+	public function getAssetFilepath(){
+		return "uploaded_media/" . $this->getFilename();
+	}
+
 	private function validate() {
 		$error_count = 0;
 
