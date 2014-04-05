@@ -5,7 +5,7 @@
   <div id='welcome-browse-block-body'>
     <a href="{{route('media', array('id' => $media->getID()))}}">{{$media->title}}
       <div class = "browse-img-border">
-        <img class = "browse-img" src="{{Media::getThumbnail($media->getID(), $media->extension)}}">
+        <img class = "browse-img" src="{{asset($media->getThumbnail())}}">
       </div>
     </a>
 

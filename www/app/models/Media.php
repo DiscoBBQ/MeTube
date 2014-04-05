@@ -99,34 +99,37 @@ class Media {
 		return $id;
 	}
 
-	static public function getThumbnail($id, $extension) {
+	static public function getThumbnailByID($id) {
+		return Media::getByID($id)->getThumbnail();
+	}
+
+	public function getThumbnail(){
 		$thumbnail = "";
-		$extension = strtolower($extension);
 
 		foreach (Media::$picture_formats as $format) {
-			if ($extension == strtolower($format)) {
-				$thumbnail = '/uploaded_media/'.$id.'.'.$extension;
+			if ($this->getExtension() == strtolower($format)) {
+				$thumbnail = $this->getAssetFilepath();
 				return $thumbnail;
 			}
 		}
 
 		foreach (Media::$audio_formats as $format) {
-			if ($extension == strtolower($format)) {
-				$thumbnail = "/thumbnails/audio.png";
+			if ($this->getExtension() == strtolower($format)) {
+				$thumbnail = "/public/images/thumbnails/audio.png";
 				return $thumbnail;
 			}
 		}
 
 		foreach (Media::$qt_video_formats as $format) {
-			if ($extension == strtolower($format)) {
-				$thumbnail = "/thumbnails/video.png";
+			if ($this->getExtension() == strtolower($format)) {
+				$thumbnail = "/public/images/thumbnails/video.png";
 				return $thumbnail;
 			}
 		}
 
 		foreach (Media::$wmp_video_formats as $format) {
-			if ($extension == strtolower($format)) {
-				$thumbnail = "/thumbnails/video.png";
+			if ($this->getExtension() == strtolower($format)) {
+				$thumbnail = "/public/images/thumbnails/video.png";
 				return $thumbnail;
 			}
 		}
