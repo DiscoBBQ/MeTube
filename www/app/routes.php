@@ -13,6 +13,8 @@
 
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 
+//Registration
+
 Route::get('/signin', array('as' => 'signin_form', function()
 {
 	return View::make('signin');
@@ -24,15 +26,18 @@ Route::get('/register', array('as' => 'register', function()
 }));
 
 Route::post('/register', array('as' => 'create_user', 'uses'=> 'UserController@create'));
-
 Route::post('/signin', array('as' => 'signin', 'uses' => 'AuthenticationController@authenticate'));
-
 Route::get('/signout', array('as' => 'signout', 'uses' => 'AuthenticationController@logout'));
+
+//Searching
 
 Route::get('/search/{phrase}/{page}', array('as' => 'search', 'uses' => 'SearchController@index'));
 Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController@search'));
 
+//Subscription
+
 Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@show'));
+Route::get('/subscribe/{id}', array('as' => 'subscribe_to_user', 'uses' =>'SubscriptionController@subscribe'));
 
 // Media
 
@@ -58,8 +63,6 @@ Route::get('/favorited/{userid}/{page}', array('as' => 'favorited', 'uses' => 'B
 
 //Profile
 Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'UserController@show'));
-
-Route::get('/subscribe/{id}', array('as' => 'subscribe_to_user', 'uses' =>'SubscriptionController@subscribe'));
 
 
 // Playlists
