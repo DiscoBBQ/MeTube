@@ -22,7 +22,7 @@ class AddCreatedAtToMessages extends Migration {
 	 */
 	public function down()
 	{
-		DB::statement("ALTER TABLE `messages` REMOVE `created_at`");
+		DB::statement("ALTER TABLE `messages` DROP COLUMN `created_at`");
 	}
 
 }
