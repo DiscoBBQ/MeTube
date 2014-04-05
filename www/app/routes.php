@@ -29,8 +29,8 @@ Route::post('/signin', array('as' => 'signin', 'uses' => 'AuthenticationControll
 
 Route::get('/signout', array('as' => 'signout', 'uses' => 'AuthenticationController@logout'));
 
-Route::get('/search/{phrase}/{page}', 'SearchController@index');
-Route::post('/search', 'SearchController@search');
+Route::get('/search/{phrase}/{page}', array('as' => 'search', 'uses' => 'SearchController@index'));
+Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController@search'));
 
 Route::get('/upload', array('as' => 'upload_form', 'uses' => 'UploadController@index'));
 Route::post('/upload', 'MediaController@upload');

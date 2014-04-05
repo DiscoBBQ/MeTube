@@ -12,7 +12,7 @@
           <a href = "{{route('home')}}"><img src = "{{asset('public/images/logo1.png')}}"></a>
         </div>
         <div id = "mt-header-content">
-          {{ Form::open(array('url' => 'search')) }}
+          {{ Form::open(array('route' => 'start_search')) }}
             <input id = "mt-header-content-searchbar" type = "text" name = "phrase"> 
             <input id = "mt-header-content-searchbutton" type = "submit">
               <img src = "{{asset('public/images/search.png')}}">
