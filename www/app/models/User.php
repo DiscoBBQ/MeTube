@@ -49,7 +49,7 @@ class User implements UserInterface, RemindableInterface {
 		return self::buildUserFromResult($result[0]);
 	}
 
-	static public function getBychannel_name($channel_name){
+	static public function getByChannelName($channel_name){
 		$result = DB::select("SELECT * FROM users WHERE channel_name = ? LIMIT 1", array($channel_name));
 		if(count($result) == 0){
       return NULL;
@@ -91,7 +91,7 @@ class User implements UserInterface, RemindableInterface {
 		}
 	}
 
-	protected function ischannel_nameTaken(){
+	protected function isChannelNameTaken(){
 		if($this->id == NULL){
 			$result = DB::select("SELECT COUNT(*) AS count FROM users WHERE channel_name = :channel_name", array("channel_name" => $this->channel_name));
 		} else{
@@ -115,7 +115,7 @@ class User implements UserInterface, RemindableInterface {
 			$this->errors["channel_name"] = "Cannot be blank";
 		}
 
-		if($this->ischannel_nameTaken()){
+		if($this->isChannelNameTaken()){
 			$this->errors["channel_name"] = "has already been taken";
 		}
 
