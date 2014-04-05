@@ -14,10 +14,12 @@ class MediaController extends BaseController {
 			App::abort(404);
 		}
 
-		$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'viewed'", array(Auth::user()->id, $id));
+		if(Auth::check()){
+			$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'viewed'", array(Auth::user()->id, $id));
 
-		if (sizeof($result) == 0){
-			DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'viewed')", array(Auth::user()->id, $id));
+			if (sizeof($result) == 0){
+				DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'viewed')", array(Auth::user()->id, $id));
+			}
 		}
 
 		$this->layout->content = View::make('media.show')->with(array('media' => $media));
