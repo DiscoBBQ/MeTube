@@ -13,7 +13,11 @@
   <div class = "mt-sidebar-block">
     <div class = "mt-block-title">{{$user->channel_name}}</div>
       <div class = "mt-sidebar-block-body">
-        Content
+        <h2>Recent Uploads</h2>
+        <?php $medias = Media::getUploadedByUserID($user->getID()) ?>
+        @foreach ($medias as $media)
+          @include('media.preview-block', array('media' => $media))
+        @endforeach
       </div>
   </div>
   <br>
