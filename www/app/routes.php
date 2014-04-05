@@ -34,8 +34,6 @@ Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController
 
 Route::get('/channel/{id}/{page}', array('as' => 'channel', 'uses' =>'ChannelController@show'));
 
-Route::get('/secret', array('before' => 'auth', 'uses' => 'SecretController@test'));
-
 // Media
 
 Route::get('/media/new', array('as' => 'new_media', 'uses' => 'MediaController@newMedia'));
