@@ -14,7 +14,7 @@ class MessageController extends BaseController {
   public function newMessage(){
     $to_user_field = array();
     foreach (User::getAll() as $user) {
-      $to_user_field[$user->getID()] = $user->username;
+      $to_user_field[$user->getID()] = $user->channel_name;
     }
 
     $error_messages = Session::get('errors');

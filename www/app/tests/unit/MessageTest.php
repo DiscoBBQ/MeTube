@@ -10,21 +10,21 @@ class MessageUnitTest extends TestCase {
   public function setUp(){
     parent::setUp();
     $this->user_1 = new User();
-    $this->user_1->username = "text";
+    $this->user_1->channel_name = "text";
     $this->user_1->email = "text@test.com";
     $this->user_1->password = "test1234";
     $this->user_1->passwordConfirmation = "test1234";
     $this->user_1->save();
 
     $this->user_2 = new User();
-    $this->user_2->username = "next";
+    $this->user_2->channel_name = "next";
     $this->user_2->email = "next@test.com";
     $this->user_2->password = "test1234";
     $this->user_2->passwordConfirmation = "test1234";
     $this->user_2->save();
 
     $this->user_3 = new User();
-    $this->user_3->username = "lext";
+    $this->user_3->channel_name = "lext";
     $this->user_3->email = "lext@test.com";
     $this->user_3->password = "test1234";
     $this->user_3->passwordConfirmation = "test1234";

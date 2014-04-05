@@ -17,14 +17,14 @@ class UserUnitTest extends TestCase {
     parent::setUp();
 
     $this->user_1 = new User();
-    $this->user_1->username = "text";
+    $this->user_1->channel_name = "text";
     $this->user_1->email = "text@test.com";
     $this->user_1->password = "test1234";
     $this->user_1->passwordConfirmation = "test1234";
     $this->user_1->save();
 
     $this->user_2 = new User();
-    $this->user_2->username = "next";
+    $this->user_2->channel_name = "next";
     $this->user_2->email = "next@test.com";
     $this->user_2->password = "test1234";
     $this->user_2->passwordConfirmation = "test1234";
@@ -33,7 +33,7 @@ class UserUnitTest extends TestCase {
 
   public function testCreateUser(){
     $user = new User();
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $user->password             = "test1234";
     $user->passwordConfirmation = "test1234";
 
@@ -46,7 +46,7 @@ class UserUnitTest extends TestCase {
 
   public function testPasswordMustBeCorrect(){
     $user = new User();
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $user->password             = "test1234";
     $user->passwordConfirmation = "anothervalue";
 
@@ -55,7 +55,7 @@ class UserUnitTest extends TestCase {
 
   public function testUpdatingUsers(){
     $user = new User();
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $user->password             = "test1234";
     $user->passwordConfirmation = "test1234";
 
@@ -63,18 +63,18 @@ class UserUnitTest extends TestCase {
 
     $old_id = $user->getID();
 
-    $user->username = "rcannon";
+    $user->channel_name = "rcannon";
     $this->assertTrue($user->save());
     $this->assertEquals($user->getID(), $old_id);
 
     $this->assertNotNull($user->getID());
     $new_user = User::getByID($user->getID());
-    $this->assertEquals($new_user->username, "rcannon");
+    $this->assertEquals($new_user->channel_name, "rcannon");
   }
 
   public function testOnlyUpdatesOneUser(){
     $user = new User();
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $user->password             = "test1234";
     $user->passwordConfirmation = "test1234";
 
@@ -83,26 +83,26 @@ class UserUnitTest extends TestCase {
     $other_user_id = $user->getID();
 
     $user = new User();
-    $user->username             = "jcannon";
+    $user->channel_name             = "jcannon";
     $user->password             = "test1234";
     $user->passwordConfirmation = "test1234";
 
     $user->save();
     $old_id = $user->getID();
 
-    $user->username = "rcannon";
+    $user->channel_name = "rcannon";
     $this->assertTrue($user->save());
     $this->assertEquals($user->getID(), $old_id);
 
     $this->assertNotNull($user->getID());
     $new_user = User::getByID($other_user_id);
-    $this->assertEquals($new_user->username, "tcannon");
+    $this->assertEquals($new_user->channel_name, "tcannon");
   }
 
 
   public function testPasswordChange(){
     $user = new User();
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $user->password             = "test1234";
     $user->passwordConfirmation = "test1234";
 
@@ -120,23 +120,23 @@ class UserUnitTest extends TestCase {
     $this->assertNotEquals($old_hash_value, $new_hash_value);
   }
 
-  public function testUsernameMustBeUnique(){
+  public function testchannel_nameMustBeUnique(){
     $user = new User();
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $user->password             = "test1234";
     $user->passwordConfirmation = "test1234";
 
     $user->save();
 
     $duplicate_user = new User();
-    $duplicate_user->username             = "tcannon";
+    $duplicate_user->channel_name             = "tcannon";
     $duplicate_user->password             = "helloworld";
     $duplicate_user->passwordConfirmation = "helloworld";
 
     $this->assertFalse($duplicate_user->save());
 
     $user_updating = new User();
-    $user_updating->username             = "jcannon";
+    $user_updating->channel_name             = "jcannon";
     $user_updating->password             = "worldhello";
     $user_updating->passwordConfirmation = "worldhello";
 
@@ -144,21 +144,21 @@ class UserUnitTest extends TestCase {
 
     $user_updating = User::getByID($user_updating->getId());
 
-    $user_updating->username             = "tcannon";
+    $user_updating->channel_name             = "tcannon";
 
     $this->assertFalse($user_updating->save());
   }
 
-  public function testDoNotConsiderChangingTheUsernameToTheSameValueInvalid(){
+  public function testDoNotConsiderChangingThechannel_nameToTheSameValueInvalid(){
     $user = new User();
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $user->password             = "testtest";
     $user->passwordConfirmation = "testtest";
     $user->save();
 
     $user = User::getByID($user->getID());
 
-    $user->username             = "tcannon";
+    $user->channel_name             = "tcannon";
     $this->assertTrue($user->save());
   }
 

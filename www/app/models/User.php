@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User implements UserInterface, RemindableInterface {
 
 	public $email;
-	public $username;
+	public $channel_name;
 	public $password;
 	public $passwordConfirmation;
 	protected $id;
@@ -22,13 +22,13 @@ class User implements UserInterface, RemindableInterface {
 
 		if($this->id == NULL){
 			//insert the record into the DB
-			DB::statement("INSERT INTO users (email, username, password) VALUES (?,?,?)", array($this->email, $this->username, $this->crypted_password));
+			DB::statement("INSERT INTO users (email, channel_name, password) VALUES (?,?,?)", array($this->email, $this->channel_name, $this->crypted_password));
 		 	//get the ID of the last inserted record
 			$this->id = intval(DB::getPdo()->lastInsertId('id'));
 			return true;
 		} else{
 			//update the existing record in the DB
-			DB::statement("UPDATE users SET email = ?, username = ?, password = ? WHERE id = ?", array($this->email, $this->username, $this->crypted_password, $this->id));
+			DB::statement("UPDATE users SET email = ?, channel_name = ?, password = ? WHERE id = ?", array($this->email, $this->channel_name, $this->crypted_password, $this->id));
 			return true;
 		}
 	}
@@ -49,8 +49,8 @@ class User implements UserInterface, RemindableInterface {
 		return self::buildUserFromResult($result[0]);
 	}
 
-	static public function getByUsername($username){
-		$result = DB::select("SELECT * FROM users WHERE username = ? LIMIT 1", array($username));
+	static public function getBychannel_name($channel_name){
+		$result = DB::select("SELECT * FROM users WHERE channel_name = ? LIMIT 1", array($channel_name));
 		if(count($result) == 0){
       return NULL;
     }
@@ -76,7 +76,7 @@ class User implements UserInterface, RemindableInterface {
 		} else{
 			$user->id 	 						= intval($result->id);
 			$user->email 						= $result->email;
-			$user->username 				= $result->username;
+			$user->channel_name 				= $result->channel_name;
 			$user->crypted_password = $result->password;
 		}
 
@@ -91,17 +91,17 @@ class User implements UserInterface, RemindableInterface {
 		}
 	}
 
-	protected function isUsernameTaken(){
+	protected function ischannel_nameTaken(){
 		if($this->id == NULL){
-			$result = DB::select("SELECT COUNT(*) AS count FROM users WHERE username = :username", array("username" => $this->username));
+			$result = DB::select("SELECT COUNT(*) AS count FROM users WHERE channel_name = :channel_name", array("channel_name" => $this->channel_name));
 		} else{
-			$result = DB::select("SELECT COUNT(*) AS count FROM users WHERE username = :username AND id  != :id", array("username" => $this->username, "id" => $this->id));
+			$result = DB::select("SELECT COUNT(*) AS count FROM users WHERE channel_name = :channel_name AND id  != :id", array("channel_name" => $this->channel_name, "id" => $this->id));
 		}
 		return intval($result[0]->count) > 0;
 	}
 
 	protected function sanitizeData(){
-		$this->username = trim($this->username);
+		$this->channel_name = trim($this->channel_name);
 		if(isset($this->password) || isset($this->passwordConfirmation)){
 			$this->password = trim($this->password);
 			$this->passwordConfirmation = trim($this->passwordConfirmation);
@@ -111,12 +111,12 @@ class User implements UserInterface, RemindableInterface {
 	public function validate(){
 		$this->sanitizeData();
 
-		if($this->username === ""){
-			$this->errors["username"] = "Cannot be blank";
+		if($this->channel_name === ""){
+			$this->errors["channel_name"] = "Cannot be blank";
 		}
 
-		if($this->isUsernameTaken()){
-			$this->errors["username"] = "has already been taken";
+		if($this->ischannel_nameTaken()){
+			$this->errors["channel_name"] = "has already been taken";
 		}
 
 		//run the password validations if the user has not been created, or if one of the password updating fields has been set

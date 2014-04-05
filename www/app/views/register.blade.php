@@ -6,7 +6,7 @@
   </div>
   <div class = "mt-form-box">
   	{{ Form::open(array('route' => 'create_user')) }}
-      Username: <input type = "text" name = "username"><br>
+      Channel Name: <input type = "text" name = "channel_name"><br>
       Password: <input type = "password" name = "password"><br>
       Confirm Password: <input type = "password" name = "password_confirm"><br>
       E-mail: <input type = "text" name = "email"><br>

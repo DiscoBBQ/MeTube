@@ -11,7 +11,7 @@
   </div>
   <br>
   <div class = "mt-sidebar-block">
-    <div class = "mt-block-title">{{$user->username}}</div>
+    <div class = "mt-block-title">{{$user->channel_name}}</div>
       <div class = "mt-sidebar-block-body">
         Content
       </div>

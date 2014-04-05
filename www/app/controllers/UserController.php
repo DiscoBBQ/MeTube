@@ -6,12 +6,12 @@ class UserController extends BaseController {
 	public function create()
 	{
     $user = new User();
-    $user->username = Input::get('username');
+    $user->channel_name = Input::get('channel_name');
     $user->password = Input::get('password');
     $user->passwordConfirmation = Input::get('password_confirm');
 		if($user->save()){
       //login the newly created user automatically
-      Auth::attempt(array('username' => $user->username, 'password' => $user->password), true);
+      Auth::attempt(array('channel_name' => $user->channel_name, 'password' => $user->password), true);
       return Redirect::route('home');
     } else{
       return Redirect::route('register');
