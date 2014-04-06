@@ -59,6 +59,10 @@ class Playlist{
     return User::getByID($this->user_id);
   }
 
+  static public function deleteAllPlaylistItemsForMedia($media_id){
+    DB::statement("DELETE FROM playlist_item WHERE media_id = ?", array($media_id));
+  }
+
 
   static public function getByID($id){
     $result = DB::select("SELECT * FROM playlist WHERE ID = ? LIMIT 1", array($id));

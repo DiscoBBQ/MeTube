@@ -147,6 +147,10 @@ class Media {
 
 	public function destroy(){
 		DB::statement("DELETE FROM media WHERE id = ?", array($this->id));
+		Keyword::deleteAllKeywordsForMedia($this->id);
+		Comment::deleteAllCommentsForMedia($this->id);
+		Interaction::deleteAllInteractionsForMedia($this->id);
+		Playlist::deleteAllPlaylistItemsForMedia($this->id);
 	}
 
 	static public function getThumbnailByID($id) {

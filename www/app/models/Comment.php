@@ -42,6 +42,14 @@ class Comment{
     return $this->created_at;
   }
 
+  static public function deleteAllCommentsForMedia($media_id){
+    DB::statement("DELETE FROM comments WHERE media_id = ?", array($media_id));
+  }
+
+  static public function deleteAllCommentsForUser($media_id){
+    DB::statement("DELETE FROM comments WHERE media_id = ?", array($media_id));
+  }
+
   static public function getByID($id){
     $result = DB::select("SELECT * FROM comments WHERE ID = ? LIMIT 1", array($id));
     if(count($result) == 0){
