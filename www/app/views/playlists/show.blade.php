@@ -3,6 +3,7 @@
     <div class="header">
       <div class="title">{{$playlist->title}}</div>
       <div class="description">{{$playlist->description}}</div>
+      <a href="{{ route('edit_playlist', array('id' => $playlist->getID())) }}">Edit Playlist</a>
       <a href="{{ route('delete_playlist', array('id' => $playlist->getID())) }}">Delete Playlist</a>
     </div>
     <div class="media">
