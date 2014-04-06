@@ -6,27 +6,16 @@ class Media {
 	public $category;
 	public $keywords;
 	public $authorid;
-	public $created_on;
+	public $created_at;
 	public $extension;
 	public $id;
 
-	private $errors = array();
+	public $errors = array();
 
 	static private $picture_formats = array("png", "jpeg", "jpg", "gif", "bmp");
 	static private $audio_formats = array("m4a", "m4b", "m4p", "mp3", "aiff", "au", "wav");
 	static private $qt_video_formats = array("mov", "mp4", "m4v", "avi");
 	static private $wmp_video_formats = array("wmv", "wma", "wm");
-
-	function __construct($title, $description, $category, $keywords, $extension, $authorid) {
-		$this->title = $title;
-		$this->description = $description;
-		$this->category = $category;
-		$this->keywords = $keywords;
-		$this->extension = strtolower($extension);
-		$this->authorid = $authorid;
-
-		$this->created_on = date("Y-m-d");
-	}
 
 	public function getID() { return $this->id; }
 	public function getTitle() { return $this->title; }
@@ -34,7 +23,7 @@ class Media {
 	public function getCategory() { return $this->category; }
 	public function getKeywords() { return $this->keywords; }
 	public function getAuthorId() { return $this->authorid; }
-	public function getCreatedOn() { return $this->created_on; }
+	public function getCreatedAt() { return $this->created_at; }
 	public function getExtension() { return $this->extension; }
 	public function getAuthor() { return  User::getByID($this->authorid); }
 
@@ -49,7 +38,7 @@ class Media {
 	}
 
 	static public function getUploadedByUserID($user_id){
-		$results = DB::select('SELECT * FROM media WHERE authorid = ? ORDER BY created_on desc', array($user_id));
+		$results = DB::select('SELECT * FROM media WHERE authorid = ? ORDER BY created_at desc', array($user_id));
 
 		$medias = array();
 
@@ -73,7 +62,7 @@ class Media {
 	}
 
 	static protected function getMediaByInteractionAndUserID($interaction, $user_id){
-		$results = DB::select("SELECT media.* FROM interactions,media WHERE interactions.category = ? AND interactions.user_id = ? AND media_id = id ORDER BY created_on desc", array($interaction, $user_id));
+		$results = DB::select("SELECT media.* FROM interactions,media WHERE interactions.category = ? AND interactions.user_id = ? AND media_id = id ORDER BY created_at desc", array($interaction, $user_id));
 
 		$medias = array();
 
@@ -112,55 +101,47 @@ class Media {
 			return NULL;
 		}
 
-		$keyword_result = DB::select("SELECT keyword FROM keywords WHERE mediaid = ?", array($result->id));
+		$media = new self();
 
-		$keywords = array();
-		foreach($keyword_result as $keyword) {
-			array_push($keywords, $keyword->keyword);
-		}
-
-		$titlewords = array();
-		foreach(explode(' ', $result->title) as $titleword) {
-			array_push($titlewords, $titleword);
-		}
-
-		$keywords = array_diff($keywords, $titlewords);
-
-		$keywords_string = "";
-		foreach($keywords as $keyword) {
-			$keywords_string .= $keyword . ' ';
-		}
-		$keywords_string = trim($keywords_string, ' ');
-
-		$media =  new self($result->title, $result->description, $result->category,
-			$keywords_string, $result->extension, $result->authorid);
-
-		$media->id = $result->id;
+		$media->id 					= intval($result->id);
+		$media->title 			= $result->title;
+		$media->description = $result->description;
+		$media->category 		= $result->category;
+		$media->keywords 		= Keyword::getKeywordStringForMediaAndItsTitle($media->id, $media->title);
+		$media->extension 	= strtolower($result->extension);
+		$media->authorid 		= intval($result->authorid);
+		$media->created_at 	= new DateTime($result->created_at);
 
 		return $media;
 	}
 
 	public function save($file) {
 		if ($this->validate() == false) {
-			return -1;
+			return false;
 		}
 
-		$id = DB::table('media')->insertGetId(array('title' => $this->title,
-										 'description' => $this->description,
-										 'extension' => $this->extension,
-										 'authorid' => $this->authorid,
-										 'created_on' => $this->created_on,
-										 'category' => $this->category));
+		try {
+			if($this->id == NULL){
+	      //insert the record into the DB
+	      DB::statement("INSERT INTO media (title, description, extension, authorid, category) VALUES (?,?,?,?,?)", array($this->title, $this->description, $this->extension, $this->authorid, $this->category));
+	      //get the ID of the last inserted record
+	      $this->id = intval(DB::getPdo()->lastInsertId('id'));
 
-		$keywords = array_unique(explode(' ', $this->keywords . ' ' . $this->title));
-		foreach($keywords as $keyword) {
-			DB::statement("INSERT INTO keywords (mediaid, keyword) VALUES (?,?)", array($id, $keyword));
+	      //move the file to its final destination
+	      $filename = $this->id.'.'.$this->extension;
+	      $uploadSuccess = $file->move(Config::get('app.file_upload_path'), $filename);
+	    } else{
+	      //update the existing record in the DB
+	      DB::statement("UPDATE media SET title = ?, description = ?, extension = ?, authorid = ?, category = ? WHERE id = ?", array($this->title, $this->description, $this->extension, $this->authorid, $this->category, $this->id));
+	    }
+
+	    Keyword::deleteAllKeywordsForMedia($this->id);
+	    Keyword::createKeywordsForMediaFromPhrase($this->id, $this->keywords . ' ' . $this->title);
+	    DB::commit();
+	    return true;
+		} catch (Exception $e) {
+			DB::rollback();
 		}
-
-		$filename = $id.'.'.$this->extension;
-		$uploadSuccess = $file->move(Config::get('app.file_upload_path'), $filename);
-
-		return $id;
 	}
 
 	public function destroy(){

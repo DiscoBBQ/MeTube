@@ -11,7 +11,9 @@ class MediaController extends BaseController {
   }
 
 	public function newMedia(){
-		$this->layout->content = View::make('media.new');
+		$error_messages = Session::get('errors');
+		$data = array('error_messages' => $error_messages);
+		$this->layout->content = View::make('media.new')->with($data);
 	}
 
 	public function show($id)
@@ -28,19 +30,20 @@ class MediaController extends BaseController {
 	}
 
 	public function create() {
-		$this->media = new Media(Input::get('title'),
-						   Input::get('description'),
-						   Input::get('category'),
-						   Input::get('keywords'),
-						   Input::file('file')->getClientOriginalExtension(),
-						   Auth::user()->getAuthIdentifier());
+		$this->media = new Media();
 
-		$id = $this->media->save(Input::file('file'));
+		$this->media->title 			= Input::get('title');
+		$this->media->description = Input::get('description');
+		$this->media->category 		= Input::get('category');
+		$this->media->keywords 		= Input::get('keywords');
+		$this->media->extension		= Input::file('file')->getClientOriginalExtension();
+		$this->media->authorid 		= Auth::user()->getAuthIdentifier();
 
-		if ($id != -1) {
-			return Redirect::route('media', array('id' => $id));
+		if ($this->media->save(Input::file('file'))) {
+			return Redirect::route('media', array('id' => $this->media->getID()));
 		} else {
-			return Redirect::route('new_media')->with('error_messages', 'test');
+			$data = array('errors' => $this->media->errors);
+			return Redirect::route('new_media')->with($data)->withInput();
 		}
 	}
 
