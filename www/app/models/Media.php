@@ -60,6 +60,18 @@ class Media {
 		return $medias;
 	}
 
+	static public function getMediaForPlaylistID($playlist_id){
+		$results = DB::select("SELECT media.* FROM media,playlist_item WHERE playlist_id = ? AND id = media_id ORDER BY item_order", array($playlist_id));
+
+		$medias = array();
+
+		foreach ($results as $result) {
+			array_push($medias, self::buildMediaFromResult($result));
+		}
+
+		return $medias;
+	}
+
 	static protected function buildMediaFromResult($result){
 		if($result == NULL){
 			return NULL;
