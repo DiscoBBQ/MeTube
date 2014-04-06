@@ -60,9 +60,44 @@ class Media {
 		return $medias;
 	}
 
+	static public function getDownloadedByUserID($user_id){
+		return self::getMediaByInteractionAndUserID('downloaded', $user_id);
+	}
+
+	static public function getFavoritedByUserID($user_id){
+		return self::getMediaByInteractionAndUserID('favorited', $user_id);
+	}
+
+	static public function getViewedByUserID($user_id){
+		return self::getMediaByInteractionAndUserID('viewed', $user_id);
+	}
+
+	static protected function getMediaByInteractionAndUserID($interaction, $user_id){
+		$results = DB::select("SELECT media.* FROM interactions,media WHERE interactions.category = ? AND interactions.user_id = ? AND media_id = id ORDER BY created_on desc", array($interaction, $user_id));
+
+		$medias = array();
+
+		foreach ($results as $result) {
+			array_push($medias, self::buildMediaFromResult($result));
+		}
+
+		return $medias;
+	}
+
 	static public function getMediaForPlaylistID($playlist_id){
 		$results = DB::select("SELECT media.* FROM media,playlist_item WHERE playlist_id = ? AND id = media_id ORDER BY item_order", array($playlist_id));
 
+		$medias = array();
+
+		foreach ($results as $result) {
+			array_push($medias, self::buildMediaFromResult($result));
+		}
+
+		return $medias;
+	}
+
+	static public function getMediaForCategory($category){
+		$results = DB::select('select media.* from media where category = ? order by id desc', array($category));
 		$medias = array();
 
 		foreach ($results as $result) {
