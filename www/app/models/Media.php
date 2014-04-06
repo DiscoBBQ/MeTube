@@ -97,6 +97,18 @@ class Media {
 		return $medias;
 	}
 
+	static public function getMediaByKeywordSearch($phrase){
+		$keywords = Keyword::makeKeywordsArrayFromPhrase($phrase);
+		$results = DB::select("SELECT media.*, mediaid FROM keywords,media WHERE media.id = keywords.mediaid AND keywords.keyword IN(?) GROUP BY mediaid ORDER BY COUNT(*) desc", $keywords);
+		$medias = array();
+
+		foreach ($results as $result) {
+			array_push($medias, self::buildMediaFromResult($result));
+		}
+
+		return $medias;
+	}
+
 	static protected function buildMediaFromResult($result){
 		if($result == NULL){
 			return NULL;

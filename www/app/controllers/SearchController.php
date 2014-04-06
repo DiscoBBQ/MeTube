@@ -5,9 +5,8 @@ class SearchController extends BaseController {
 
 	public function index($phrase)
 	{
-		$keywords = explode(' ', $phrase);
-		$results = DB::select("SELECT media.id, mediaid FROM keywords,media WHERE media.id = keywords.mediaid AND keywords.keyword IN(?) GROUP BY mediaid ORDER BY COUNT(*) desc", $keywords);
-    $data = array('results' => $results);
+		$medias = Media::getMediaByKeywordSearch($phrase);
+		$data = array('medias' => $medias);
 		$this->layout->content = View::make('search.show')->with($data);
 	}
 
