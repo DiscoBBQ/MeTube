@@ -19,11 +19,7 @@ class MediaController extends BaseController {
 	public function show($id)
 	{
 		if(Auth::check()){
-			$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'viewed'", array(Auth::user()->id, $id));
-
-			if (sizeof($result) == 0){
-				DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'viewed')", array(Auth::user()->id, $id));
-			}
+			Interaction::logUserViewedMedia(Auth::user()->getAuthIdentifier(), $this->media->getID());
 		}
 
 		$error_messages = Session::get('errors');
@@ -53,9 +49,7 @@ class MediaController extends BaseController {
 
 	public function download($id) {
 		if(Auth::check()) {
-			$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'downloaded'", array(Auth::user()->id, $id));
-			if (sizeof($result) == 0)
-				DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'downloaded')", array(Auth::user()->id, $id));
+			Interaction::logUserDownloadedMedia(Auth::user()->getAuthIdentifier(), $this->media->getID());
 		}
 
 		return Response::download($this->media->getFullFilename(), $this->media->getDownloadFilename());
@@ -63,9 +57,7 @@ class MediaController extends BaseController {
 
 	public function favorite($id) {
 		if(Auth::check()) {
-			$result = DB::select("SELECT * FROM interactions WHERE user_id = ? AND media_id = ? AND category = 'favorited'", array(Auth::user()->id, $id));
-			if (sizeof($result) == 0)
-				DB::statement("INSERT INTO interactions (user_id, media_id, category) VALUES (?,?,'favorited')", array(Auth::user()->id, $id));
+			Interaction::logUserFavoritedMedia(Auth::user()->getAuthIdentifier(), $this->media->getID());
 		}
 		return Redirect::route('media', array('id' => $id));
 	}

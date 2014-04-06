@@ -51,15 +51,15 @@ class Media {
 	}
 
 	static public function getDownloadedByUserID($user_id){
-		return self::getMediaByInteractionAndUserID('downloaded', $user_id);
+		return self::getMediaByInteractionAndUserID(Interaction::getDownloadedString(), $user_id);
 	}
 
 	static public function getFavoritedByUserID($user_id){
-		return self::getMediaByInteractionAndUserID('favorited', $user_id);
+		return self::getMediaByInteractionAndUserID(Interaction::getFavoritedString(), $user_id);
 	}
 
 	static public function getViewedByUserID($user_id){
-		return self::getMediaByInteractionAndUserID('viewed', $user_id);
+		return self::getMediaByInteractionAndUserID(Interaction::getViewedString(), $user_id);
 	}
 
 	static protected function getMediaByInteractionAndUserID($interaction, $user_id){
