@@ -36,10 +36,10 @@ class MediaController extends BaseController {
 		$this->media->description = Input::get('description');
 		$this->media->category 		= Input::get('category');
 		$this->media->keywords 		= Input::get('keywords');
-		$this->media->extension		= Input::file('file')->getClientOriginalExtension();
+		$this->media->file				= Input::file('file');
 		$this->media->authorid 		= Auth::user()->getAuthIdentifier();
 
-		if ($this->media->save(Input::file('file'))) {
+		if ($this->media->save()) {
 			return Redirect::route('media', array('id' => $this->media->getID()));
 		} else {
 			$data = array('errors' => $this->media->errors);

@@ -9,6 +9,7 @@ class Media {
 	public $created_at;
 	public $extension;
 	public $id;
+	public $file;
 
 	public $errors = array();
 
@@ -115,7 +116,7 @@ class Media {
 		return $media;
 	}
 
-	public function save($file) {
+	public function save() {
 		if ($this->validate() == false) {
 			return false;
 		}
@@ -129,7 +130,7 @@ class Media {
 
 	      //move the file to its final destination
 	      $filename = $this->id.'.'.$this->extension;
-	      $uploadSuccess = $file->move(Config::get('app.file_upload_path'), $filename);
+	      $uploadSuccess = $this->file->move(Config::get('app.file_upload_path'), $filename);
 	    } else{
 	      //update the existing record in the DB
 	      DB::statement("UPDATE media SET title = ?, description = ?, extension = ?, authorid = ?, category = ? WHERE id = ?", array($this->title, $this->description, $this->extension, $this->authorid, $this->category, $this->id));
@@ -236,18 +237,33 @@ class Media {
 		return Config::get('app.file_upload_path') . "/" . $this->getFilename();
 	}
 
+	protected function sanitizeData(){
+		$this->title 			 = trim($this->title);
+    $this->description = trim($this->description);
+
+		if($this->file != NULL){
+			$this->extension = $this->file->getClientOriginalExtension();
+		}
+	}
+
 	private function validate() {
-		$error_count = 0;
+		$this->sanitizeData();
+		if($this->file == NULL){
+			$this->errors["file"] = "File must be provided";
+		}
 
-		if ($this->title == "")
-			$this->errors[$error_count++] = "Title may not be empty";
+		if ($this->title == ""){
+			$this->errors["title"] = "Title may not be empty";
+		}
 
-		if ($this->getPlayer() == NULL)
-			$this->errors[$error_count++] = "Filetype not supported";
+		if ($this->getPlayer() == NULL){
+			$this->errors["extension"] = "Filetype not supported";
+		}
 
-		if ($error_count == 0)
+		if (count($this->errors) <= 0){
 			return true;
-		else
+		} else{
 			return false;
+		}
 	}
 }
