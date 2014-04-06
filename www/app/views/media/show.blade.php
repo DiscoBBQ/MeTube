@@ -66,7 +66,7 @@
 	<div class = "mt-welcome-media-block-comments">
 		@include('media.comments', array('media' => $media))
 		@if(Auth::check())
-			@include('media.new-comment', array('media' => $media))
+			@include('media.new-comment', array('media' => $media, 'error_messages' => $error_messages))
 		@endif
 	</div>
 </div>

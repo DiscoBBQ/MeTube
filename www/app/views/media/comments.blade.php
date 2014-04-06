@@ -1,10 +1,8 @@
-<?php
-  $results = DB::select("SELECT comment,user_id FROM comments WHERE media_id = ? ORDER BY timestamp DESC", array($media->getID()));
-?>
+<?php $comments = Comment::getAllCommentsForMedia($media->getID()) ?>
 
-@foreach($results as $result)
+@foreach($comments as $comment)
   <div class = "mt-sidebar-block">
-    <div class = "mt-block-title">{{User::getById($result->user_id)->channel_name}}</div>
-    <div class = "mt-sidebar-block-body">{{$result->comment}}</div>
+    <div class = "mt-block-title"><a href="{{route('profile', array('id' => $comment->getCommentor()->getID()))}}">{{$comment->getCommentor()->channel_name}}</a></div>
+    <div class = "mt-sidebar-block-body">{{$comment->comment}}</div>
   </div>
 @endforeach

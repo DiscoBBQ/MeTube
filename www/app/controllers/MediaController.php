@@ -26,7 +26,11 @@ class MediaController extends BaseController {
 			}
 		}
 
-		$this->layout->content = View::make('media.show')->with(array('media' => $this->media));
+		$error_messages = Session::get('errors');
+
+    $data = array('media' => $this->media, 'error_messages' => $error_messages);
+
+		$this->layout->content = View::make('media.show')->with($data);
 	}
 
 	public function create() {
