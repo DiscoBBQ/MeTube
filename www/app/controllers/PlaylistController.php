@@ -2,90 +2,107 @@
 
 class PlaylistController extends BaseController {
 	protected $layout = 'application';
+	protected $playlist;
 
 	public function __construct()
   {
-    $this->beforeFilter('@find_playlist_by_ID_or_raise_404', array('only' => array('show', 'up', 'down')));
-    $this->beforeFilter('@authed_user_owns_playlist', array('only' => array('show', 'up','down')));
+    $this->beforeFilter('@find_playlist_by_ID_or_raise_404', array('only' => array('show','edit','update','delete', 'up', 'down', 'removeMediaFromPlaylist')));
+    $this->beforeFilter('@authed_user_owns_playlist', array('only' => array('show', 'edit','update','delete','up','down', 'removeMediaFromPlaylist')));
   }
 
 
 	public function newPlaylist() {
-		$this->layout->content = View::make('playlists.new');
+		$error_messages = Session::get('errors');
+
+		$data = array('error_messages' => $error_messages);
+		$this->layout->content = View::make('playlists.new')->with($data);
 	}
 
 	public function create() {
-		$result = DB::select("SELECT * FROM playlist WHERE user_id = ? AND title = ?", array(Auth::user()->id, Input::get('title')));
+		$this->playlist = new Playlist();
 
-		if (sizeof($result) == 0) {
-			$id = DB::table('playlist')->insertGetId(array('user_id' => Auth::user()->id,
-										 'title' => Input::get('title'),
-										 'description' => Input::get('description')));
-
-			return Redirect::route('playlist', array('id' => $id, 'page' => 1));
-		} else {
-			return Redirect::route('new_playlist');
+		$this->playlist->user_id 		 = Auth::user()->getAuthIdentifier();
+		$this->playlist->title 			 = Input::get('title');
+		$this->playlist->description = Input::get('description');
+		if($this->playlist->save()){
+			return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
+		} else{
+			$data = array('errors' => $this->playlist->errors);
+			return Redirect::route('new_playlist')->with($data);
 		}
 	}
 
 	public function show($id)
 	{
-		$results = DB::select("SELECT * FROM media,playlist_item WHERE playlist_id = ? AND id = media_id ORDER BY item_order", array($id));
-		$data = array('results' => $results, 'playlist_id' => $id);
+		$data = array('playlist' => $this->playlist);
 		$this->layout->content = View::make('playlists.show')->with($data);
 	}
 
-	public function add($id) {
-		$result = DB::select("SELECT * FROM playlist_item WHERE playlist_id = ? AND media_id = ?", array(Input::get('playlist'), $id));
-		if (sizeof($result) == 0){
-			DB::statement("INSERT INTO playlist_item (playlist_id, media_id) VALUES (?,?)", array(Input::get('playlist'), $id));
+	public function edit($id)
+	{
+		$data = array('playlist' => $this->playlist);
+		$error_messages = Session::get('errors');
+		$data = array('playlist' => $this->playlist,'error_messages' => $error_messages);
+		$this->layout->content = View::make('playlists.edit')->with($data);
+	}
+
+	public function update() {
+		$this->playlist->title 			 = Input::get('title');
+		$this->playlist->description = Input::get('description');
+		if($this->playlist->save()){
+			return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
+		} else{
+			$data = array('errors' => $this->playlist->errors);
+			return Redirect::route('edit_playlist', array('id' => $this->playlist->getID()))->with($data)->withInput();
+		}
+	}
+
+	public function delete(){
+		$this->playlist->destroy();
+		return Redirect::route('home');
+	}
+
+	public function addMediaToPlaylist($id) {
+		$this->playlist = Playlist::getByID(Input::get('playlist'));
+
+		if($this->playlist != NULL){
+			$this->playlist->addMediaToPlaylist($id);
+			$this->playlist->save();
 		}
 
-		return Redirect::route('media', array('id' => $id));
+		return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
+	}
+
+	public function removeMediaFromPlaylist($id, $media_id){
+		$this->playlist->removeMediaFromPlaylist($media_id);
+		$this->playlist->save();
+
+		return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
 	}
 
 	public function up($id, $order) {
-		$results = DB::select("SELECT media_id,item_order FROM playlist_item WHERE playlist_id = ? AND item_order < ? ORDER BY item_order LIMIT 1", array($id, $order));
+		$this->playlist->movePlaylistItemUp($order);
+		$this->playlist->save();
 
-		if (sizeof($results) > 0) {
-			$temp_media_id = $results[0]->media_id;
-			$temp_item_order = $results[0]->item_order;
-
-			$results = DB::select("SELECT media_id FROM playlist_item WHERE item_order = ?", array($order));
-			$current_media_id = $results[0]->media_id;
-
-			DB::statement("UPDATE playlist_item SET media_id = ? WHERE item_order = ?", array($temp_media_id, $order));
-			DB::statement("UPDATE playlist_item SET media_id = ? WHERE item_order = ?", array($current_media_id, $temp_item_order));
-		}
-		return Redirect::route('playlist', array('id' => $id));
+		return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 	}
 
 	public function down($id, $order) {
-		$results = DB::select("SELECT media_id,item_order FROM playlist_item WHERE playlist_id = ? AND item_order > ? ORDER BY item_order LIMIT 1", array($id, $order));
+		$this->playlist->movePlaylistItemDown($order);
+		$this->playlist->save();
 
-		if (sizeof($results) > 0) {
-			$temp_media_id = $results[0]->media_id;
-			$temp_item_order = $results[0]->item_order;
-
-			$results = DB::select("SELECT media_id FROM playlist_item WHERE item_order = ?", array($order));
-			$current_media_id = $results[0]->media_id;
-
-			DB::statement("UPDATE playlist_item SET media_id = ? WHERE item_order = ?", array($temp_media_id, $order));
-			DB::statement("UPDATE playlist_item SET media_id = ? WHERE item_order = ?", array($current_media_id, $temp_item_order));
-		}
-		return Redirect::route('playlist', array('id' => $id));
+		return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 	}
 
 	public function find_playlist_by_ID_or_raise_404(){
-		$result = DB::select("SELECT id FROM playlist WHERE id = ?", array(Route::input('id')));
-		if(sizeof($result) <= 0){
+		$this->playlist = Playlist::getByID(Route::input('id'));
+		if($this->playlist == NULL){
 			App::abort(404);
 		}
 	}
 
 	public function authed_user_owns_playlist(){
-		$result = DB::select("SELECT id FROM playlist WHERE id = ? AND user_id = ?", array(Route::input('id'), Auth::user()->getAuthIdentifier()));
-		if(sizeof($result) <= 0){
+		if($this->playlist->getOwner()->getAuthIdentifier() != Auth::user()->getAuthIdentifier()){
 			return Redirect::route('home');
 		}
 	}

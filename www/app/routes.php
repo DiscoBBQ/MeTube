@@ -57,7 +57,7 @@ Route::get('/media/{id}', array('as' => 'media', 'uses' => 'MediaController@show
 Route::get('/media/{id}/delete', array('as' => 'delete_media', 'uses' => 'MediaController@delete'));
 Route::get('/media/{id}/download', array('as' => 'download_media', 'uses' => 'MediaController@download'));
 Route::get('/media/{id}/favorite', array('before' => 'auth', 'as' => 'favorite_media', 'uses' => 'MediaController@favorite'));
-Route::post('/media/{id}/add_to_playlist', array('before' => 'auth', 'as' => 'add_media_to_playlist', 'uses' => 'PlaylistController@add'));
+Route::post('/media/{id}/add_to_playlist', array('before' => 'auth', 'as' => 'add_media_to_playlist', 'uses' => 'PlaylistController@addMediaToPlaylist'));
 Route::post('/media/{id}/add_comment', array('before' => 'auth', 'as' => 'add_comment_to_media', 'uses'=>'CommentController@create'));
 
 
@@ -79,5 +79,9 @@ Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'UserController@sh
 Route::get('/playlists/new', array('before' => 'auth', 'as' => 'new_playlist', 'uses' => 'PlaylistController@newPlaylist'));
 Route::post('/playlists', array('before' => 'auth', 'as' => 'create_playlist' ,'uses' => 'PlaylistController@create'));
 Route::get('/playlists/{id}', array('before' => 'auth', 'as' => 'playlist', 'uses' => 'PlaylistController@show'));
+Route::get('/playlists/{id}/edit', array('before' => 'auth', 'as' => 'edit_playlist', 'uses' => 'PlaylistController@edit'));
+Route::post('/playlists/{id}', array('before' => 'auth', 'as' => 'update_playlist', 'uses' => 'PlaylistController@update'));
 Route::get('/playlists/{id}/up/{order}', array('before' => 'auth', 'as' => 'move_playlist_item_up', 'uses' => 'PlaylistController@up'));
 Route::get('/playlists/{id}/down/{order}', array('before' => 'auth', 'as' => 'move_playlist_item_down', 'uses' => 'PlaylistController@down'));
+Route::get('/playlists/{id}/remove_from_playlist/{media_id}', array('before' => 'auth', 'as' => 'remove_media_from_playlist', 'uses' => 'PlaylistController@removeMediaFromPlaylist'));
+Route::get('/playlists/{id}/delete', array('before' => 'auth', 'as' => 'delete_playlist', 'uses' => 'PlaylistController@delete'));

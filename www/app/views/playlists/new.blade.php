@@ -1,9 +1,14 @@
+@section('error-explanation')
+The following errors prevented the playlist from being created
+@stop
+
 @section('content')
   <div id = "mt-upload-inner">
     <div class = "mt-block-title">
       New Playlist
     </div>
     <div class = "mt-form-box">
+      @include('partials.error-messages', array('error_messages' => $error_messages))
       {{ Form::open(array('route' => 'create_playlist')) }}
         <label for="title">Title: </label><input type = "text" name = "title"><br>
         <label for="description">Description: </label><input type = "text" name = "description"><br>
