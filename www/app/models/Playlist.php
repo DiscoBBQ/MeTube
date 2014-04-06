@@ -56,7 +56,7 @@ class Playlist{
   }
 
   public function getOwner(){
-    return $this->id;
+    return User::getByID($this->user_id);
   }
 
 
@@ -155,11 +155,24 @@ class Playlist{
     $this->description = trim($this->description);
   }
 
+  protected function isTitleTakenForUser(){
+    if($this->id == NULL){
+      $result = DB::select("SELECT COUNT(*) AS count FROM playlist WHERE title = ? AND user_id = ?", array($this->title, $this->user_id));
+    } else{
+      $result = DB::select("SELECT COUNT(*) AS count FROM playlist WHERE title = ? AND user_id = ? AND id  != ?", array($this->title, $this->user_id, $this->id));
+    }
+    return intval($result[0]->count) > 0;
+  }
+
   public function validate(){
     $this->sanitizeData();
 
     if($this->title === ""){
       $this->errors["title"] = "Title cannot be blank";
+    }
+
+    if($this->isTitleTakenForUser()){
+      $this->errors["title"] = "You already have a playlist with that title";
     }
 
     if($this->description === ""){

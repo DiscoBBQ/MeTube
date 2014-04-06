@@ -56,6 +56,34 @@ class PlaylistUnitTest extends TestCase {
     $this->assertEquals($this->valid_playlist->errors["user_id"], "User does not exist");
   }
 
+  public function testTitleMustBeUniqueForUser(){
+    $this->valid_playlist->save();
+
+    $duplicate_playlist = new Playlist();
+    $duplicate_playlist->user_id = $this->user_1->getID();
+    $duplicate_playlist->title = $this->valid_playlist->title;
+    $duplicate_playlist->description = "Stuff to do";
+
+    $this->assertFalse($duplicate_playlist->save());
+
+    $duplicate_playlist = new Playlist();
+    $duplicate_playlist->user_id = $this->user_2->getID();
+    $duplicate_playlist->title = $this->valid_playlist->title;
+    $duplicate_playlist->description = "Stuff to do";
+
+    $this->assertTrue($duplicate_playlist->save());
+  }
+
+  public function savingSameTitleForPlaylistNotError(){
+    $this->valid_playlist->save();
+
+    $playlist = Playlist::getByID($this->valid_playlist->getID());
+
+    $playlist->title = $this->valid_playlist->title();
+
+    $this->assertTrue($playlist->save());
+  }
+
   public function testUpdatingPlaylist(){
     $this->valid_playlist->save();
     $old_id = $this->valid_playlist->getID();
