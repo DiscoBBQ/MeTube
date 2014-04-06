@@ -14,7 +14,7 @@
         @foreach($recent_media as $media)
           @include('media.preview-block', array('media' => $media))
         @endforeach
-        <a href="{{route('uploaded', array('userid' => $subscription_user->getID(), 'page' => 1))}}">View More</a>
+        <a href="{{route('uploaded', array('userid' => $subscription_user->getID()))}}">View More</a>
       </div>
     </div>
   @endforeach

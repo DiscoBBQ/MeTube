@@ -31,7 +31,7 @@ Route::get('/signout', array('as' => 'signout', 'uses' => 'AuthenticationControl
 
 //Searching
 
-Route::get('/search/{phrase}/{page}', array('as' => 'search', 'uses' => 'SearchController@index'));
+Route::get('/search/{phrase}', array('as' => 'search', 'uses' => 'SearchController@index'));
 Route::post('/search', array('as' => 'start_search', 'uses' => 'SearchController@search'));
 
 //Subscription
@@ -63,12 +63,12 @@ Route::post('/media/{id}/add_comment', array('before' => 'auth', 'as' => 'add_co
 
 // Browsing
 
-Route::get('/browse/{category}/{page}', array('as' => 'browse_category', 'uses' =>'BrowseController@browseCategory'));
+Route::get('/browse/{category}', array('as' => 'browse_category', 'uses' =>'BrowseController@browseCategory'));
 
-Route::get('/uploaded/{userid}/{page}', array('as' => 'uploaded', 'uses' => 'BrowseController@browseUploaded'));
-Route::get('/downloaded/{userid}/{page}', array('as' => 'downloaded', 'uses' => 'BrowseController@browseDownloaded'));
-Route::get('/viewed/{userid}/{page}', array('as' => 'viewed', 'uses' => 'BrowseController@browseViewed'));
-Route::get('/favorited/{userid}/{page}', array('as' => 'favorited', 'uses' => 'BrowseController@browseFavorited'));
+Route::get('/uploaded/{userid}', array('as' => 'uploaded', 'uses' => 'BrowseController@browseUploaded'));
+Route::get('/downloaded/{userid}', array('as' => 'downloaded', 'uses' => 'BrowseController@browseDownloaded'));
+Route::get('/viewed/{userid}', array('as' => 'viewed', 'uses' => 'BrowseController@browseViewed'));
+Route::get('/favorited/{userid}', array('as' => 'favorited', 'uses' => 'BrowseController@browseFavorited'));
 
 
 //Profile

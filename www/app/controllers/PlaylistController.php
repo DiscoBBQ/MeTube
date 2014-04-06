@@ -25,7 +25,7 @@ class PlaylistController extends BaseController {
 		$this->playlist->title 			 = Input::get('title');
 		$this->playlist->description = Input::get('description');
 		if($this->playlist->save()){
-			return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
+			return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 		} else{
 			$data = array('errors' => $this->playlist->errors);
 			return Redirect::route('new_playlist')->with($data);
@@ -50,7 +50,7 @@ class PlaylistController extends BaseController {
 		$this->playlist->title 			 = Input::get('title');
 		$this->playlist->description = Input::get('description');
 		if($this->playlist->save()){
-			return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
+			return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 		} else{
 			$data = array('errors' => $this->playlist->errors);
 			return Redirect::route('edit_playlist', array('id' => $this->playlist->getID()))->with($data)->withInput();
@@ -70,14 +70,14 @@ class PlaylistController extends BaseController {
 			$this->playlist->save();
 		}
 
-		return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
+		return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 	}
 
 	public function removeMediaFromPlaylist($id, $media_id){
 		$this->playlist->removeMediaFromPlaylist($media_id);
 		$this->playlist->save();
 
-		return Redirect::route('playlist', array('id' => $this->playlist->getID(), 'page' => 1));
+		return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 	}
 
 	public function up($id, $order) {

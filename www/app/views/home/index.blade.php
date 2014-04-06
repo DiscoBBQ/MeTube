@@ -12,7 +12,7 @@
   @foreach($categories as $category)
     <div id = "welcome-browse-block-indv">
       <div class = "mt-block-title-left">
-        <a href = "{{ route('browse_category', array('category' => $category['url'], 'page' => 1)) }}">{{$category['name']}}</a>
+        <a href = "{{ route('browse_category', array('category' => $category['url'])) }}">{{$category['name']}}</a>
       </div>
       <div id = "welcome-browse-block-body">
         <?php

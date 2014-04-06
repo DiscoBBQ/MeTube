@@ -1,12 +1,12 @@
 @section('content')
 <div id = "profile-links">
-    <a href = "{{route('uploaded', array('id' => $user->getID(), 'page' => 1))}}">
+    <a href = "{{route('uploaded', array('id' => $user->getID()))}}">
       <span class = "">UPLOADED</span></a> | 
-    <a href = "{{route('downloaded', array('id' => $user->getID(), 'page' => 1))}}">
+    <a href = "{{route('downloaded', array('id' => $user->getID()))}}">
       <span class = "">DOWNLOADED</span></a> | 
-    <a href = "{{route('viewed', array('id' => $user->getID(), 'page' => 1))}}">
+    <a href = "{{route('viewed', array('id' => $user->getID()))}}">
       <span class = "">VIEWED</span></a> | 
-    <a href = "{{route('favorited', array('id' => $user->getID(), 'page' => 1))}}">
+    <a href = "{{route('favorited', array('id' => $user->getID()))}}">
       <span class = "">FAVORITED</span></a>
   </div>
   <br>

@@ -40,7 +40,7 @@
 	<div class = "mt-welcome-media-block-header">INFO</div>
 	<div class = "mt-welcome-media-block-footer">
 		Author: <a class = "text-link" href = "{{ route('profile', array('id' => $media->getAuthor()->getID())) }}">{{$media->getAuthor()->channel_name}}</a><br>
-    Category: <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category, 'page' => 1)) }}">{{$media->category}}</a><br>
+    Category: <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category)) }}">{{$media->category}}</a><br>
 
 		<a class = "button abs-right" href = "{{route('download_media', array('id' => $media->getID()))}}">DOWNLOAD</a>
 
