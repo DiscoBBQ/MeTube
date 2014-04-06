@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddCreatedAtToMessages' => $baseDir . '/app/database/migrations/2014_04_05_161136_add_created_at_to_messages.php',
+    'AddIdToComments' => $baseDir . '/app/database/migrations/2014_04_06_171222_add_id_to_comments.php',
     'AddUniquenessIndexOnUsernameInUsers' => $baseDir . '/app/database/migrations/2014_03_06_035400_add_uniqueness_index_on_username_in_users.php',
     'AuthenticationController' => $baseDir . '/app/controllers/AuthenticationController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
@@ -34,6 +35,7 @@ return array(
     'ClassPreloader\\Parser\\DirVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/DirVisitor.php',
     'ClassPreloader\\Parser\\FileVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/FileVisitor.php',
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
+    'Comment' => $baseDir . '/app/models/Comment.php',
     'CommentController' => $baseDir . '/app/controllers/CommentController.php',
     'CreateCommentTable' => $baseDir . '/app/database/migrations/2014_03_19_155105_create_comment_table.php',
     'CreateInteractionsTable' => $baseDir . '/app/database/migrations/2014_03_18_171132_create_interactions_table.php',
@@ -1293,6 +1295,7 @@ return array(
     'Psr\\Log\\NullLogger' => $vendorDir . '/psr/log/Psr/Log/NullLogger.php',
     'RemoveKeywordsFromMediaTable' => $baseDir . '/app/database/migrations/2014_03_18_131523_remove_keywords_from_media_table.php',
     'RenameCryptedPasswordToPassword' => $baseDir . '/app/database/migrations/2014_03_06_022416_rename_crypted_password_to_password.php',
+    'RenameTimestampToCreatedAtInComments' => $baseDir . '/app/database/migrations/2014_04_06_171532_rename_timestamp_to_created_at_in_comments.php',
     'RenameUsernameToChannelName' => $baseDir . '/app/database/migrations/2014_04_05_183300_rename_username_to_channel_name.php',
     'RequireUniqueEmailInUsers' => $baseDir . '/app/database/migrations/2014_04_05_183614_require_unique_email_in_users.php',
     'SearchController' => $baseDir . '/app/controllers/SearchController.php',
