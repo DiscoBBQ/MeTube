@@ -107,6 +107,11 @@ class Playlist{
 
   public function addMediaToPlaylist($media_id){
     $media_id = intval($media_id);
+    //Only add the media to the playlist if it exists
+    if(Media::getByID($media_id) == NULL){
+      return;
+    }
+
     foreach ($this->items as $playlist_items) {
       //Does this item already exist in the playlist? If yes, then don't add it again.
       if($playlist_items == $media_id){
