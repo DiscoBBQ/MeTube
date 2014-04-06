@@ -28,7 +28,7 @@ class PlaylistController extends BaseController {
 			return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 		} else{
 			$data = array('errors' => $this->playlist->errors);
-			return Redirect::route('new_playlist')->with($data);
+			return Redirect::route('new_playlist')->with($data)->withInput();
 		}
 	}
 

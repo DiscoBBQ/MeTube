@@ -23,7 +23,7 @@ class UserController extends BaseController {
       return Redirect::route('home');
     } else{
       $data = array('errors' => $this->user->errors);
-      return Redirect::route('register')->with($data);
+      return Redirect::route('register')->with($data)->withInput();
     }
 	}
 

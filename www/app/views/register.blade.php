@@ -11,8 +11,8 @@ The following errors prevented you from registering
   <div class = "mt-form-box">
     @include('partials.error-messages', array('error_messages' => $error_messages))
   	{{ Form::open(array('route' => 'create_user')) }}
-      E-mail: <input type = "text" name = "email"><br>
-      Channel Name: <input type = "text" name = "channel_name"><br>
+      E-mail: {{Form::email('email')}}<br>
+      Channel Name: {{Form::text('channel_name')}}<br>
       Password: <input type = "password" name = "password"><br>
       Confirm Password: <input type = "password" name = "password_confirm"><br>
       <div class = "mt-form-submit-body">
