@@ -19,4 +19,11 @@ class other
             ensure  => present,
             require => Exec['apt-get update']
     }
+
+    package 
+    { 
+        "libav-tools":
+            ensure  => present,
+            require => Exec['apt-get update']
+    }
 }
