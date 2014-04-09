@@ -3,38 +3,20 @@
 <div id = "mt-welcome-media-container">
 	<div class = "mt-welcome-media-block-header border-top">{{$media->getTitle()}}</div>
 	<div id = "mt-welcome-media-block">
-		@if($media->getPlayer() == 'picture')
+		<? $filepath = $media->getAssetFilepath(); ?>
+		<? $player = $media->getPlayer() ?>
+		@if($player == 'image')
 			<img class="mt-media-img" src="{{asset($media->getAssetFilepath())}}"/>
-		@elseif($media->getPlayer() == 'wmp')
-			<OBJECT ID="MediaPlayer" WIDTH=320 HEIGHT=240 
-					CLASSID="CLSID:22D6f312-B0F6-11D0-94AB-0080C74C7E95" 
-					STANDBY="Loading Windows Media Player components..." 
-					TYPE="application/x-oleobject" 
-					CODEBASE="http://activex.microsoft.com/activex/controls/mplay
-					er/en/nsmp2inf.cab#Version=6,4,7,1112"> 
-						<PARAM name="autoStart" value="True"> 
-						<PARAM name="filename" 
-					value="{{asset($media->getAssetFilepath())}}"> 
-						<EMBED TYPE="application/x-mplayer2" 
-					SRC="{{asset($media->getAssetFilepath())}}"
-					NAME="MediaPlayer" 
-					WIDTH=720 HEIGHT=405> 
-						</EMBED> 
-			</OBJECT>
-		@else
-			<object classid="clsid:02BF25D5-8C17-4B23-BC80-
-					D3488ABDDC6B" width="320" height="256" 
-					codebase="http://www.apple.com/qtactivex/qtplugin.cab#version
-					=6,0,2,0" align="middle" > 
-						<param name="src" value="sample.mov" /> 
-						<param name="autoplay" value="true" /> 
-						<embed
-						src="{{asset($media->getAssetFilepath())}}"
-						width="720" height="405" 
-					pluginspage=http://www.apple.com/quicktime/download/ 
-					align="middle" autoplay="true" bgcolor="black" > 
-					</embed> 
-			</object>
+		@elseif($player == 'audio')
+			<audio controls="control" preload="none" src="{{asset($filepath)}}" type="audio/mp3"></audio>
+		@elseif($player == 'video')
+			<video width="100%" height="100%" id="player1" controls="controls">
+			    <source type="video/mp4" src="{{asset($filepath)}}" />
+			    <object width="1024" height="576" type="application/x-shockwave-flash" data="{{asset('public/mejs/flashmediaelement.swf')}}">
+			       <param name="movie" value="{{asset('public/mejs/flashmediaelement.swf')}}">
+			       <param name="flashvars" value="controls=true&amp;file={{asset($filepath)}}">
+			    </object>
+			</video>
 		@endif
 	</div>
 	<div class = "mt-welcome-media-block-header">INFO</div>
