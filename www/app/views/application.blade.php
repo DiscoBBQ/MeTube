@@ -3,6 +3,35 @@
   <head>
     <title>MeTube</title>
     <link href = "{{ asset('public/css/common.css')}}" rel = "stylesheet" type = "text/css">
+
+    <code>
+      <script src="{{ asset('public/js/jquery.js')}}"></script>
+      <script src="{{ asset('public/mejs/mediaelement-and-player.min.js')}}"></script>
+      <link rel="stylesheet" href="{{ asset('public/mejs/mediaelementplayer.css')}}" />
+      <link rel="stylesheet" href="{{ asset('public/mejs/mejs-skins.css')}}" />
+    </code>
+
+    <script>
+      jQuery(document).ready(function(){        
+
+          // THE MOST HATED PIECE OF CODE IN THE WORLD.
+          jQuery('video,audio').mediaelementplayer({
+              success: function(player, node) {
+
+              // STARTS THE VIDEO IF IT'S FLASH VIDEO FALLBACK.
+              jQuery('.mejs-overlay-button').trigger('click');
+
+              // STARTS THE VIDEO IF IT'S HTML5 COMPATIBLE.
+              player.play();
+              }
+          });
+
+          // FADES IN TITLES.
+          // jQuery(".enter_logo").delay(2200).animate({opacity:1},2000);
+          // jQuery(".enter_button").delay(6000).animate({opacity:0.4},2000);
+
+      });
+    </script>
   </head>
 
   <body>
