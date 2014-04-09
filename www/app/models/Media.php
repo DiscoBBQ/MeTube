@@ -170,37 +170,20 @@ class Media {
 	}
 
 	public function getThumbnail(){
-		$thumbnail = "";
-
-		foreach (Media::$picture_formats as $format) {
-			if ($this->getExtension() == strtolower($format)) {
-				$thumbnail = $this->getAssetFilepath();
-				return $thumbnail;
-			}
+		$player = $this->getPlayer();
+		if($player == "video"){
+			return "/public/images/thumbnails/video.png";
 		}
 
-		foreach (Media::$audio_formats as $format) {
-			if ($this->getExtension() == strtolower($format)) {
-				$thumbnail = "/public/images/thumbnails/audio.png";
-				return $thumbnail;
-			}
+		if($player == "audio"){
+			return "/public/images/thumbnails/audio.png";
 		}
 
-		foreach (Media::$qt_video_formats as $format) {
-			if ($this->getExtension() == strtolower($format)) {
-				$thumbnail = "/public/images/thumbnails/video.png";
-				return $thumbnail;
-			}
+		if($player == "video"){
+			return "/public/images/thumbnails/video.png";
 		}
 
-		foreach (Media::$wmp_video_formats as $format) {
-			if ($this->getExtension() == strtolower($format)) {
-				$thumbnail = "/public/images/thumbnails/video.png";
-				return $thumbnail;
-			}
-		}
-
-		return $thumbnail;
+		return "";
 	}
 
 	public function getPlayer() {
