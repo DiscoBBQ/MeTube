@@ -13,11 +13,6 @@ class Media {
 
 	public $errors = array();
 
-	static private $picture_formats = array("png", "jpeg", "jpg", "gif", "bmp");
-	static private $audio_formats = array("m4a", "m4b", "m4p", "mp3", "aiff", "au", "wav");
-	static private $qt_video_formats = array("mov", "mp4", "m4v", "avi");
-	static private $wmp_video_formats = array("wmv", "wma", "wm");
-
 	public function getID() { return $this->id; }
 	public function getTitle() { return $this->title; }
 	public function getDescription() { return $this->description; }
@@ -135,14 +130,17 @@ class Media {
 
 		try {
 			if($this->id == NULL){
+
+				//since the video will be converted, we need to get the correct extension to use for the player
+				$this->extension = FileConverter::getFinalExtensionForFile($this->file);
+
 	      //insert the record into the DB
 	      DB::statement("INSERT INTO media (title, description, extension, authorid, category) VALUES (?,?,?,?,?)", array($this->title, $this->description, $this->extension, $this->authorid, $this->category));
 	      //get the ID of the last inserted record
 	      $this->id = intval(DB::getPdo()->lastInsertId('id'));
 
-	      //move the file to its final destination
-	      $filename = $this->id.'.'.$this->extension;
-	      $uploadSuccess = $this->file->move(Config::get('app.file_upload_path'), $filename);
+	      //Convert the file and move it to its final location
+	      FileConverter::ConvertFileBasedOnID($this->file, $this->id);
 	    } else{
 	      //update the existing record in the DB
 	      DB::statement("UPDATE media SET title = ?, description = ?, extension = ?, authorid = ?, category = ? WHERE id = ?", array($this->title, $this->description, $this->extension, $this->authorid, $this->category, $this->id));
@@ -154,6 +152,8 @@ class Media {
 	    return true;
 		} catch (Exception $e) {
 			DB::rollback();
+			$this->errors["file"] = "There was an error converting your file.";
+			return false;
 		}
 	}
 
@@ -204,37 +204,19 @@ class Media {
 	}
 
 	public function getPlayer() {
-		$player = NULL;
-
-		foreach (Media::$picture_formats as $format) {
-			if ($this->extension == strtolower($format)) {
-				$player = "picture";
-				return $player;
-			}
-		}
-		
-		foreach (Media::$audio_formats as $format) {
-			if ($this->extension == strtolower($format)) {
-				$player = "qt";
-				return $player;
-			}
-		}
-		
-		foreach (Media::$qt_video_formats as $format) {
-			if ($this->extension == strtolower($format)) {
-				$player = "qt";
-				return $player;
-			}
+		if(FileConverter::isAudio($this->extension)){
+			return "audio";
 		}
 
-		foreach (Media::$wmp_video_formats as $format) {
-			if ($this->extension == strtolower($format)) {
-				$player = "wmp";
-				return $player;
-			}
+		if(FileConverter::isVideo($this->extension)){
+			return "video";
 		}
 
-		return $player;
+		if(FileConverter::isImage($this->extension)){
+			return "image";
+		}
+
+		return NULL;
 	}
 
 	public function getDownloadFilename(){
