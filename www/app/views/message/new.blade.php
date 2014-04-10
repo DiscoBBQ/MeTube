@@ -1,3 +1,7 @@
+@section('title')
+  Messages - New Message
+@stop
+
 @section('error-explanation')
 The following errors prevented the message from being sent
 @stop

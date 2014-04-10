@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>MeTube - Register</title>
+    <title>MeTube: @yield('title', "CPSC 462 Project")</title>
     <link href = "{{ asset('public/css/common.css')}}" rel = "stylesheet" type = "text/css">
   </head>
   <body>

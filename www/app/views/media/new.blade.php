@@ -1,3 +1,7 @@
+@section('title')
+  Upload Media
+@stop
+
 @section('error-explanation')
 The following errors prevented the message from being sent
 @stop

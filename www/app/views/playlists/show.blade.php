@@ -1,3 +1,7 @@
+@section('title')
+  Playlist - {{$playlist->title}}
+@stop
+
 @section('content')
   <div id="playlist">
     <div class="header">

@@ -1,3 +1,7 @@
+@section('title')
+  Channel - {{$user->channel_name}}
+@stop
+
 @section('content')
 <div id = "profile-links">
     <a href = "{{route('uploaded', array('id' => $user->getID()))}}">

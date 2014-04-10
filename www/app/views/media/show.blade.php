@@ -1,3 +1,7 @@
+@section('title')
+	{{ $media->getTitle() }}
+@stop
+
 @section('content')
 
 <div id = "mt-welcome-media-container">

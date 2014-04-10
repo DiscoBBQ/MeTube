@@ -1,3 +1,7 @@
+@section('title')
+  Home
+@stop
+
 @section('content')
   <?php $categories = array(
       array('url' => 'music', 'name' => 'Music'),

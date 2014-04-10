@@ -1,5 +1,9 @@
 @extends('application')
 
+@section('title')
+  Page not found
+@stop
+
 @section('content')
   <div id="missing">
     <h1>Whoops, we couldn't find that page!</h1>

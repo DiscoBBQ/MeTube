@@ -1,3 +1,7 @@
+@section('title')
+  New Playlist
+@stop
+
 @section('error-explanation')
 The following errors prevented the playlist from being created
 @stop

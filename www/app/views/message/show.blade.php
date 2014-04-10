@@ -1,3 +1,7 @@
+@section('title')
+  Messages - {{$message->subject}}
+@stop
+
 @section('content')
   <?php $sender = $message->getSender(); ?>
   <? $recipient = $message->getRecipient() ?>

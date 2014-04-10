@@ -1,3 +1,7 @@
+@section('title')
+  Messages - Inbox
+@stop
+
 @section('content')
   <h2>Inbox</h2>
   <a href="{{route('new_message')}}">New Message</a><br>

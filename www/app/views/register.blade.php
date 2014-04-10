@@ -1,5 +1,9 @@
 @extends('gate')
 
+@section('title')
+  Register
+@stop
+
 @section('error-explanation')
 The following errors prevented you from registering
 @stop

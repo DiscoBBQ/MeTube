@@ -1,3 +1,7 @@
+@section('title')
+  Edit Playlist
+@stop
+
 @section('error-explanation')
 The following errors prevented the playlist from being updated
 @stop

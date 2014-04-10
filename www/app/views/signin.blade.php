@@ -1,5 +1,9 @@
 @extends('gate')
 
+@section('title')
+  Sign in
+@stop
+
 @section('content')
 	<div class = "mt-block-title">Sign In</div>
 	<div class = "mt-form-box">

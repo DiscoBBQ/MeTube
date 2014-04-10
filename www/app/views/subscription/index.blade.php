@@ -1,3 +1,7 @@
+@section('title')
+  My Subscriptions
+@stop
+
 @section('content')
   @foreach($subscriptions as $subscription)
     <?php $subscription_user = $subscription->getSubscriptionUser(); ?>
