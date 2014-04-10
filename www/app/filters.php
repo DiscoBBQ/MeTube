@@ -22,6 +22,12 @@ App::after(function($request, $response)
 	//
 });
 
+
+App::missing(function($exception)
+{
+    return Response::view('missing', array(), 404);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters
