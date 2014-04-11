@@ -38,6 +38,7 @@
 			</div>
 
 			@if(Auth::user()->getAuthIdentifier() == $media->getAuthor()->getAuthIdentifier())
+				<a class="button" href="{{ route('edit_media', array('id' => $media->getID())) }}">Edit</a>
 				<a class="button" href="{{ route('delete_media', array('id' => $media->getID())) }}">Delete</a>
 			@endif
 		@endif

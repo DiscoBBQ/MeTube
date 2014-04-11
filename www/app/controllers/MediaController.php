@@ -6,8 +6,8 @@ class MediaController extends BaseController {
 
 	public function __construct()
   {
-    $this->beforeFilter('@find_media_by_ID_or_raise_404', array('only' => array('show', 'download', 'favorite', 'delete')));
-    $this->beforeFilter('@authed_user_owns_media', array('only' => array('delete')));
+    $this->beforeFilter('@find_media_by_ID_or_raise_404', array('only' => array('show', 'download', 'favorite', 'edit', 'update', 'delete')));
+    $this->beforeFilter('@authed_user_owns_media', array('only' => array('delete', 'edit', 'update')));
   }
 
 	public function newMedia(){
@@ -44,6 +44,27 @@ class MediaController extends BaseController {
 		} else {
 			$data = array('errors' => $this->media->errors);
 			return Redirect::route('new_media')->with($data)->withInput();
+		}
+	}
+
+	public function edit($id)
+	{
+		$data = array('media' => $this->media);
+		$error_messages = Session::get('errors');
+		$data = array('media' => $this->media,'error_messages' => $error_messages);
+		$this->layout->content = View::make('media.edit')->with($data);
+	}
+
+	public function update() {
+		$this->media->title 			= Input::get('title');
+		$this->media->description = Input::get('description');
+		$this->media->category 		= Input::get('category');
+		$this->media->keywords 		= Input::get('keywords');
+		if($this->media->save()){
+			return Redirect::route('media', array('id' => $this->media->getID()));
+		} else{
+			$data = array('errors' => $this->media->errors);
+			return Redirect::route('edit_media', array('id' => $this->media->getID()))->with($data)->withInput();
 		}
 	}
 

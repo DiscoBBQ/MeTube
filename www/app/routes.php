@@ -54,6 +54,8 @@ Route::get('/media/new', array('before' => 'auth', 'as' => 'new_media', 'uses' =
 Route::post('/media', array('before' => 'auth', 'as' => 'create_media', 'uses' => 'MediaController@create'));
 
 Route::get('/media/{id}', array('as' => 'media', 'uses' => 'MediaController@show'));
+Route::get('/media/{id}/edit', array('before' => 'auth', 'as' => 'edit_media', 'uses' => 'MediaController@edit'));
+Route::post('/media/{id}', array('before' => 'auth', 'as' => 'update_media', 'uses' => 'MediaController@update'));
 Route::get('/media/{id}/delete', array('before' => 'auth', 'as' => 'delete_media', 'uses' => 'MediaController@delete'));
 Route::get('/media/{id}/download', array('as' => 'download_media', 'uses' => 'MediaController@download'));
 Route::get('/media/{id}/favorite', array('before' => 'auth', 'as' => 'favorite_media', 'uses' => 'MediaController@favorite'));
