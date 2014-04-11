@@ -229,8 +229,21 @@ class Media {
 
 	private function validate() {
 		$this->sanitizeData();
-		if($this->file == NULL){
-			$this->errors["file"] = "File must be provided";
+
+		//only validate the file if we're creating media
+		if($this->id == NULL){
+			if($this->file == NULL){
+				$this->errors["file"] = "File must be provided";
+			}
+
+			if(($this->file->getError() != UPLOAD_ERR_OK)){
+				$this->errors["file"] = "Could not upload your file. Please try again.";
+			}
+
+			if(($this->file->getError() == UPLOAD_ERR_INI_SIZE) || ($this->file->getError() == UPLOAD_ERR_FORM_SIZE)){
+				$filesize = Symfony\Component\HttpFoundation\File\UploadedFile::getMaxFilesize()/1048576;
+				$this->errors["file"] = "Woah, that's a big file! We can only let you upload files under " . $filesize . "MB";
+			}
 		}
 
 		if ($this->title == ""){
@@ -239,15 +252,6 @@ class Media {
 
 		if ($this->getPlayer() == NULL){
 			$this->errors["extension"] = "Filetype not supported";
-		}
-
-		if(($this->file->getError() != UPLOAD_ERR_OK)){
-			$this->errors["file"] = "Could not upload your file. Please try again.";
-		}
-
-		if(($this->file->getError() == UPLOAD_ERR_INI_SIZE) || ($this->file->getError() == UPLOAD_ERR_FORM_SIZE)){
-			$filesize = Symfony\Component\HttpFoundation\File\UploadedFile::getMaxFilesize()/1048576;
-			$this->errors["file"] = "Woah, that's a big file! We can only let you upload files under " . $filesize . "MB";
 		}
 
 		if (count($this->errors) <= 0){
