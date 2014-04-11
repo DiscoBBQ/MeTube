@@ -3,7 +3,7 @@
 @stop
 
 @section('error-explanation')
-The following errors prevented the message from being sent
+The following errors prevented the media from being uploaded
 @stop
 
 @section('content')
