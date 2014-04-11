@@ -12,6 +12,10 @@
     </div>
     <div class="media">
       <?php $medias = Media::getMediaForPlaylistID($playlist->getID()); ?>
+      @if(count($medias <= 0))
+        <p id="no-playlist-items">No items in the playlist yet!</p>
+      @endif
+
       @foreach($medias as $item_order => $media)
         @include('media.playlist-preview-block', array('media' => $media, 'playlist' => $playlist, 'item_order' => $item_order))
       @endforeach

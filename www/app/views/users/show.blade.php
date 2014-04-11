@@ -19,6 +19,9 @@
       <div class = "mt-sidebar-block-body">
         <h2>Recent Uploads</h2>
         <?php $medias = Media::getUploadedByUserID($user->getID()) ?>
+        @if(count($medias <= 0))
+          <p class="no-media">No media uploaded by the channel yet.</p>
+        @endif
         @foreach ($medias as $media)
           @include('media.preview-block', array('media' => $media))
         @endforeach
