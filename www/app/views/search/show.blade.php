@@ -3,7 +3,7 @@
 @stop
 
 @section('content')
-  @if(count($medias <= 0))
+  @if(count($medias) <= 0)
     <p class="no-media">Nothing Found!</p>
   @endif
 

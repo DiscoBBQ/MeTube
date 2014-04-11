@@ -15,7 +15,7 @@
         </span>
       </div>
       <div class="media">
-        @if(count($recent_media <= 0))
+        @if(count($recent_media) <= 0)
           <p class="no-media">No media uploaded by the channel yet.</p>
         @endif
         @foreach($recent_media as $media)
