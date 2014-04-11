@@ -19,11 +19,9 @@
         <a href = "{{ route('browse_category', array('category' => $category['url'])) }}">{{$category['name']}}</a>
       </div>
       <div id = "welcome-browse-block-body">
-        <?php
-          $results = DB::select('select * from media where category = ? 
-            order by id desc limit 4', array($category["name"]));
-        ?>
-        @include('home.browse-section', array('results' => $results))
+        <?php $recent_media = Media::getMediaForCategory($category['url']); ?>
+        <?php $recent_media = array_slice($recent_media, 0, 4); ?>
+        @include('home.browse-section', array('medias' => $recent_media))
       </div>
     </div><br>
   @endforeach

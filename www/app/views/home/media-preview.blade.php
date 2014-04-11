@@ -1,8 +1,8 @@
-<a href = "{{ route('media', array('id' => $result->id)) }}">
-  <div class = "home-img-border" style="left:'{{ (($i * 175) + 15) }}'px;">
-    <img class = "home-img" src="{{asset(Media::getThumbnailByID($result->id))}}">
+<a href = "{{ route('media', array('id' => $media->getID())) }}">
+  <div class = "home-img-border">
+    <img class = "home-img" src="{{asset($media->getThumbnail())}}">
   </div>
-  <div class = "home-title-box" style="left:'{{ (($i * 175) + 15) }}'px;">
-    {{ $result->title }}
+  <div class = "home-title-box">
+    {{ $media->title }}
   </div>
 </a>

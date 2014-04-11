@@ -1,10 +1,7 @@
-<?php $i = 0; ?>
-
-@if(count($results) <= 0)
+@if(count($medias) <= 0)
   No media uploaded yet!
 @endif
 
-@foreach($results as $result)
-  @include('home.media-preview', array('result' => $result))
-  <?php $i++; ?>
+@foreach($medias as $media)
+  @include('home.media-preview', array('media' => $media))
 @endforeach
