@@ -179,8 +179,8 @@ class Media {
 			return "/public/images/thumbnails/audio.png";
 		}
 
-		if($player == "video"){
-			return "/public/images/thumbnails/video.png";
+		if($player == "image"){
+			return $this->getAssetFilepath();
 		}
 
 		return "";
