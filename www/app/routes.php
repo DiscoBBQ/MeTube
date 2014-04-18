@@ -75,6 +75,8 @@ Route::get('/favorited/{userid}', array('as' => 'favorited', 'uses' => 'BrowseCo
 
 //Profile
 Route::get('/profile/{id}', array('as' => 'profile', 'uses' =>'UserController@show'));
+Route::get('/edit_profile',  array('before' => 'auth', 'as' => 'edit_profile', 'uses' =>'UserController@edit'));
+Route::post('/edit_profile', array('before' => 'auth', 'as' => 'update_profile', 'uses' =>'UserController@update'));
 
 
 // Playlists

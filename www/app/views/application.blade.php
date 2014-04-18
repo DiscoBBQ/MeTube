@@ -87,6 +87,7 @@
             <div class = "mt-block-title"> USER </div>
             <div class = "mt-sidebar-block-body">
               <a href = "{{ route('profile', array('id' => Auth::user()->getAuthIdentifier())) }}"><div class = "mt-sidebar-block-button">Profile</div></a>
+              <a href = "{{ route('edit_profile') }}"><div class = "mt-sidebar-block-button">Edit Profile</div></a>
               <a href="{{route('messages')}}"><div class = "mt-sidebar-block-button">Messages</div></a>
               <a href = "{{ route('my_subscriptions') }}"><div class = "mt-sidebar-block-button">My Subscriptions</div></a>
               <a href = "{{ route('uploaded', array('id' => Auth::user()->getAuthIdentifier())) }}"><div class = "mt-sidebar-block-button">Uploaded</div></a>
