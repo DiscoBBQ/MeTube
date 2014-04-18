@@ -24,6 +24,7 @@ return array(
     'BrowseController' => $baseDir . '/app/controllers/BrowseController.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'ChangeCreatedOnToCreatedAtInMedia' => $baseDir . '/app/database/migrations/2014_04_06_154847_change_created_on_to_created_at_in_media.php',
+    'ChangeDescriptionFieldsToText' => $baseDir . '/app/database/migrations/2014_04_18_042731_change_description_fields_to_text.php',
     'ChangePrimaryKeyOnPlaylistItem' => $baseDir . '/app/database/migrations/2014_04_06_033432_change_primary_key_on_playlist_item.php',
     'ClassPreloader\\Application' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Application.php',
     'ClassPreloader\\ClassList' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/ClassList.php',
