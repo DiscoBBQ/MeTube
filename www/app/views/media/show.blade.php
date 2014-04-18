@@ -29,6 +29,11 @@
     Category: <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category)) }}">{{$media->category}}</a><br>
 
 		<a class = "button abs-right" href = "{{route('download_media', array('id' => $media->getID()))}}">DOWNLOAD</a>
+		<div class='media-stats'>
+			{{ Interaction::countViewedForMedia($media->getID()) }} Views<br/>
+			{{ Interaction::countDownloadedForMedia($media->getID()) }} Downloads<br/>
+			{{ Interaction::countFavoritedForMedia($media->getID()) }} Favorites<br/>
+		</div>
 
 		@if(Auth::check())
 			<a class = "button abs-right2" href = "{{route('favorite_media', array('id' => $media->getID()))}}">FAVORITE</a>

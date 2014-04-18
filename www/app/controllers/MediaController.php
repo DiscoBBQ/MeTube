@@ -20,6 +20,8 @@ class MediaController extends BaseController {
 	{
 		if(Auth::check()){
 			Interaction::logUserViewedMedia(Auth::user()->getAuthIdentifier(), $this->media->getID());
+		} else{
+			Interaction::logUserViewedMedia(null, $this->media->getID());
 		}
 
 		$error_messages = Session::get('errors');
@@ -71,6 +73,8 @@ class MediaController extends BaseController {
 	public function download($id) {
 		if(Auth::check()) {
 			Interaction::logUserDownloadedMedia(Auth::user()->getAuthIdentifier(), $this->media->getID());
+		} else{
+			Interaction::logUserDownloadedMedia(null, $this->media->getID());
 		}
 
 		return Response::download($this->media->getFullFilename(), $this->media->getDownloadFilename());
