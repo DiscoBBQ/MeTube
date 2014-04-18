@@ -7,6 +7,7 @@ class User implements UserInterface, RemindableInterface {
 
 	public $email;
 	public $channel_name;
+	public $current_password;
 	public $password;
 	public $passwordConfirmation;
 	protected $id;
@@ -115,6 +116,10 @@ class User implements UserInterface, RemindableInterface {
 			$this->password = trim($this->password);
 			$this->passwordConfirmation = trim($this->passwordConfirmation);
 		}
+
+		if(isset($this->current_password)){
+			$this->current_password = trim($this->current_password);
+		}
 	}
 
 	public function validate(){
@@ -138,6 +143,23 @@ class User implements UserInterface, RemindableInterface {
 
 		//run the password validations if the user has not been created, or if one of the password updating fields has been set
 		if(isset($this->password) || isset($this->passwordConfirmation)){
+
+			//if the record exists, we need to check the current_password value to make sure it's valid
+			if($this->id != NULL){
+
+				if(isset($this->current_password)){
+					if($this->current_password === ""){
+						$this->errors["current_password"] = "The Current Password Must Be Provided";
+					}
+
+					if (!Hash::check($this->current_password, $this->crypted_password))
+					{
+						$this->errors["current_password"] = "The Current Password Must Be Correct";
+					}
+				} else{
+					$this->errors["current_password"] = "The Current Password Must Be Provided";
+				}
+			}
 
 			if($this->password === ""){
 				$this->errors["password"] = "The password must be provided";
