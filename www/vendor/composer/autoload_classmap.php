@@ -1297,6 +1297,7 @@ return array(
     'Psr\\Log\\LoggerInterface' => $vendorDir . '/psr/log/Psr/Log/LoggerInterface.php',
     'Psr\\Log\\NullLogger' => $vendorDir . '/psr/log/Psr/Log/NullLogger.php',
     'RemoveKeywordsFromMediaTable' => $baseDir . '/app/database/migrations/2014_03_18_131523_remove_keywords_from_media_table.php',
+    'RemoveSaltFromUsers' => $baseDir . '/app/database/migrations/2014_04_18_051235_remove_salt_from_users.php',
     'RenameCryptedPasswordToPassword' => $baseDir . '/app/database/migrations/2014_03_06_022416_rename_crypted_password_to_password.php',
     'RenameTimestampToCreatedAtInComments' => $baseDir . '/app/database/migrations/2014_04_06_171532_rename_timestamp_to_created_at_in_comments.php',
     'RenameUsernameToChannelName' => $baseDir . '/app/database/migrations/2014_04_05_183300_rename_username_to_channel_name.php',
