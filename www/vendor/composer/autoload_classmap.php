@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddCountFieldToInteractions' => $baseDir . '/app/database/migrations/2014_04_18_051550_add_count_field_to_interactions.php',
     'AddCreatedAtToMessages' => $baseDir . '/app/database/migrations/2014_04_05_161136_add_created_at_to_messages.php',
     'AddIdToComments' => $baseDir . '/app/database/migrations/2014_04_06_171222_add_id_to_comments.php',
     'AddUniquenessIndexOnUsernameInUsers' => $baseDir . '/app/database/migrations/2014_03_06_035400_add_uniqueness_index_on_username_in_users.php',
@@ -25,6 +26,7 @@ return array(
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'ChangeCreatedOnToCreatedAtInMedia' => $baseDir . '/app/database/migrations/2014_04_06_154847_change_created_on_to_created_at_in_media.php',
     'ChangeDescriptionFieldsToText' => $baseDir . '/app/database/migrations/2014_04_18_042731_change_description_fields_to_text.php',
+    'ChangeIndexOnInteractionsAndAllowUserIdToBeNull' => $baseDir . '/app/database/migrations/2014_04_18_052524_change_index_on_interactions_and_allow_user_id_to_be_null.php',
     'ChangePrimaryKeyOnPlaylistItem' => $baseDir . '/app/database/migrations/2014_04_06_033432_change_primary_key_on_playlist_item.php',
     'ClassPreloader\\Application' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Application.php',
     'ClassPreloader\\ClassList' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/ClassList.php',
