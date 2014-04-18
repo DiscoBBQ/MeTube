@@ -15,7 +15,8 @@ The following errors prevented the playlist from being updated
       @include('partials.error-messages', array('error_messages' => $error_messages))
       {{ Form::open(array('route' => array('update_playlist', $playlist->getID()))) }}
         <label for="title">Title: </label> {{ Form::text('title', $playlist->title) }}<br>
-        <label for="description">Description: </label>{{ Form::text('description', $playlist->description) }}<br>
+        <label for="description">Description: </label><br/>
+        {{ Form::textarea('description', $playlist->description) }}<br>
         <input type = "submit" class = "mt-form-submit" value = "Update">
       {{ Form::close() }}
     <div>
