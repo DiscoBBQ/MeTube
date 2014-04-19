@@ -16,7 +16,7 @@
         @if($total_count > count($recent_media))
           <a class="category-block-preview" href = "{{ route('browse_category', array('category' => $url)) }}">
             <div class="media-preview-container">
-              View More
+              <span class="oi media-preview view-more" data-glyph="chevron-right"></span>
             </div>
             <div class = "media-title">
               View More

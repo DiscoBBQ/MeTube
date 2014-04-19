@@ -285,6 +285,11 @@ input:focus {
 .category-block-preview{
 	display:inline-block;
 	margin-right: 25px;
+	width: 170px;
+}
+
+.category-block-preview:last-child{
+	margin-right: 0px;
 }
 
 .category-view-more{
@@ -292,7 +297,7 @@ input:focus {
 }
 
 .media-preview-container{
-	border: 1px solid #2490CC;
+	border: 3px solid #2490CC;
 	background: #2490CC;
 	width: 170px;
 	height: 100px;
@@ -300,19 +305,30 @@ input:focus {
 	overflow:hidden;
 }
 
-.video-thumbnail{
+.media-preview {
+	max-width: 100%;
+	text-align: center;
 	font-size: 90px;
 	color: white;
   text-shadow: 2px 2px 3px rgba(19, 75, 107,.9);
 }
 
-.media-preview {
-	max-width: 100%;
-	text-align: center;
+.media-preview.audio{
+	font-size: 80px;
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.media-preview.view-more{
+	display: inline-block;
+	margin-top: 25px;
+	font-size: 50px;
 }
 
 .media-title {
-	font-style: italic
+	font-style: italic;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .category-browse-no-media{
