@@ -13,7 +13,7 @@ The following errors prevented the media from being updated
 			@include('partials.error-messages', array('error_messages' => $error_messages))
 			{{ Form::open(array('route' => array('update_media',$media->getID()))) }}
  				<label for="title">Title:</label>{{Form::text('title', $media->title)}}<br>
-				<label for="description">Description:</label>{{Form::text('description', $media->description)}}<br>
+				<label for="description">Description:</label><br/>{{Form::textarea('description', $media->description)}}<br>
 				<label for="category">Category:</label>
 					{{ Form::select('category', array('Music' => 'Music',
 							'Sports' => 'Sports',

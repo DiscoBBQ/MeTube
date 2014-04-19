@@ -13,7 +13,7 @@ The following errors prevented the media from being uploaded
 			@include('partials.error-messages', array('error_messages' => $error_messages))
 			{{ Form::open(array('route' => 'create_media', 'files' => true)) }}
  				<label for="title">Title:</label>{{Form::text('title')}}<br>
-				<label for="description">Description:</label>{{Form::text('description')}}<br>
+				<label for="description">Description:</label><br/>{{Form::textarea('description')}}<br/>
 				<label for="category">Category:</label>
 					{{ Form::select('category', array('Music' => 'Music',
 							'Sports' => 'Sports',
