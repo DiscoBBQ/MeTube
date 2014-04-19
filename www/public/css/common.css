@@ -300,6 +300,12 @@ input:focus {
 	overflow:hidden;
 }
 
+.video-thumbnail{
+	font-size: 90px;
+	color: white;
+  text-shadow: 2px 2px 3px rgba(19, 75, 107,.9);
+}
+
 .media-preview {
 	max-width: 100%;
 	text-align: center;
