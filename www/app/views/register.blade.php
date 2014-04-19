@@ -9,7 +9,7 @@ The following errors prevented you from registering
 @stop
 
 @section('content')
-  <div class = "mt-block-title">
+  <div class = "block-title">
     Register
   </div>
   <div class = "mt-form-box">

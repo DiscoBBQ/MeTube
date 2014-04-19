@@ -3,26 +3,27 @@
 @stop
 
 @section('content')
-  <?php $categories = array(
-      array('url' => 'music', 'name' => 'Music'),
-      array('url' => 'sports', 'name' => 'Sports'),
-      array('url' => 'gaming', 'name' => 'Gaming'),
-      array('url' => 'education', 'name' => 'Education'),
-      array('url' => 'movies', 'name' => 'Movies'),
-      array('url' => 'tv', 'name' => 'TV Shows'),
-      );
-  ?>
-
-  @foreach($categories as $category)
-    <div id = "welcome-browse-block-indv">
-      <div class = "mt-block-title-left">
-        <a href = "{{ route('browse_category', array('category' => $category['url'])) }}">{{$category['name']}}</a>
+  @foreach (Category::getAllCategories() as $url => $name)
+    <div class = "category-block">
+      <div class = "block-title category-block-title">
+        <a href = "{{ route('browse_category', array('category' => $url)) }}">{{$name}}</a>
       </div>
-      <div id = "welcome-browse-block-body">
-        <?php $recent_media = Media::getMediaForCategory($category['url']); ?>
+      <div class = "category-block-body">
+        <?php $recent_media = Media::getMediaForCategory($url); ?>
+        <?php $total_count  = count($recent_media); ?>
         <?php $recent_media = array_slice($recent_media, 0, 4); ?>
         @include('home.browse-section', array('medias' => $recent_media))
+        @if($total_count > count($recent_media))
+          <a class="category-block-preview" href = "{{ route('browse_category', array('category' => $url)) }}">
+            <div class="media-preview-container">
+              View More
+            </div>
+            <div class = "media-title">
+              View More
+            </div>
+          </a>
+        @endif
       </div>
-    </div><br>
+    </div>
   @endforeach
 @stop

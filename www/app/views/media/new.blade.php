@@ -8,7 +8,7 @@ The following errors prevented the media from being uploaded
 
 @section('content')
 	<div id = "mt-upload-inner">
-		<div class = "mt-block-title">Upload</div>
+		<div class = "block-title">Upload</div>
 		<div class = "mt-form-box">
 			@include('partials.error-messages', array('error_messages' => $error_messages))
 			{{ Form::open(array('route' => 'create_media', 'files' => true)) }}

@@ -8,7 +8,7 @@ The following errors prevented the playlist from being updated
 
 @section('content')
   <div id = "mt-upload-inner">
-    <div class = "mt-block-title">
+    <div class = "block-title">
       Edit Playlist
     </div>
     <div class = "mt-form-box">

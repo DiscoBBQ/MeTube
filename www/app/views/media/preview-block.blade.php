@@ -1,5 +1,5 @@
 <div id = "welcome-browse-block-indv">
-  <div class = "mt-block-title-left">
+  <div class = "block-title-left">
     <a href="{{route('media', array('id' => $media->getID()))}}">{{$media->title}}</a>
   </div>
   <div id='welcome-browse-block-body'>

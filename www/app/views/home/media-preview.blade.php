@@ -1,8 +1,8 @@
-<a href = "{{ route('media', array('id' => $media->getID())) }}">
-  <div class = "home-img-border">
-    <img class = "home-img" src="{{asset($media->getThumbnail())}}">
+<a class="category-block-preview" href = "{{ route('media', array('id' => $media->getID())) }}">
+  <div class="media-preview-container">
+    <img class="media-preview" src="{{asset($media->getThumbnail())}}">
   </div>
-  <div class = "home-title-box">
+  <div class = "media-title">
     {{ $media->title }}
   </div>
 </a>

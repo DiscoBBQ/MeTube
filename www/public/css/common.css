@@ -95,25 +95,20 @@ input:focus {
 	background-color: white;
 }
 
-.mt-block-title {
+.block-title {
 	text-align: center;
 	background-color: #49B3FA;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	letter-spacing: 5px;
-	font-size:14px;
+	letter-spacing: 1px;
+	font-size:20px;
+	font-weight: bold;
 	color: white;
 	border-bottom: 1px solid #2490CC;
 }
 
-.mt-block-title-left {
+.block-title-left {
 	text-align: left;
-	background-color: #49B3FA;
-	padding: 10px;
-	letter-spacing: 5px;
-	font-size:14px;
-	color: white;
-	border-bottom: 1px solid #2490CC;
 }
 
 .mt-form-box {
@@ -147,62 +142,60 @@ input:focus {
 	padding-right: 5px;
 }
 
-#mt-container {
-	position: relative;
+#container {
+	/*position: relative;
 	margin-left: auto;
 	margin-right: auto;
 	height: inherit;
 
-	min-width: 1024px;
+	min-width: 1024px;*/
+	background-color: #DBF1FF;
 }
 
-#mt-header {
+#header{
 	background-color: #ffffff;
-
+	padding: 15px;
+/*
 	position: absolute;
 	width: 100%;
-	height: 80px;
+	height: 80px;*/
 }
 
-#mt-header-logo {
-	position: absolute;
+#header div{
+	display: inline-block;
+}
+
+#logo {
+	/*position: absolute;
 	top: 12px;
-	left: 21px;
+	left: 21px;*/
+	width: 260px;
 }
 
-#mt-header-content {
-	position: absolute;
-	top:23px;
-	left:275px;
+#header-content {
 }
 
-#mt-header-content-searchbar {
-	position: absolute;
+#search{
+}
 
-	top: 0px;
-	left: 0px;
-
+#searchbar {
 	width: 400px;
 	height: 30px;
 
 	font-size: 24px;
 
 	border: 1px solid #2490CC;
+	vertical-align: top;
 }
 
-#mt-header-content-searchbutton {
-	position: absolute;
-
-	top: 0px;
-	left: 402px;
-
+#searchbutton {
 	background-color: #49B3FA;
 
 	border: 1px solid #2490CC;
 
 	height: 34px;
 	width:40px;
-	padding-top: 4px;
+	vertical-align: top;
 
 	background-image: url("/spring14/u5/public/images/search.png");
 	background-repeat: no-repeat;
@@ -212,52 +205,53 @@ input:focus {
 	font-size: 0px;
 }
 
-#mt-header-signin {
+#signin {
 	position: absolute;
 	right: 21px;
 	top: 26px;
 	font-size: 24px;
 }
 
-#mt-sidebar {
-	position: absolute;
+#sidebar {
+	/*position: absolute;
 	top: 80px;
-	left: 0px;
+	left: 0px;*/
 
 	width: 225px;
-	height: 1400px;
+	/*height: 1400px;*/
+	float: left;
 
-	background-color: #DBF1FF;
+	/*background-color: #DBF1FF;*/
 
 	padding-left: 25px;
 	padding-right: 25px;
 
 	border-top: 1px solid #2490CC;
-	border-bottom: 1px solid #2490CC;
+	/*border-bottom: 1px solid #2490CC;*/
 }
 
-.mt-sidebar-block {
+.sidebar-block {
 	border: 1px solid #2490CC;
 	background-color: white;
 }
 
-.mt-sidebar-block-body {
+.sidebar-block-body {
 	padding: 10px;
 	font-size: 16px;
 	letter-spacing: 2px;
 	color: #2490FA;
 }
 
-.mt-sidebar-block-button:hover {
+.sidebar-block-button:hover {
 	background-color: #DBF1FF;
 }
 
-#mt-welcome {
-	position: absolute;
+#content {
+	/*position: absolute;
 	
 	top:80px;
 	left: 275px;
-	right: 0px;
+	right: 0px;*/
 
 	height: 1360px;
 
@@ -267,6 +261,57 @@ input:focus {
 	border-bottom: 1px solid #2490CC;
 
 	padding: 20px;
+	margin-left: 275px
+}
+
+.category-block {
+	background-color: #FFFFFF;
+	min-height: 200px;
+	border: 1px solid #2490CC;
+	font-size:18px;
+	margin-bottom: 20px;
+}
+
+.category-block-title{
+	width:100%;
+}
+
+.category-block-body {
+	padding: 10px;
+	overflow-x:scroll;
+	white-space:nowrap;
+}
+
+.category-block-preview{
+	display:inline-block;
+	margin-right: 25px;
+}
+
+.category-view-more{
+	float:right;
+}
+
+.media-preview-container{
+	border: 1px solid #2490CC;
+	background: #2490CC;
+	width: 170px;
+	height: 100px;
+	text-align: center;
+	overflow:hidden;
+}
+
+.media-preview {
+	max-width: 100%;
+	text-align: center;
+}
+
+.media-title {
+	font-style: italic
+}
+
+.category-browse-no-media{
+	font-size: 25px;
+	font-style: italic;
 }
 
 #welcome-browse-block {
@@ -390,26 +435,13 @@ input:focus {
 
 .home-img-border {
 	position: absolute;
-	border: 1px solid #2490CC;
 	width: 140px;
 	height: 110px;
-}
-
-.home-title-box {
-	position: absolute;
-	width: 140px;
-	top: 130px;
-	overflow: hidden;
 }
 
 .browse-img {
 	max-width: 170px;
 	max-height: 140px;
-}
-
-.home-img {
-	max-width: 140px;
-	max-height: 110px;
 }
 
 .page-bar {

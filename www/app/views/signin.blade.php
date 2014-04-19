@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	<div class = "mt-block-title">Sign In</div>
+	<div class = "block-title">Sign In</div>
 	<div class = "mt-form-box">
 		{{ Form::open(array('route' => 'signin')) }}
 			Email: <input type = "text" name = "email"><br>

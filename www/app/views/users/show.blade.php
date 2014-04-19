@@ -14,9 +14,9 @@
       <span class = "">FAVORITED</span></a>
   </div>
   <br>
-  <div class = "mt-sidebar-block">
-    <div class = "mt-block-title">{{$user->channel_name}}</div>
-      <div class = "mt-sidebar-block-body">
+  <div class = "sidebar-block">
+    <div class = "block-title">{{$user->channel_name}}</div>
+      <div class = "sidebar-block-body">
         <h2>Recent Uploads</h2>
         <?php $medias = Media::getUploadedByUserID($user->getID()) ?>
         @if(count($medias) <= 0)
