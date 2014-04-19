@@ -186,6 +186,18 @@ class Media {
 		return "";
 	}
 
+	public function isAudio(){
+		return $this->getPlayer() == "audio";
+	}
+
+	public function isVideo(){
+		return $this->getPlayer() == "video";
+	}
+
+	public function isImage(){
+		return $this->getPlayer() == "image";
+	}
+
 	public function getPlayer() {
 		if(FileConverter::isAudio($this->extension)){
 			return "audio";
