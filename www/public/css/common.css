@@ -9,8 +9,8 @@ html, body {
 
 	padding: 0px;
 	border: 0px;
-
-	height: 100%;
+	min-height: 100% !important;
+  height: 100%;
 }
 
 a {
@@ -252,8 +252,6 @@ input:focus {
 	top:80px;
 	left: 275px;
 	right: 0px;*/
-
-	height: 1360px;
 
 	background-color: #F7F6F1;
 	border-left: 1px solid #2490CC;
