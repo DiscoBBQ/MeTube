@@ -96,7 +96,7 @@ class Comment{
   }
 
   protected function sanitizeData(){
-    $this->comment = trim($this->comment);
+    $this->comment =  stripslashes(trim($this->comment));
   }
 
   public function validate(){

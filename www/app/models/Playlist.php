@@ -160,8 +160,8 @@ class Playlist{
   }
 
   protected function sanitizeData(){
-    $this->title = trim($this->title);
-    $this->description = trim($this->description);
+    $this->title = stripslashes(trim($this->title));
+    $this->description = stripslashes(trim($this->description));
   }
 
   protected function isTitleTakenForUser(){

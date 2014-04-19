@@ -231,8 +231,8 @@ class Media {
 	}
 
 	protected function sanitizeData(){
-		$this->title 			 = trim($this->title);
-    $this->description = trim($this->description);
+		$this->title 			 = stripslashes(trim($this->title));
+    $this->description = stripslashes(trim($this->description));
 
 		if($this->file != NULL){
 			$this->extension = $this->file->getClientOriginalExtension();

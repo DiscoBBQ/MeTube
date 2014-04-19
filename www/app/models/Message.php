@@ -93,8 +93,8 @@ class Message {
   }
 
   protected function sanitizeData(){
-    $this->subject = trim($this->subject);
-    $this->message = trim($this->message);
+    $this->subject = stripslashes(trim($this->subject));
+    $this->message = stripslashes(trim($this->message));
   }
 
   public function validate(){

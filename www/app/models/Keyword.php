@@ -13,7 +13,7 @@ class Keyword{
     $keywords =  array_unique(preg_split("/[\s,;]+/", $phrase));
 
     for ($i=0; $i < count($keywords) ; $i++) { 
-      $keywords[$i] = strtolower($keywords[$i]);
+      $keywords[$i] = stripslashes(trim(strtolower($keywords[$i])));
     }
 
     return $keywords;

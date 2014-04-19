@@ -111,14 +111,14 @@ class User implements UserInterface, RemindableInterface {
 	}
 
 	protected function sanitizeData(){
-		$this->channel_name = trim($this->channel_name);
+		$this->channel_name = stripslashes(trim($this->channel_name));
 		if(isset($this->password) || isset($this->passwordConfirmation)){
-			$this->password = trim($this->password);
-			$this->passwordConfirmation = trim($this->passwordConfirmation);
+			$this->password = stripslashes(trim($this->password));
+			$this->passwordConfirmation = stripslashes(trim($this->passwordConfirmation));
 		}
 
 		if(isset($this->current_password)){
-			$this->current_password = trim($this->current_password);
+			$this->current_password = stripslashes(trim($this->current_password));
 		}
 	}
 
