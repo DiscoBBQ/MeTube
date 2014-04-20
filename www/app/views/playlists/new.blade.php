@@ -16,7 +16,7 @@ The following errors prevented the playlist from being created
       {{ Form::open(array('route' => 'create_playlist')) }}
         <label for="title">Title: </label>{{Form::text('title')}}<br>
         <label for="description">Description: </label><br/>
-        {{ Form::textarea('description', $playlist->description) }}<br>
+        {{ Form::textarea('description') }}<br>
         <input type = "submit" class = "mt-form-submit" value = "CREATE">
       {{ Form::close() }}
     <div>
