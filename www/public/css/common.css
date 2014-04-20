@@ -746,9 +746,12 @@ audio{
 	margin-top: 10px;
 }
 
+#new_message label{
+	text-align: left;
+}
+
 #new_message #recipient{
 	width: 75px;
-	padding-right: 5px;
 }
 
 #new_message #subject{
