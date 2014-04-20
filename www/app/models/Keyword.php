@@ -10,7 +10,7 @@ class Keyword{
   }
 
   static public function makeKeywordsArrayFromPhrase($phrase){
-    $keywords =  array_unique(preg_split("/[\s,;]+/", $phrase));
+    $keywords =  array_values(array_unique(preg_split("/[\s,;]+/", $phrase)));
 
     for ($i=0; $i < count($keywords) ; $i++) { 
       $keywords[$i] = stripslashes(trim(strtolower($keywords[$i])));
