@@ -41,6 +41,11 @@ input:focus {
 	border: 1px solid #2490CC
 }
 
+h2 span{
+	vertical-align: middle;
+	padding-right: 5px;
+}
+
 .button {
 	color: #ffffff;
 
@@ -226,6 +231,7 @@ input:focus {
 
 	padding-left: 25px;
 	padding-right: 25px;
+	padding-bottom: 25px;
 
 	border-top: 1px solid #2490CC;
 	/*border-bottom: 1px solid #2490CC;*/
@@ -653,6 +659,65 @@ audio{
 #profile-links a span{
 	padding-left: 10px;
 	padding-right: 3px;
+}
+
+.subscription{
+	margin: 0 auto;
+	border: 1px solid #2490CC;
+	background: white;
+}
+
+.subscription h4{
+	font-size: 20px;
+}
+
+.subscription .media{
+	padding: 5px;
+}
+
+#actions a{
+	display: inline-block;
+}
+
+#messages{
+	width:100%;
+	border-collapse:collapse;
+	margin-top: 10px;
+}
+
+#messages thead{
+	text-align: center;
+	background-color: #49B3FA;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	letter-spacing: 1px;
+	font-size:20px;
+	font-weight: bold;
+	color: white;
+	border: 1px solid #2490CC;
+}
+
+#messages td{
+	border: 1px solid #2490CC;
+	padding-left: 3px;
+}
+
+#message{
+	margin: 0 auto;
+	border: 1px solid #2490CC;
+	background: white;
+}
+
+#message-subject{
+	font-style: italic;
+}
+
+#message-info{
+	background-color: #E4E4E4;
+}
+
+#message-message{
+	padding: 10px;
 }
 
 .text-link {

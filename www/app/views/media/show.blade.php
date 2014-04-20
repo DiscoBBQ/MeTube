@@ -46,7 +46,7 @@
 			</div>
 
 			<div class="author">
-	        <strong>Author:</strong> <a class = "text-link" href = "{{ route('profile', array('id' => $media->getAuthor()->getID())) }}">{{$media->getAuthor()->channel_name}}</a>
+	        <strong>Author:</strong> <a class = "text-link" href = "{{ route('profile', array('id' => $media->getAuthor()->getID())) }}">{{{$media->getAuthor()->channel_name}}}</a>
 	      </div>
 
 	      <div class="category">

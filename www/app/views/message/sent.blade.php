@@ -1,11 +1,13 @@
 @section('title')
-  Messages - Sent
+  Messages - Sent Messages
 @stop
 
 @section('content')
-  <h2>Sent</h2>
-  <a href="{{route('new_message')}}">New Message</a><br>
-  <a href="{{route('messages')}}">Inbox</a>
+  <h2><span class="oi" data-glyph="envelope-closed"></span>Sent Messages</h2>
+  <div id="actions">
+    <a class="button" href="{{route('new_message')}}"><span class="oi" data-glyph="pencil"></span>New Message</a>
+    <a class="button" href="{{route('messages')}}"><span class="oi" data-glyph="inbox"></span>Inbox</a>
+  </div>
   @if(count($messages) <= 0)
     <p id="no-messages">No sent messages</p>
   @else
