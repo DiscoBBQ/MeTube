@@ -129,6 +129,7 @@ class Media {
 		}
 
 		try {
+			DB::beginTransaction();
 			if($this->id == NULL){
 
 				//since the video will be converted, we need to get the correct extension to use for the player
