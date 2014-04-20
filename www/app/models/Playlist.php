@@ -84,6 +84,15 @@ class Playlist{
     return $playlists;
   }
 
+  static public function convertPlaylistsToSelectBoxArray($playlists){
+    $playlists_array = array();
+    foreach ($playlists as $playlist) {
+      $playlists_array[$playlist->getID()] = $playlist->title;
+    }
+
+    return $playlists_array;
+  }
+
   static protected function buildPlaylistFromResult($result){
     $playlist = new self();
     if($result == NULL){
