@@ -3,41 +3,33 @@
 @stop
 
 @section('content')
-<div id = "profile-links">
-    <a href = "{{route('uploaded', array('id' => $user->getID()))}}">
-      <span class = "">UPLOADED</span></a> | 
-    <a href = "{{route('downloaded', array('id' => $user->getID()))}}">
-      <span class = "">DOWNLOADED</span></a> | 
-    <a href = "{{route('viewed', array('id' => $user->getID()))}}">
-      <span class = "">VIEWED</span></a> | 
-    <a href = "{{route('favorited', array('id' => $user->getID()))}}">
-      <span class = "">FAVORITED</span></a>
-  </div>
-  <br>
-  <div class = "sidebar-block">
-    <div class = "block-title">{{$user->channel_name}}</div>
-      <div class = "sidebar-block-body">
-        <h2>Recent Uploads</h2>
-        <?php $medias = Media::getUploadedByUserID($user->getID()) ?>
-        @if(count($medias) <= 0)
-          <p class="no-media">No media uploaded by the channel yet.</p>
-        @endif
-        @foreach ($medias as $media)
-          @include('media.preview-block', array('media' => $media))
-        @endforeach
-      </div>
-  </div>
-  <br>
-  <center>
-
+<div id="profile">
+  <h2>{{{ $user->channel_name }}}</h2>
+  <div id = "profile-links">
     @if(Auth::check())
       @if(Subscription::isUserSubscribedToThisUser(Auth::user()->getAuthIdentifier(), $user->getID()))
-        <a href = "{{route('unsubscribe_from_user', array('id' => $user->getID()))}}" class = "button">UNSUBSCRIBE</a>
+        <a href = "{{route('unsubscribe_from_user', array('id' => $user->getID()))}}" class = "button">Unsubscribe</a>
       @else
-        <a href = "{{route('subscribe_to_user', array('id' => $user->getID()))}}" class = "button">SUBSCRIBE</a>
+        <a href = "{{route('subscribe_to_user', array('id' => $user->getID()))}}" class = "button">Subscribe</a>
       @endif
     @endif
-  </center>
+    <a class="text-link" href = "{{route('uploaded', array('id' => $user->getID()))}}">
+      <span class="oi" data-glyph="data-transfer-upload"></span>Uploaded</a> |
+    <a class="text-link" href = "{{route('downloaded', array('id' => $user->getID()))}}">
+      <span class="oi" data-glyph="data-transfer-download"></span>Downloaded</a> | 
+    <a class="text-link" href = "{{route('viewed', array('id' => $user->getID()))}}">
+      <span class="oi" data-glyph="eye"></span>Viewed</a> | 
+    <a class="text-link" href = "{{route('favorited', array('id' => $user->getID()))}}">
+      <span class="oi" data-glyph="star"></span>Favorited</a>
+  </div>
+  <h3>Recent Uploads</h3>
+  <?php $medias = Media::getUploadedByUserID($user->getID()) ?>
+  @if(count($medias) <= 0)
+    <p class="no-media">No media uploaded by the channel yet.</p>
+  @endif
+  @foreach ($medias as $media)
+    @include('media.preview-block', array('media' => $media))
+  @endforeach
 </div>
 
 @stop

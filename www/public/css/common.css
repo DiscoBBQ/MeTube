@@ -21,6 +21,10 @@ a {
 	color: inherit;
 }
 
+a span.oi{
+	vertical-align: middle;
+}
+
 a:hover {
 	color: black;
 }
@@ -640,14 +644,15 @@ audio{
 }
 
 #profile-links {
-	border: 1px solid #2490CC;
-	background-color: #49B3FA;
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	letter-spacing: 5px;
-	font-size:14px;
-	color: white;
+	font-size:24px;
+}
+
+#profile-links a span{
+	padding-left: 10px;
+	padding-right: 3px;
 }
 
 .text-link {
