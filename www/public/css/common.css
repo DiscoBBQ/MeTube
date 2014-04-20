@@ -25,8 +25,9 @@ a:hover {
 	color: black;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=email], input[type=password], textarea {
 	border: 1px solid #2490CC;
+	font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 input:focus {
@@ -39,17 +40,23 @@ input:focus {
 .button {
 	color: #ffffff;
 
-	font-family: "Helvetica Neue", Arial;
+	font-family: "Helvetica Neue", Arial, sans-serif;
 
 	background-color: #49B3FA;
 	padding: 3px;
 	padding-left: 5px;
 	padding-right: 5px;
 	border: 1px solid #2490CC;
+	cursor: pointer;
 }
 
 .button:hover {
-	color: #DBF1FF;
+	background: #DBF1FF;
+}
+
+.button span.oi, button span.oi{
+	padding-right: 5px;
+	vertical-align: middle;
 }
 
 #mt-signin-body {
@@ -81,11 +88,6 @@ input:focus {
 
 	border: 1px solid #2490CC;
 	background-color: #F7F6F1;
-}
-
-#mt-welcome-media-container {
-	margin: 0 auto;
-	display: table;
 }
 
 #mt-upload-inner {
@@ -127,9 +129,6 @@ input:focus {
 }
 
 .mt-form-submit {
-	margin: 0 auto;
-	display: table;
-
 	outline: none;
 	box-shadow: none;
 	border: none;
@@ -143,6 +142,7 @@ input:focus {
 	padding: 3px;
 	padding-left: 5px;
 	padding-right: 5px;
+	cursor: pointer;
 }
 
 #container {
@@ -401,11 +401,138 @@ input:focus {
 	display: inline-block;
 }
 
-#mt-welcome-media-block {
-	background-color: #FFFFFF;
-	width: 720px;
-	height: 405px;
+.media-stats ul li span{
+	vertical-align: middle;
+}
+
+#media {
+	margin: 0 auto;
 	border: 1px solid #2490CC;
+	background: white;
+}
+
+#player {
+	background-color: white;
+	max-height: 400px;
+}
+
+audio{
+	width:100% !important;
+}
+
+.mejs-video{
+	margin: auto;
+}
+
+.mejs-audio{
+	width:100% !important;
+}
+
+.mejs-clear{
+	clear:none !important;
+}
+
+#audio-image{
+	border: 3px solid black;
+	background: black;
+	text-align: center;
+	padding-top: 20px;
+}
+
+#audio-image .media-preview{
+	color: #DBF1FF;
+	font-size: 120px;
+	text-shadow: 0px 0px 11px rgba(255,255,255,0.8);
+}
+
+#media-information{
+	background-color: white;
+	color: black;
+}
+
+#information{
+	padding: 10px;
+}
+
+#media-information .keywords{
+	font-size: 10px;
+	font-style: italic;
+	color: #E4E4E4;
+}
+
+#media-information .media-stats ul li{
+	margin-right: 15px;
+}
+
+#media-actions{
+	float: right;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#media-actions .button{
+	display: block;
+	margin-bottom: 5px;
+}
+
+#add-to-playlist{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#add-to-playlist select{
+	width: 100%;
+	margin-bottom: 3px;
+}
+
+#comments-section{
+	clear: both;
+}
+
+#no-comments{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-style: italic;
+	text-align: center;
+}
+
+#new-comment{
+	padding: 5px;
+	text-align: right;
+}
+
+#new-comment textarea{
+	width: 100%;
+}
+
+#new-comment button{
+
+}
+
+.comment{
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #E4E4E4;
+}
+
+.comment .comment-information{
+	margin-left: 10px;
+}
+
+.comment .permalink{
+	font-style: italic;
+	color: #909090;
+	padding-left: 5px;
+}
+
+.comment p{
+	margin: 10px;
+	font-style: italic;
+}
+
+.media-image {
+	display:block;
+  margin:auto;
+  max-height: 400px;
 }
 
 .mt-welcome-media-block-comments {
@@ -472,13 +599,6 @@ input:focus {
 	border: 1px solid #2490CC;
 	margin-top: -1px;
 	color: black;
-}
-
-.mt-media-img {
-	display:block;
-    margin:auto;
-    max-height:405px;
-    max-width: 720px;
 }
 
 .browse-img-border {

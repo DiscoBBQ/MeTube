@@ -1,4 +1,4 @@
-{{ Form::open(array('route' => array('add_media_to_playlist', $media->getID()))) }}
+{{ Form::open(array('route' => array('add_media_to_playlist', $media->getID()), 'id' => "add-to-playlist")) }}
   <?php
     $playlists = Playlist::convertPlaylistsToSelectBoxArray(Playlist::getAllPlaylistsForUserID(Auth::user()->getAuthIdentifier()));
   ?>
