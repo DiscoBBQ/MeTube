@@ -3,6 +3,7 @@
   <head>
     <title>MeTube: @yield('title', "CPSC 462 Project")</title>
     <link href = "{{ asset('public/css/common.css')}}" rel = "stylesheet" type = "text/css">
+    <link href = "{{ asset('public/css/open-iconic.css')}}" rel = "stylesheet" type = "text/css">
   </head>
   <body>
     <div id = "container">
@@ -12,10 +13,8 @@
         </div>
       </div>
 
-      <div id = "mt-signin-body">
-        <div id = "mt-signin-inner">
-          @yield('content')
-        </div>
+      <div id="gate-content">
+        @yield('content')
       </div>
     </div>
   </body>

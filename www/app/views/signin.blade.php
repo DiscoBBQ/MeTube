@@ -5,14 +5,14 @@
 @stop
 
 @section('content')
-	<div class = "block-title">Sign In</div>
-	<div class = "mt-form-box">
-		{{ Form::open(array('route' => 'signin')) }}
-			Email: <input type = "text" name = "email"><br>
-			Password: <input type = "password" name = "password"><br>
-			<div class = "form-button-body">
-				<input type = "submit" class = "form-button" value = "SIGN IN">
-			</div>
-		{{ Form::close() }}
-	<div>
+	{{ Form::open(array('route' => 'signin', 'class' => 'entry_form gateway_form', 'id'=> 'signin_form' )) }}
+		<h2 class="block-title">Sign in</h2>
+		<div class="form_content">
+			<label for="email">Email:</label><input type = "text" name = "email"><br>
+			<label for="password">Password:</label><input type = "password" name = "password"><br>
+			<div id="form_actions">
+        <button type="submit" class="form-button"><span class="oi" data-glyph="account-login"></span> Sign in</button>
+      </div>
+		</div>
+	{{ Form::close() }}
 @stop

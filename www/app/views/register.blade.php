@@ -9,19 +9,18 @@ The following errors prevented you from registering
 @stop
 
 @section('content')
-  <div class = "block-title">
-    Register
-  </div>
-  <div class = "mt-form-box">
+  {{ Form::open(array('route' => 'create_user', 'class' => 'entry_form gateway_form', 'id' => 'register')) }}
+    <h2 class="block-title">Register</h2>
     @include('partials.error-messages', array('error_messages' => $error_messages))
-  	{{ Form::open(array('route' => 'create_user')) }}
-      E-mail: {{Form::email('email')}}<br>
-      Channel Name: {{Form::text('channel_name')}}<br>
-      Password: <input type = "password" name = "password"><br>
-      Confirm Password: <input type = "password" name = "password_confirm"><br>
-      <div class = "form-button-body">
-        <input type = "submit" class = "form-button" value = "REGISTER">
+    <div class="form_content">
+      <label for="email">E-mail:</label>{{Form::email('email')}}<br>
+      <label for="channel_name">Channel Name:</label>{{Form::text('channel_name')}}<br>
+      <label for="password">Password:</label><input type = "password" name = "password"><br>
+      <label for="password_confirm">Confirm Password:</label><input type = "password" name = "password_confirm"><br>
+      <div id="form_actions">
+        <button type="submit" class="form-button"><span class="oi" data-glyph="circle-check"></span> Register</button>
+        <button type="reset" class="form-button"><span class="oi" data-glyph="circle-x"></span> Reset Form</button>
       </div>
-    {{ Form::close() }}
-  </div>
+    </div>
+  {{ Form::close() }}
 @stop
