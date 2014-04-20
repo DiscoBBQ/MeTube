@@ -55,9 +55,9 @@
 
 	      <div class="media-stats">
 	        <ul>
-	          <li>{{ Interaction::countViewedForMedia($media->getID()) }} <span class="oi views-icon" data-glyph="eye"></span></li>
-	          <li>{{ Interaction::countDownloadedForMedia($media->getID()) }} <span class="oi downloads-icon" data-glyph="data-transfer-download"></span></li>
-	          <li>{{ Interaction::countFavoritedForMedia($media->getID()) }} <span class="oi favorites-icon" data-glyph="star"></span></li>
+	          <li>{{ Interaction::countViewedForMedia($media->getID()) }} <span class="oi views-icon" data-glyph="eye" title="Viewed"></span></li>
+	          <li>{{ Interaction::countDownloadedForMedia($media->getID()) }} <span class="oi downloads-icon" data-glyph="data-transfer-download" title="Downloaded"></span></li>
+	          <li>{{ Interaction::countFavoritedForMedia($media->getID()) }} <span class="oi favorites-icon" data-glyph="star" title="Favorited"></span></li>
 	        <ul>
 	      </div>
 
