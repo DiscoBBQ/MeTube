@@ -7,26 +7,22 @@ The following errors prevented the media from being uploaded
 @stop
 
 @section('content')
-	<div id = "mt-upload-inner">
-		<div class = "block-title">Upload</div>
-		<div class = "mt-form-box">
-			@include('partials.error-messages', array('error_messages' => $error_messages))
-			{{ Form::open(array('route' => 'create_media', 'files' => true)) }}
- 				<label for="title">Title:</label>{{Form::text('title')}}<br>
-				<label for="description">Description:</label><br/>{{Form::textarea('description')}}<br/>
-				<label for="category">Category:</label>
-					{{ Form::select('category', array('Music' => 'Music',
-							'Sports' => 'Sports',
-							'Gaming' => 'Gaming',
-							'Education' => 'Education',
-							'Movies' => 'Movies',
-							'TV' => 'TV Shows'));
-					}}
-				<br>
-				<label for="keywords">Keywords:</label>{{ Form::text("keywords") }}<br>
-				<label for="file">File:</label>{{ Form::file('file')}}<br>
-				<input type = "submit" class = "form-button" value = "UPLOAD">
-			{{ Form::close() }}
+	{{ Form::open(array('route' => 'create_media', 'files' => true, 'class' => 'entry_form', 'id' => 'new_media')) }}
+		<h2 class="block-title">Upload Media</h2>
+		@include('partials.error-messages', array('error_messages' => $error_messages))
+		<div class="form_content">
+			<label for="title">Title:</label><br/>
+			{{Form::text('title','', array('placeholder' => 'yet another cat video.'))}}<br>
+			<label id="category-label" for="category">Category:</label>
+				{{ Form::select('category', Category::getAllCategories()); }}<br/>
+			<label id="file-label" for="file">File:</label>{{ Form::file('file')}}<br>
+			<label for="description">Description:</label><br/>{{Form::textarea('description')}}<br/>
+			<label for="keywords">Keywords:</label><br/>
+			{{ Form::textarea("keywords", '', array('id' => 'keywords')) }}<br>
+			<div id="form_actions">
+        <button type="submit" class="form-button"><span class="oi" data-glyph="circle-check"></span> Upload Media</button>
+        <button type="reset" class="form-button"><span class="oi" data-glyph="circle-x"></span> Reset Form</button>
+      </div>
 		</div>
-	</div>
+	{{ Form::close() }}
 @stop

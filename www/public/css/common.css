@@ -767,6 +767,25 @@ audio{
 	width: 100%;
 }
 
+#new_media label, #edit_media label{
+	text-align: left;
+	display: inline;
+}
+
+#new_media input[type=text], #edit_media input[type=text]{
+	width: 100%;
+}
+
+#new_media textarea#keywords, #edit_media textarea#keywords{
+	height: 100px;
+}
+
+#new_media #category-label, #new_media #file-label, #edit_media #category-label{
+	display: inline-block;
+	text-align: right;
+	width: 75px;
+}
+
 .text-link {
 	color: #49B3FA;
 }
