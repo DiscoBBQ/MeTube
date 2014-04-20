@@ -758,6 +758,15 @@ audio{
 	width: 100%;
 }
 
+#new_playlist label, #edit_playlist label{
+	text-align: left;
+	display: inline;
+}
+
+#new_playlist input[type=text], #edit_playlist input[type=text]{
+	width: 100%;
+}
+
 .text-link {
 	color: #49B3FA;
 }
