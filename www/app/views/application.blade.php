@@ -43,28 +43,26 @@
         </div>
         <div id = "header-content">
           {{ Form::open(array('route' => 'start_search', 'id' => 'search')) }}
-            <input id = "searchbar" type = "text" name = "phrase"> 
-            <input id = "searchbutton" type = "submit">
-              <img src = "{{asset('public/images/search.png')}}">
-            </input>
+            <input id = "searchbar" type = "text" name = "phrase">
+            <button id="searchbutton" type="submit"><span class="oi" data-glyph="magnifying-glass"></span></button>
           {{ Form::close() }}
         </div>
         <div id = "signin">
           @if(Auth::check())
             <a class = "button" href = "{{route('signout')}}">
-              SIGN OUT
+              <span class="oi" data-glyph="account-logout"></span>Sign out
             </a>
             &nbsp;
             <a class = "button" href = "{{route('new_media')}}">
-              UPLOAD
+              <span class="oi" data-glyph="data-transfer-upload"></span>Upload
             </a>
           @else
             <a class = "button" href = "{{route('signin_form')}}">
-              SIGN IN
+              <span class="oi" data-glyph="account-login"></span>Sign in
             </a>
             &nbsp;
             <a class = "button" href = "{{route('register')}}">
-              REGISTER
+              <span class="oi" data-glyph="person"></span>Register
             </a>
           @endif
         </div>

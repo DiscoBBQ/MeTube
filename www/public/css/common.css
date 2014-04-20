@@ -193,19 +193,13 @@ input:focus {
 
 #searchbutton {
 	background-color: #49B3FA;
-
 	border: 1px solid #2490CC;
-
 	height: 34px;
 	width:40px;
 	vertical-align: top;
-
-	background-image: url("/spring14/u5/public/images/search.png");
-	background-repeat: no-repeat;
-	background-position: center;
-
-	color: transparent;
-	font-size: 0px;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
 }
 
 #signin {
