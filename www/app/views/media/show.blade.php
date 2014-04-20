@@ -50,7 +50,7 @@
 	      </div>
 
 	      <div class="category">
-	        <strong>Category:</strong> <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category)) }}">{{$media->category}}</a>
+	        <strong>Category:</strong> <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category)) }}">{{ Category::getCategoryName($media->category)}}</a>
 	      </div>
 
 	      <div class="media-stats">

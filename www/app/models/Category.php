@@ -14,6 +14,10 @@ class Category{
     return self::$categoriesList;
   }
 
+  public static function getCategoryName($url){
+    return self::$categoriesList[strtolower($url)];
+  }
+
 }
 
 ?>
