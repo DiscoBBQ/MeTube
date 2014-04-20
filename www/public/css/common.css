@@ -464,13 +464,13 @@ audio{
 	margin-right: 15px;
 }
 
-#media-actions{
+.actions{
 	float: right;
 	margin-top: 10px;
 	margin-left: 10px;
 }
 
-#media-actions .button{
+.actions .button{
 	display: block;
 	margin-bottom: 5px;
 }
@@ -533,6 +533,21 @@ audio{
 	display:block;
   margin:auto;
   max-height: 400px;
+}
+
+#playlist .header .description{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#playlist h3{
+	margin-bottom: 5px;
+}
+
+.playlist-actions{
+	font-size: 28px;
+	margin-left: 10px;
+	color: #49B3FA;
 }
 
 .mt-welcome-media-block-comments {

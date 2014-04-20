@@ -31,7 +31,7 @@
 	<div id="media-information">
 		<div class="block-title">Details</div>
 		<div id="information">
-			<div id="media-actions">
+			<div class="actions">
 				<a class = "button download" href = "{{route('download_media', array('id' => $media->getID()))}}"><span class="oi downloads-icon" data-glyph="data-transfer-download"></span>Download</a>
 				@if(Auth::check())
 					<a class = "button favorite" href = "{{route('favorite_media', array('id' => $media->getID()))}}"><span class="oi favorites-icon" data-glyph="star"></span>Favorite</a>

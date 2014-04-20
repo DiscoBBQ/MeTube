@@ -17,6 +17,7 @@
     </div>
 
     <div class = "preview-block-info">
+      @yield('playlist-ordering','')
       <div class="author">
         <strong>Author:</strong> <a class = "text-link" href = "{{ route('profile', array('id' => $media->getAuthor()->getID())) }}">{{$media->getAuthor()->channel_name}}</a>
       </div>
@@ -25,7 +26,6 @@
         <strong>Category:</strong> <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category)) }}">{{$media->category}}</a>
       </div>
       <div class="description">{{ $media->description }}</div>
-      @yield('playlist-ordering','')
     </div>
   </div>
 </div><br/>
