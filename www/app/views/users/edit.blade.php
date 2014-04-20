@@ -7,7 +7,7 @@ The following errors prevented the profile from being updated
 @stop
 
 @section('content')
-  {{Form::open(array('route' => 'update_profile', 'class' => 'entry_form', 'id' => 'edit_prpfile'))}}
+  {{Form::open(array('route' => 'update_profile', 'class' => 'entry_form', 'id' => 'edit_profile'))}}
     <h2 class="block-title">Edit Profile</h2>
     @include('partials.error-messages', array('error_messages' => $error_messages))
     <div class="form_content">
