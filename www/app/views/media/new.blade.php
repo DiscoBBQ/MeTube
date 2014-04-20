@@ -25,7 +25,7 @@ The following errors prevented the media from being uploaded
 				<br>
 				<label for="keywords">Keywords:</label>{{ Form::text("keywords") }}<br>
 				<label for="file">File:</label>{{ Form::file('file')}}<br>
-				<input type = "submit" class = "mt-form-submit" value = "UPLOAD">
+				<input type = "submit" class = "form-button" value = "UPLOAD">
 			{{ Form::close() }}
 		</div>
 	</div>

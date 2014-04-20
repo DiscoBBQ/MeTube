@@ -19,8 +19,8 @@ The following errors prevented the profile from being updated
             New Password: <input type = "password" name = "password"><br>
             Confirm New Password: <input type = "password" name = "password_confirm"><br>
           </div>
-          <div class = "mt-form-submit-body">
-            <input type = "submit" class = "mt-form-submit" value = "Update Profile">
+          <div class = "form-button-body">
+            <input type = "submit" class = "form-button" value = "Update Profile">
           </div>
         {{Form::close()}}
       </div>

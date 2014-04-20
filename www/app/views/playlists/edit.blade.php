@@ -17,7 +17,7 @@ The following errors prevented the playlist from being updated
         <label for="title">Title: </label> {{ Form::text('title', $playlist->title) }}<br>
         <label for="description">Description: </label><br/>
         {{ Form::textarea('description', $playlist->description) }}<br>
-        <input type = "submit" class = "mt-form-submit" value = "Update">
+        <input type = "submit" class = "form-button" value = "Update">
       {{ Form::close() }}
     <div>
   </div>

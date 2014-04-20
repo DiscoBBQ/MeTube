@@ -24,7 +24,7 @@ The following errors prevented the media from being updated
 					}}
 				<br>
 				<label for="keywords">Keywords:</label>{{ Form::text("keywords", $media->keywords) }}<br>
-				<input type = "submit" class = "mt-form-submit" value = "Update">
+				<input type = "submit" class = "form-button" value = "Update">
 			{{ Form::close() }}
 		</div>
 	</div>

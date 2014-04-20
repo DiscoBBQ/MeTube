@@ -10,8 +10,8 @@
 		{{ Form::open(array('route' => 'signin')) }}
 			Email: <input type = "text" name = "email"><br>
 			Password: <input type = "password" name = "password"><br>
-			<div class = "mt-form-submit-body">
-				<input type = "submit" class = "mt-form-submit" value = "SIGN IN">
+			<div class = "form-button-body">
+				<input type = "submit" class = "form-button" value = "SIGN IN">
 			</div>
 		{{ Form::close() }}
 	<div>

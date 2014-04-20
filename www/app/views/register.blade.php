@@ -19,8 +19,8 @@ The following errors prevented you from registering
       Channel Name: {{Form::text('channel_name')}}<br>
       Password: <input type = "password" name = "password"><br>
       Confirm Password: <input type = "password" name = "password_confirm"><br>
-      <div class = "mt-form-submit-body">
-        <input type = "submit" class = "mt-form-submit" value = "REGISTER">
+      <div class = "form-button-body">
+        <input type = "submit" class = "form-button" value = "REGISTER">
       </div>
     {{ Form::close() }}
   </div>

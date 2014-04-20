@@ -32,6 +32,12 @@ a:hover {
 input[type=text], input[type=email], input[type=password], textarea {
 	border: 1px solid #2490CC;
 	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-size: 18px;
+}
+
+textarea{
+	width: 100%;
+	min-height: 50px;
 }
 
 input:focus {
@@ -133,11 +139,8 @@ h2 span{
 	color: #000000;
 }
 
-.mt-form-submit-body {
-	padding-top: 10px;
-}
 
-.mt-form-submit {
+.form-button {
 	outline: none;
 	box-shadow: none;
 	border: none;
@@ -505,10 +508,6 @@ audio{
 	text-align: right;
 }
 
-#new-comment textarea{
-	width: 100%;
-}
-
 #new-comment button{
 
 }
@@ -720,20 +719,39 @@ audio{
 	padding: 10px;
 }
 
+
+.entry_form{
+	margin: 0 auto;
+	border: 1px solid #2490CC;
+	background: white;
+}
+
+.entry_form label{
+	display: inline-block;
+	width: 150px;
+	font-weight: bold;
+}
+
+.errors{
+	background-color: #EBE390;
+}
+
+.form_content, .errors{
+	padding: 10px;
+}
+
+#form_actions{
+	margin-top: 10px;
+}
+
+#new_message #recipient{
+	width: 75px;
+}
+
+#new_message #subject{
+	width: 100%;
+}
+
 .text-link {
 	color: #49B3FA;
-}
-
-.arrow-up {
-	position: absolute;
-	float: right;
-	right: 150px;
-	margin-top: 10px;
-}
-
-.arrow-down {
-	position: absolute;
-	float: right;
-	right: 50px;
-	margin-top: 10px;
 }
