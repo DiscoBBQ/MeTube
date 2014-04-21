@@ -6,6 +6,7 @@ class Message {
   public $message;
   public $from_user_id;
   public $to_user_id;
+  public $parent_message_id;
   protected $id;
   public $errors = array();
   protected $created_at;
@@ -17,13 +18,13 @@ class Message {
 
     if($this->id == NULL){
       //insert the record into the DB
-      DB::statement("INSERT INTO messages (subject, message, from_user_id, to_user_id) VALUES (?,?,?,?)", array($this->subject, $this->message, $this->from_user_id, $this->to_user_id));
+      DB::statement("INSERT INTO messages (subject, message, from_user_id, to_user_id, parent_message_id) VALUES (?,?,?,?,?)", array($this->subject, $this->message, $this->from_user_id, $this->to_user_id, $this->parent_message_id));
       //get the ID of the last inserted record
       $this->id = intval(DB::getPdo()->lastInsertId('id'));
       return true;
     } else{
       //update the existing record in the DB
-      DB::statement("UPDATE messages SET subject = ?, message = ?, from_user_id = ?, to_user_id = ? WHERE id = ?", array($this->subject, $this->message, $this->from_user_id, $this->to_user_id, $this->id));
+      DB::statement("UPDATE messages SET subject = ?, message = ?, from_user_id = ?, to_user_id = ?, parent_message_id = ? WHERE id = ?", array($this->subject, $this->message, $this->from_user_id, $this->to_user_id, $this->parent_message_id, $this->id));
       return true;
     }
   }
@@ -42,6 +43,10 @@ class Message {
 
   public function getCreatedAt(){
     return $this->created_at;
+  }
+
+  public function getParentMessage(){
+    return Message::getByID($this->parent_message_id);
   }
 
   static public function getByID($id){
@@ -86,6 +91,7 @@ class Message {
       $message->message          = $result->message;
       $message->from_user_id     = $result->from_user_id;
       $message->to_user_id       = $result->to_user_id;
+      $message->parent_message_id= $result->parent_message_id;
       $message->created_at       = new DateTime($result->created_at);
     }
 
@@ -95,6 +101,9 @@ class Message {
   protected function sanitizeData(){
     $this->subject = stripslashes(trim($this->subject));
     $this->message = stripslashes(trim($this->message));
+    if(Message::getByID($this->parent_message_id) == NULL){
+      $this->parent_message_id = NULL;
+    }
   }
 
   public function validate(){
