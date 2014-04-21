@@ -11,6 +11,7 @@ The following errors prevented the message from being sent
     <h2 class="block-title">New Message</h2>
     @include('partials.error-messages', array('error_messages' => $error_messages))
     <div class="form_content">
+      <label id="recipient" for="to_user_id">Send To:</label><span>{{{ $parent_message->getSender()->channel_name }}}</span><br/>
       <label for="subject" >Subject</label><br/>
       {{ Form::text('subject', $first_subject, array('id' => 'subject', 'placeholder' => "Hello!") ) }}
       <label for="message">Message</label><br/>
