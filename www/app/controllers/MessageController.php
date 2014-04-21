@@ -7,8 +7,8 @@ class MessageController extends BaseController {
 
   public function __construct()
   {
-    $this->beforeFilter('@find_message_by_ID_or_raise_404', array('only' => array('show')));
-    $this->beforeFilter('@authed_user_matches_sender_or_recipient', array('only' => array('show')));
+    $this->beforeFilter('@find_message_by_ID_or_raise_404', array('only' => array('show', 'reply', 'createReply')));
+    $this->beforeFilter('@authed_user_matches_sender_or_recipient', array('only' => array('show', 'reply', 'createReply')));
   }
 
   public function newMessage(){
@@ -26,6 +26,30 @@ class MessageController extends BaseController {
   public function show($id)
   {
     $this->layout->content = View::make('message.show')->with(array('message' => $this->message));
+  }
+
+  public function reply(){
+    $first_subject = "RE: " . $this->message->subject;
+    $error_messages = Session::get('errors');
+    $data = array('error_messages' => $error_messages, 'first_subject' => $first_subject, 'parent_message' => $this->message);
+    $this->layout->content = View::make('message.reply')->with($data);
+  }
+
+  public function createReply(){
+    $new_message = new Message();
+
+    $new_message->subject = Input::get('subject');
+    $new_message->message = Input::get('message');
+    $new_message->to_user_id = $this->message->getSender()->getID();
+    $new_message->from_user_id = Auth::user()->getAuthIdentifier();
+    $new_message->parent_message_id = $this->message->getID();
+
+    if($new_message->save()){
+      return Redirect::route('message', array('id' => $new_message->getID()));
+    } else{
+      $data = array('errors' => $new_message->errors);
+      return Redirect::route('message_reply', array('id' => $this->message->getID()))->with($data)->withInput();
+    }
   }
 
   public function create() {

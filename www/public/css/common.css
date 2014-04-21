@@ -701,22 +701,34 @@ audio{
 	padding-left: 3px;
 }
 
-#message{
+.message{
 	margin: 0 auto;
 	border: 1px solid #2490CC;
 	background: white;
 }
 
-#message-subject{
+.message-subject{
 	font-style: italic;
 }
 
-#message-info{
+.message-info{
 	background-color: #E4E4E4;
 }
 
-#message-message{
+.message-message{
 	padding: 10px;
+}
+
+.message-link{
+	height: 50px;
+	width: 3px;
+	border-left: 2px dashed #909090;
+	margin: auto;
+}
+
+#reply-button{
+	margin-top: 5px;
+	display: inline-block;
 }
 
 

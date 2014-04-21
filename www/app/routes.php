@@ -46,7 +46,10 @@ Route::get('/messages', array('before' => 'auth', 'as' => 'messages', 'uses' => 
 Route::get('/messages/sent', array('before' => 'auth', 'as' => 'sent_messages', 'uses' => 'MessageController@sent'));
 Route::get('/messages/new', array('before' => 'auth', 'as' => 'new_message', 'uses' => 'MessageController@newMessage'));
 Route::get('/messages/{id}', array('before' => 'auth', 'as' => 'message', 'uses' => 'MessageController@show'));
+Route::get('/messages/{id}/reply', array('before' => 'auth', 'as' => 'message_reply', 'uses' => 'MessageController@reply'));
+Route::post('/messages/{id}/reply', array('before' => 'auth', 'as' => 'reply_to_message', 'uses' => 'MessageController@createReply'));
 Route::post('/messages/new', array('before' => 'auth', 'as' => 'create_message', 'uses' => 'MessageController@create'));
+
 
 // Media
 
