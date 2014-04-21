@@ -1,5 +1,5 @@
 @section('title')
-  Messages - {{$message->subject}}
+  Messages - {{{$message->subject}}}
 @stop
 
 @section('content')

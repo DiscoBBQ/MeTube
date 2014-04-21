@@ -1,5 +1,5 @@
 @section('title')
-  Playlist - {{$playlist->title}}
+  Playlist - {{{$playlist->title}}}
 @stop
 
 @section('content')

@@ -6,7 +6,7 @@
   @foreach (Category::getAllCategories() as $url => $name)
     <div class = "category-block">
       <div class = "block-title category-block-title">
-        <a href = "{{ route('browse_category', array('category' => $url)) }}">{{$name}}</a>
+        <a href = "{{ route('browse_category', array('category' => $url)) }}">{{{$name}}}</a>
       </div>
       <div class = "category-block-body">
         <?php $recent_media = Media::getMediaForCategory($url); ?>

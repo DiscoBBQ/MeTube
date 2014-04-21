@@ -1,5 +1,5 @@
 @section('title')
-	{{ $media->getTitle() }}
+	{{{ $media->getTitle() }}}
 @stop
 
 @section('content')

@@ -19,13 +19,13 @@
     <div class = "preview-block-info">
       @yield('playlist-ordering','')
       <div class="author">
-        <strong>Author:</strong> <a class = "text-link" href = "{{ route('profile', array('id' => $media->getAuthor()->getID())) }}">{{$media->getAuthor()->channel_name}}</a>
+        <strong>Author:</strong> <a class = "text-link" href = "{{ route('profile', array('id' => $media->getAuthor()->getID())) }}">{{{$media->getAuthor()->channel_name}}}</a>
       </div>
       
       <div class="category">
-        <strong>Category:</strong> <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category)) }}">{{ Category::getCategoryName($media->category)}}</a>
+        <strong>Category:</strong> <a class = "text-link" href = "{{ route('browse_category', array('category' => $media->category)) }}">{{{ Category::getCategoryName($media->category)}}}</a>
       </div>
-      <div class="description">{{ $media->description }}</div>
+      <div class="description">{{{ $media->description }}}</div>
     </div>
   </div>
 </div><br/>

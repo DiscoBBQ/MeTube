@@ -1,5 +1,5 @@
 @section('title')
-  Channel - {{$user->channel_name}}
+  Channel - {{{$user->channel_name}}}
 @stop
 
 @section('content')

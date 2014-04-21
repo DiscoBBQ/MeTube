@@ -73,7 +73,7 @@
           <div class = "sidebar-block-title block-title"> Browse </div>
           <div class = "sidebar-block-body">
             @foreach (Category::getAllCategories() as $url => $name)
-              <a href = "{{ route('browse_category', array('category' => $url)) }}"><div class = "sidebar-block-button">{{$name}}</div></a>
+              <a href = "{{ route('browse_category', array('category' => $url)) }}"><div class = "sidebar-block-button">{{{$name}}}</div></a>
             @endforeach
           </div>
         </div>

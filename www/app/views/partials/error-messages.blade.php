@@ -3,7 +3,7 @@
     <p> @yield('error-explanation', 'The following errors occured') </p>
     <ul>
     @foreach($error_messages as $error)
-      <li>{{$error}}</li>
+      <li>{{{$error}}}</li>
     @endforeach
     </ul>
   </div>
