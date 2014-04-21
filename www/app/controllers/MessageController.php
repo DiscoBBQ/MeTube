@@ -64,7 +64,7 @@ class MessageController extends BaseController {
       return Redirect::route('message', array('id' => $this->message->getID()));
     } else{
       $data = array('errors' => $this->message->errors);
-      return Redirect::route('new_message')->with($data);
+      return Redirect::route('new_message')->with($data)->withInput();
     }
   }
 
