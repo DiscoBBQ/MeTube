@@ -236,7 +236,7 @@ class Media {
     $this->description = stripslashes(trim($this->description));
 
 		if($this->file != NULL){
-			$this->extension = $this->file->getClientOriginalExtension();
+			$this->extension = strtolower($this->file->getClientOriginalExtension());
 		}
 	}
 

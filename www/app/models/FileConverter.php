@@ -27,7 +27,7 @@ class FileConverter{
   public static function getFinalExtensionForFile($file){
     $extension = strtolower($file->getClientOriginalExtension());
     if(self::isImage($extension)){
-      return $file->getClientOriginalExtension();
+      return strtolower($file->getClientOriginalExtension());
     }
 
     if(self::isAudio($extension)){
@@ -41,7 +41,7 @@ class FileConverter{
 
 
   protected static function saveImageFile($file, $id){
-    $filename = $id . '.' . $file->getClientOriginalExtension();
+    $filename = $id . '.' . strtolower($file->getClientOriginalExtension());
     $file->move(self::getBasePath(), $filename);
   }
 
