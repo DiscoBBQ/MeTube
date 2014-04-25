@@ -28,6 +28,8 @@ The `migrations` table is created as part of the Database Migrations feature tha
 
 It is also important to note that the `interactions` table is the implementation of the Favorites/Views/Downloads entities in the ER Diagram. I will discuss this further in the "Implementation Details Section"
 
+Below is a graphical representation of the database schema. The actual schema file is `database_schema.sql`
+
 ![The Database Schema for this implementation of MeTube](Database%20Schema.png)
 
 ## Function Design
