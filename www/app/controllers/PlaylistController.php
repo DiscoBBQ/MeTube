@@ -65,7 +65,7 @@ class PlaylistController extends BaseController {
 	public function addMediaToPlaylist($id) {
 		$this->playlist = Playlist::getByID(Input::get('playlist'));
 
-		if($this->playlist != NULL){
+		if($this->playlist != NULL && $this->playlist->getOwner()->getAuthIdentifier() == Auth::user()->getAuthIdentifier()){
 			$this->playlist->addMediaToPlaylist($id);
 			$this->playlist->save();
 			return Redirect::route('playlist', array('id' => $this->playlist->getID()));
