@@ -135,7 +135,7 @@ There were 3 overall goals when it came to the development environment used to c
 * Prevent accidents with the the database schema by formalizing its structure and modifications
 * Stop people from stepping on each other's toes when working on the codebase.
 
-The first goal was accomplished by using Vagrant. Vagrant allows developers to spool up a Headless VM based on a series of scripts, which is used as the "executor" of the application. This allows the application in an isolated environment while allowing developers to edit the codebase in their preferred environment. It also allowed me to setup a server that almost exactly matched the "mmlab" server, which helped me catch a number of bugs during the development process.
+The first goal was accomplished by using Vagrant. Vagrant allows developers to create a Headless VM based on a series of scripts, which is used as the "executor" of the application. This allows the application in an isolated environment while allowing developers to edit the codebase in their preferred environment. It also allowed me to setup a server that almost exactly matched the "mmlab" server, which helped me catch a number of bugs during the development process.
 
 The database tables were exclusively created and updated using Migrations. This allows developers to write simple scripts to modify the database, which are checked into source control. This ensures the scripts are run in the correct order (since each script is timestamped), and that the changes made to the database are easily traceable. Furthermore, migrations can usually be "rolled back", giving developers the ability to "undo" changes to the database. You can read more about Migrations in [Laravel's Documentation](http://laravel.com/docs/migrations). The migration scripts used Hand-written queries.
 
@@ -147,7 +147,7 @@ The application uses MediaElement.js to provide a flash fallback for audio/video
 
 The application originally used the package manager "Composer" (https://getcomposer.org/) to manage the packages required for the site. However, for the interest of making the site easier to grade and test, the package files have been "vendorized" (stored in the `www/vendor/` directory). If the site is acting up however, you can follow the instructions for installing Composer and running `composer install` from the `www/` directory to install the missing packages.
 
-Additionally, I used Vagrant to spool up a headless VM to run the application in an isolated environment. This was to make sure the development environment matched the mmlab server as closely as possible. If you have any issues running the project, I'd be more than happy to give you access to the full Github Repo (which includes the code necessary for Vagrant to work). You can learn more about Vagrant here: http://www.vagrantup.com/
+Additionally, I used Vagrant to create a headless VM to run the application in an isolated environment. This was to make sure the development environment matched the mmlab server as closely as possible. If you have any issues running the project, I'd be more than happy to give you access to the full Github Repo (which includes the code necessary for Vagrant to work). You can learn more about Vagrant here: http://www.vagrantup.com/
 
 
 ## Test Cases and Results
@@ -266,7 +266,7 @@ MeTube users are allowed to upload and edit media, favorite and comment on media
 
 #### Uploading, Editing, and Destroying Media
 
-* A user can upload media by clicking "Upload" and filling out the form, choosing a media file that is under 10 MB. If the media file is not supported, or there was a problem uploading the media, the user is notified through an error message and is allowed to try again.
+* A user can upload media by clicking "Upload" and filling out the form, choosing a media file that is under 20 MB. If the media file is not supported, or there was a problem uploading the media, the user is notified through an error message and is allowed to try again.
 * A user can edit any media that they have uploaded. This allows them to update the title, category, and keywords for the media. To edit a particular media, the user must view it by clicking on its preview thumbnail and then clicking "Edit Media"
 * A user can delete any media that they have uploaded. This will also delete any comments, remove the media from any playlists in MeTube, and remove any interactions data. To delete a particular media, the user must view it by clicking on its preview thumbnail and then clicking "Delete Media"
 * Users can **only** edit or delete media they have uploaded. If a user attempts to modify another user's media, they are redirected back to the Home Page.
