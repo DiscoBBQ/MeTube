@@ -68,9 +68,10 @@ class PlaylistController extends BaseController {
 		if($this->playlist != NULL){
 			$this->playlist->addMediaToPlaylist($id);
 			$this->playlist->save();
+			return Redirect::route('playlist', array('id' => $this->playlist->getID()));
+		} else{
+			return Redirect::route('media', array('id' => $id));
 		}
-
-		return Redirect::route('playlist', array('id' => $this->playlist->getID()));
 	}
 
 	public function removeMediaFromPlaylist($id, $media_id){
