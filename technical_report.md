@@ -200,7 +200,7 @@ Confirm that users cannot sign in with bogus credentials
 
 1. Click "Sign In" from the Homepage
 2. Fill out a bogus email and password.
-3. Confirm that the form has not been submitted and that the user has not been logged into MeTube.
+3. Confirm that the form has not been submitted and that the user has not been signed into MeTube.
 
 **Status**: Passed
 
@@ -211,39 +211,398 @@ Users can Upload and Edit Media
 
 **Steps:**
 
-1. Sign into Media and click "Upload"
-2. Fill out the form, making sure to choose a valid image file < 10 MB
-3. Click "Upload Media"
-4. Confirm that the Media show page is displayed, with the correct media uploaded and available
-5. Click "Edit Media"
-
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. Confirm that the "Upload" button does not exist in the navigation
+3. Confirm that `/media/new` redirects users to the Sign in page.
+4. Sign into MeTube and click "Upload"
+5. Fill out the form, making sure to choose a valid image file that is less than 20 MB in size
+6. Click "Upload Media"
+7. Confirm that the Media show page is displayed, with the correct media uploaded and available
+8. Click "Edit Media"
+9. Modify the title, description, and keywords for the Media
+10. Click "Update Media"
+11. Confirm the Media has been updated.
 
 **Status**:Passed
 
 ### Test Case 5
 
-Confirm that only supported file types are allowed
+Only supported file types are allowed to be uploaded when creating a new media
+
+**Steps**
+
+1. Sign into MeTube and click "Upload"
+2. Fill out the form, choosing a file that is less than 20 MB in size and is not an image, video, or audio file.
+3. Click "Upload Media"
+4. Confirm that the form was not submitted, and that the error message "Filetype not supported" appears at the top of the form.
+
+**Status**: Passed
 
 ### Test Case 6
 
-Confirm that other users cannot edit media they didn't upload
+Users cannot edit media they did not upload
+
+**Steps**
+
+1. Sign into MeTube
+2. View a Media that has been uploaded by another user
+3. Confirm that the "Edit Media" button is not present
+4. Append `/edit` to the URL for viewing the media and attempt to navigate to the page
+    * (e.g: `http://mmlab.cs.clemson.edu/spring14/u5/media/1/edit`
+6. Confirm that the request has been redirected to the home page.
+
+**Status**: Passed
 
 ### Test Case 7
 
-Confirm that both visitors and users can download media
+Visitors and users can download and view media
+
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. Click on one of the thumbnails for a Media on the homepage
+3. Confirm that the Media is being displayed correctly
+4. Confirm that you can read the title, description, comments, and how many views/favorites/downloads the media has.
+5. Confirm that the file correctly downloads on your system when you click "Download"
+7. Sign into MeTube
+8. Repeat Steps 2-5
+
+**Status**: Passed
 
 ### Test Case 8
 
-Confirm that only users can favorite media, comment on it, or add it to a playlist
+Only users can favorite media, comment on it, or add it to a playlist
+
+**Steps**
+
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. Click on one of the thumbnails for a Media on the homepage
+3. Confirm that the "Favorite" and "Add Playlist" buttons are not present
+4. Confirm that the Comment Box and "Add Comment" button are not present
+5. Sign into MeTube
+6. Repeat Step 2.
+7. Confirm that the "Favorite" and "Add Playlist" buttons are present
+8. Confirm that the Comment Box and "Add Comment" button are present
+9. Confirm that clicking "Favorite" increases the favorite count for the media
+10. Fill in the Comment box and click "Add Comment"
+11. Confirm the comment has been added to the Media
+12. Confirm that choosing a playlist and clicking "Add To Playlist" adds the item to the playlist
+    * Note: You may need to create a playlist before running this test (See Test Case 9 for steps on creating a playlist)
+
+**Status**: Passed
+
 
 ### Test Case 9
 
-Confirm that Playlists can be created
+Playlists can be created, edited, and deleted
+
+**Steps**
+
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. Confirm that the "Create Playlist" link does not exist in the navigation
+3. Confirm that `/playlists/new` redirects users to the Sign in page.
+4. Sign into MeTube
+5. Click on the "Create Playlist" link in the navigation
+6. Fill out the form and click "Create Playlist"
+7. Confirm that the Playlist has been created, and the Playlist title is shown in the navigation
+8. Click on the "Edit Playlist" button when viewing the Playlist
+9. Change the values in the form, then click "Update Playlist"
+10. Confirm the Playlist title and description have been changed.
+11. Record the URL for the playlist
+11. Click "Delete Playlist"
+12. Confirm the playlist no longer exists, that the URL for the playlist returns a 404 page, and that the Playlist title is no longer in the navigation.
+
+**Status**: Passed
 
 ### Test Case 10
 
-Confirm that Playlists Items can be ordered and deleted
+Playlists Items can be ordered and deleted
 
+**Steps**
+
+1. Sign into MeTube
+2. Create a Playlist if one does not already exist (See Test Case 9 for Steps)
+3. Add a Media to the Playlist (See Step 12 in Test Case 8)
+4. Repeat Step 3 for 2 different Media, adding 3 total items to the playlist
+5. View all Playlist
+6. Confirm that all the media in the Playlist have the up, down, and delete buttons in their preview box.
+7. Confirm that clicking the up button on the topmost item does not change the playlist ordering
+8. Confirm that clicking the down button on the bottommost item does not change the playlist ordering
+9. Confirm that clicking the up button on the middle and bottommost items moves them up the playlist order.
+10. Confirm that clicking the up button on the middle and topmost items moves them down the playlist order.
+11. Confirm that clicking the delete button on each item in the playlist removes it from the playlist and updates the playlist order.
+
+**Status**: Passed
+
+### Test Case 11
+
+Visitors and Users can view the channel and activity of other users
+
+**Steps**
+
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. View a Media and click on the author's name
+3. Confirm the Channel page for the user is displayed
+4. Confirm the 4 most recently uploaded media are displayed on the channel
+5. Confirm that the "View More" button shows all the media uploaded by the user
+6. Confirm that the "Uploaded", "Downloaded", "Viewed", and "Favorited" links all work as expected
+7. Sign into MeTube
+8. Repeat Steps 2-6
+
+**Status**: Passed
+
+
+### Test Case 12
+
+Users can subscribe to another user, view their 4 most recently uploaded media from "My Subscriptions", and unsubscribe from a user
+
+**Steps**
+
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. View a Media and click on the author's name
+3. Confirm that the "Subscribe" button is not present
+4. Sign into MeTube
+5. Repeat Step 2
+6. Click the "Subscribe" button
+7. Confirm that the "Subscribe" button has been replaced with the "Unsubscribe" button
+8. Click on "My Subscriptions"
+9. Confirm that the Channel you have just subscribed to is present in the list of subscriptions
+10. Confirm the channel's 4 most recently uploaded media are present in the subscription view.
+11. Confirm that the "View More" button shows all the media uploaded by the channel
+12. Confirm that the "Unsubscribe" button is present in the subscription view.
+13. Click "Unsubscribe"
+14. Confirm the user has unsubscribed from the channel by clicking on "My Subscriptions" and confirming the channel is no longer present.
+
+**Status**: Passed
+
+### Test Case 13
+
+Users can send a message to another user, view the messages sent to them, and view the messages they have sent.
+
+**Steps**
+
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. Confirm that the "Messages" link does not exist in the navigation
+3. Confirm that `/messages` redirects users to the Sign in page.
+4. Confirm that `/messages/new` redirects users to the Sign in page.
+5. Confirm that `/messages/sent` redirects users to the Sign in page.
+4. Sign into MeTube on two separate browsers, using two separate accounts
+5. Click on "Messages" on the first browser
+6. Click on "New Message" on the first browser
+7. Fill out the form and click "Send Message" on the first browser
+8. Click on "Sent Messages" on the first browser
+9. Confirm that the message you just wrote is in the list of sent messages on the first browser
+10. Click on the envelope to view the message on the first browser
+11. Confirm the message is correctly displayed on the first browser
+12. Click on "Messages" on the second browser
+13. Confirm that the message you wrote in the first browser is in inbox on the second browser
+14. Click on the envelope to view the message on the second browser
+15. Confirm the message is correctly displayed on the second browser.
+
+**Status**: Passed
+
+### Test Case 14
+
+Users can reply to a message, and viewing the reply shows the message thread
+
+**Steps**
+
+1. Follow Steps 4-7 in Test Cast 13 to sign into two different accounts and create a message
+2. Click on "Messages" on the second browser
+3. Confirm that the message you wrote in the first browser is in the inbox on the second browser
+4. Click on the envelope to view the message on the second browser
+5. Click "Reply" on the second browser
+6. Fill out the form and click "Send Reply" on the second browser
+7. Confirm that the Message was created on the second browser, and that the previous message is shown above the reply you just created.
+8. Click on "Messages" on the first browser
+9. Confirm that the reply is in the inbox of the first browser.
+10. Click on the envelope to view the reply on the first browser
+11. Confirm that the reply is displayed correctly on the first browser, and that the previous message is shown above the reply you just created.
+12. Confirm that the "Reply" button exists when viewing the reply.
+
+**Status**: Passed
+
+### Test Case 15
+
+Users can delete Media, which deletes it from any playlist the media was included in.
+
+**Steps**
+
+1. Sign into MeTube
+1. Create a Media (see Test Case 4 for steps)
+2. Add the Media to a Playlist (See Step 12 in Test Case 8)
+3. View the Media
+4. Record the URL of the media
+5. Click on "Delete Media"
+6. Confirm that the Media is no longer present on the site and that the URL for the media returns a 404 page
+7. View the Playlist
+8. Confirm the Media has been removed from the Playlist
+
+**Status**: Passed
+
+### Test Case 16
+
+Users can quickly view the media they have uploaded, downloaded, viewed, and favorited
+
+1. Sign into MeTube
+2. Confirm that the "Uploaded", "Downloaded", "Viewed", and "Favorited" links exist in the navigation
+3. Confirm that each link shows the "Uploaded" link only shows Media the currently signed in 
+user has uploaded.
+4. Confirm that each link shows the "Downloaded" link only shows Media the currently signed in user has downloaded.
+5. Confirm that each link shows the "Viewed" link only shows Media the currently signed in user as viewed.
+6. Confirm that each link shows the "Favorited" link only shows Media the currently signed in user as favorited.
+
+**Status**: Passed
+
+### Test Case 17
+
+Visitors and Users can browse media by category, both from the navigation and the home page.
+
+1. Confirm you are using MeTube as a visitor (Not signed in)
+2. Confirm that the links for each category exist in the navigation
+3. Confirm that the 4 most recently uploaded media for the category are shown on the home page, along with a "View More" button
+4. Confirm that the link on the navigation and the "View More" button for each category present a list of all the media that is under that category.
+5. Sign into MeTube
+6. Repeat Steps 2-4
+
+**Status**: Passed
+
+### Test Case 18
+
+Visitors and Users can search for media by keyword using the search bar at the top of the site
+
+1. Create 2 Media, sharing a keyword between them (See Test Case 4 for steps on creating a media)
+2. Confirm you are using MeTube as a visitor (Not signed in)
+3. Confirm that the search bar is present in the navigation
+4. Type in the Keyword that is shared between the 2 Media you created.
+5. Click on the Search Button
+6. Confirm that only the two media that share the keyword are displayed.
+7. Sign into Metube
+8. Repeat Steps 3-6
+
+**Status**: Passed
+
+### Test Case 19
+
+The "Upload" and "Edit Media" forms should validate the data provided
+
+1. Sign into MeTube
+2. Click "Upload"
+3. Do not fill in the Title or choose a file to upload
+4. Click "Upload Media"
+5. Confirm that the form did not submit and that error messages are present above the form
+6. Create a Media (See Test Case 4)
+7. View the Media and click "Edit Media"
+8. Empty out the title of the Media
+9. Click "Update Media"
+10. Confirm that the form did not submit and that error messages are present above the form
+
+
+**Status**: Passed
+
+### Test Case 20
+
+The "new Playlist" and "edit Playlist" forms should validate the data provided
+
+**Steps**
+
+1. Sign into MeTube
+2. Click "Create Playlist"
+3. Do not fill in the title or description
+4. Click "Create Playlist"
+5. Confirm that the form did not submit and that error messages are present above the form
+6. Create a Playlist (See Test Case 9)
+7. View the Playlist and click "Edit Playlist"
+8. Empty out the title and description of the playlist
+9. Click "Update Playlist"
+10. Confirm that the form did not submit and that error messages are present above the form
+
+**Status**: Passed
+
+### Test Case 21
+
+The "New Message" and "Reply" forms should validate the data provided
+
+1. Sign into MeTube
+2. Click "Messages"
+3. Click "New Message"
+4. Do not fill out the Subject or Message Fields
+5. Click "Send Message"
+6. Confirm that the form did not submit and error messages are present above the form
+7. Send a Message to the currently signed-in user (See Test Cast 14)
+8. View the message and click "Reply"
+9. Do not fill out the Subject or Message Fields
+10. Click "Send Reply"
+11. Confirm that the form did not submit and error messages are present above the form
+
+**Status**: Passed
+
+### Test Case 22
+
+The comment form must require a message
+
+1. Sign into MeTube
+2. Create a Media (See Test Case 4)
+3. View the Media
+4. Do not fill in the Comment Box
+5. Click "Add Comment"
+6. Confirm that the comment was not added and error messages are present above the comment box.
+
+**Status**: Passed
+
+### Test Case 23
+
+Users should be able to sign out of MeTube at any time
+
+1. Sign into MeTube
+2. Confirm that the "Sign in" button has changed to "Sign out"
+3. Click "Sign out"
+4. Confirm you are using MeTube as a visitor (Not signed in)
+
+**Status**: Passed
+
+### Test Case 24
+
+Users should be able to upload Video, Audio, and Images
+
+1. Sign into MeTube
+2. Create 3 different Media: 1 video file, 1 audio file, and 1 image (See Test Case 4)
+3. Each time, confirm that the media has been successfully created
+4. Each time, confirm that the media can be correctly viewed on a number of browsers
+
+**Status**: Passed
+
+### Test Case 25
+
+Users should not be able to upload a media over 20 MB
+
+1. Sign into MeTube
+2. Click on "Upload"
+3. Fill out the form, choosing an image, audio file, or video file that is over 20 MB
+4. Click "Upload"
+5. Confirm that the form is not submitted, and that an error message explaining the file size is too big is displayed above the form.
+
+**Status**: Passed
+
+### Test Case 26
+
+Users should not be able to view the playlists of other users
+
+1. Sign into Metube on two different browsers
+2. Create a Playlist on the first browser (See Test Case 9)
+3. View the Playlist on the first browser
+4. Copy the URL for the Playlist from the first browser to the second browser
+5. Confirm that the second browser cannot access the playlist, and is redirected to the home page.
+
+**Status**: Passed
+
+### Test Case 27
+
+Users should not be able to view messages they have not sent or received
+
+1. Sign into MeTube on two different browsers
+2. Send a Message to the currently signed-in user, opening up two different browsers (See Test Cast 14)
+3. View the Message on the first browser
+4. Copy the URL for the Message from the first browser to the second browser
+5. Confirm that the second browser cannot access the playlist, and is redirected to the home page.
 
 ## User Manual
 
