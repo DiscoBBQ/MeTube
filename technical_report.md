@@ -62,7 +62,7 @@ In my experience, I've found the [MVC (Model View Controller)](http://en.wikiped
 
 Because of this pattern the functionality of the application was divided into the following categories:
 
-* **Models**: PHP Classes that would be used to interact with the database to generate "objects" to be displayed and manipulated throughout the application. Their responsibilites were:
+* **Models**: PHP Classes that would be used to interact with the database to generate "objects" to be displayed and manipulated throughout the application. Their responsibilities were:
 
     * Sanitize and validate input before the corresponding record is saved or updated in the database.
     * Generate human-readable error messages describing why the object could not be saved,  which would be displayed as part of the user interface.
@@ -85,7 +85,7 @@ Because of this pattern the functionality of the application was divided into th
 
 It is crucial that the media on MeTube be accessible from as many browsers or devices as possible. Given the complexity of displaying video and audio on the web due to codec issues, a lot of research was necessary to find the right process for displaying audio and video.
 
-Given the scale of the project, development needed to be managable. Therefore a common "platform" for development and source control was established to prevent last-minute errors or lost work.
+Given the scale of the project, development needed to be manageable. Therefore a common "platform" for development and source control was established to prevent last-minute errors or lost work.
 
 ## Implementation details
 
@@ -151,7 +151,7 @@ Because different browsers support different video and audio filetypes and codec
 
 The `FileConverter` Model provides the link to FFMPEG as part of its goal to abstract processing and moving uploaded files. It checks the filetype to ensure it's valid, and if the file is an audio or video file it calls the `ffmpeg` command to convert the file to the proper format with the correct codecs.
 
-[MediaElement.js](http://mediaelementjs.com/) proved to be the best video and audio player for this project. It hooks into the HTML5 `<audio>` and `<video>` tags to create a player that is easy to stylize. If these tags are not supported or the browser cannot play the audio or video, MediaElement.js provides a Flash player fallback that attempts to use the same styling. The Flash player fallback is a litle buggy but it allows almost every browser to view the media on MeTube.
+[MediaElement.js](http://mediaelementjs.com/) proved to be the best video and audio player for this project. It hooks into the HTML5 `<audio>` and `<video>` tags to create a player that is easy to stylize. If these tags are not supported or the browser cannot play the audio or video, MediaElement.js provides a Flash player fallback that attempts to use the same styling. The Flash player fallback is a little buggy but it allows almost every browser to view the media on MeTube.
 
 ### Development environment and workflow
 
@@ -165,7 +165,7 @@ The first goal was accomplished by using Vagrant. Vagrant allows developers to c
 
 The database tables were exclusively created and updated using Migrations. This allows developers to write simple scripts to modify the database. These scripts are checked into source control. This ensures the scripts are run in the correct order (since each script is timestamped), and that the changes made to the database are easily traceable. Furthermore, migrations can usually be "rolled back", giving developers the ability to "undo" changes to the database. You can read more about Migrations in [Laravel's Documentation](http://laravel.com/docs/migrations). The migration scripts used hand-written queries.
 
-Finally, the code was manintained using the Git version control system. The repository was hosted on GitHub, and [dploy.io](http://dploy.io) was used to automatically deploy the application from the GitHub repository.
+Finally, the code was maintained using the Git version control system. The repository was hosted on GitHub, and [dploy.io](http://dploy.io) was used to automatically deploy the application from the GitHub repository.
 
 ### Additional dependencies
 
@@ -188,7 +188,7 @@ Users should be able to register in MeTube and update their profile information
 
 1. Click "Sign Up" from the Home Page
 2. Fill out the fields and click "Register"
-3. Confirm that the Iser has been signed into MeTube by checking that the "Sign Up" button has changed to "Sign Out"
+3. Confirm that the User has been signed into MeTube by checking that the "Sign Up" button has changed to "Sign Out"
 4. Sign out of MeTube, and Sign back in with the User's credentials
 5. Click on "Edit Profile" under the "User" section of the navigation
 6. Change the Channel Name
@@ -241,7 +241,7 @@ Users can upload and edit Media
 
 1. Confirm you are using MeTube as a Visitor (Not signed in)
 2. Confirm that the "Upload" button does not exist in the navigation
-3. Confirm that `/media/new` redirects to the signin page
+3. Confirm that `/media/new` redirects to the Sign In page
 4. Sign into MeTube and click "Upload"
 5. Fill out the form, making sure to choose a valid image file that is less than 20 MB in size
 6. Click "Upload Media"
@@ -714,7 +714,7 @@ MeTube Users are allowed to upload, edit, favorite, and comment on Media. They c
 * When a User views a particular Message, its parent Messages are displayed as well to create a Message "thread". This is to help Users make sense of replied Messages. Users can Create a reply to the Message being viewed by clicking on "Reply".
 * When replying to a Message, the subject and Message must be provided. The User is not able to specify who will receive the Message, since it will be sent to the sender of the Message they are replying to.
 * To create a new Message, Users click on "New Message". This form allows them to specify who will receive the Message, along with its subject and message. The subject and message must be provided.
-* A User can **only** view the Messages they have sent or recevied. They are not able to view another User's Messages, Inbox, or Sent Messages. If they attempt to view another User's Messages, they are redirected to the Home Page.
+* A User can **only** view the Messages they have sent or received. They are not able to view another User's Messages, Inbox, or Sent Messages. If they attempt to view another User's Messages, they are redirected to the Home Page.
 * Messages cannot be deleted, so be careful what you write!
 
 ### Updating profile information
@@ -724,7 +724,7 @@ MeTube Users are allowed to upload, edit, favorite, and comment on Media. They c
 * A Channel name and email address are required when a User is updating their profile information.
 * A User can **only** update their own profile information. They are not allowed to update the profile information for another User.
 
-### Browsing the User's acticity
+### Browsing the User's activity
 
 * The User is able to quickly browse the Media they have Uploaded, Downloaded, Viewed, and Favorited by using the links in the "User" section of the navigation.
 * This information is also accessible by viewing a User's Channel page.
