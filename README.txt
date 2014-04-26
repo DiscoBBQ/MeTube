@@ -42,6 +42,9 @@ After the configuration has been changed, Apache will need to be restarted with 
 ## Getting the application running
 
 1. Copy the contents of the `www` directory into `spring14/u5` on the server. If the server path needs to be changed, you'll need to run a global find and replace for `spring14/u5` to replace it with the desired path
+2. Make sure the correct group permissions and file/directory permissions have been set in `spring/u5`
+  * `$ chgrp -R www-data ./`
+  * `$ chmod -R g+rwx ./`
 2. Create the Database
   1. Run the queries in `database_schema.sql` to create the "U5" database and its structure
   2. Make sure the application's database credentials are correct. They are located in `/www/app/config/database.php`, in the 'mysql' array
