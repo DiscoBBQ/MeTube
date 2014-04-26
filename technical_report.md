@@ -1,10 +1,28 @@
+<style>
+    figcaption{
+        font-style: italic;
+    }
+
+    .pagebreak{
+        page-break-after: always
+    }
+</style>
+
+# CPSC 462: MeTube Technical Report
+
+## Team Number: U5
+## Team Members: Thomas Cannon
+## Date: April 25, 2014
+
+<div class="pagebreak"></div>
+
 # CPSC 462, U5: Metube Technical Report
 
-**Group Number:** U5<br>
+**Team Number:** U5<br>
 **Name:** Thomas Cannon<br>
 **Username:** tcannon<br>
 **Assignment:** CPSC 462 Project<br>
-**Date:** April 23, 2014<br>
+**Date:** April 25, 2014<br>
 
 ## An important note about this group
 
@@ -18,9 +36,13 @@ In MeTube, registered users are able to upload media and are considered "Channel
 
 The interactions both users and visitors have with the site are recorded for future analytical purposes. In the initial implementation, the analytics are basic counts of views, favorites, and downloads of each media. However, this data should be collected in such a way to allow better analytical tools to be developed in the future.
 
+<div class="pagebreak"></div>
+
 ## ER Diagram
 
 ![The ER Diagram for this implementation of MeTube](ER%20Diagram.png)
+
+<div class="pagebreak"></div>
 
 ## Database schema
 
@@ -31,6 +53,8 @@ It is also important to note that the `interactions` table is the implementation
 Below is a graphical representation of the database schema. The actual schema file is `database_schema.sql`, which is located in the root of the submission.
 
 ![The Database Schema for this implementation of MeTube](Database%20Schema.png)
+
+<div class="pagebreak"></div>
 
 ## Function design
 
@@ -446,6 +470,8 @@ Users can delete Media, which deletes it from any Playlist the Media was include
 
 Users can quickly view the Media they have uploaded, downloaded, viewed, and favorited
 
+**Steps**
+
 1. Sign into MeTube
 2. Confirm that the "Uploaded", "Downloaded", "Viewed", and "Favorited" links exist in the navigation
 3. Confirm that the "Uploaded" link only shows Media the currently signed in User has uploaded
@@ -459,6 +485,8 @@ Users can quickly view the Media they have uploaded, downloaded, viewed, and fav
 
 Visitors and Users can browse Media by category, both from the navigation and the home page.
 
+**Steps**
+
 1. Confirm you are using MeTube as a Visitor (Not signed in)
 2. Confirm that the links for each category exist in the navigation
 3. Confirm that the 4 most recently uploaded Media for the category are shown on the home page, along with a "View More" button
@@ -471,6 +499,8 @@ Visitors and Users can browse Media by category, both from the navigation and th
 ### Test Case 18
 
 Visitors and Users can search for Media by keyword using the search bar at the top of the site
+
+**Steps**
 
 1. Create 2 Media, sharing a keyword between them (See Test Case 4)
 2. Confirm you are using MeTube as a Visitor (Not signed in)
@@ -486,6 +516,8 @@ Visitors and Users can search for Media by keyword using the search bar at the t
 ### Test Case 19
 
 The "Upload" and "Edit Media" forms should validate the data provided
+
+**Steps**
 
 1. Sign into MeTube
 2. Click "Upload"
@@ -524,6 +556,8 @@ The "Create Playlist" and "Edit Playlist" forms should validate the data provide
 
 The "New Message" and "Reply" forms should validate the data provided
 
+**Steps**
+
 1. Sign into MeTube
 2. Click "Messages"
 3. Click "New Message"
@@ -555,6 +589,8 @@ The Comment Box must require a comment
 
 Users should be able to sign out of MeTube at any time
 
+**Steps**
+
 1. Sign into MeTube
 2. Confirm that the "Sign in" button has changed to "Sign out"
 3. Click "Sign out"
@@ -566,6 +602,8 @@ Users should be able to sign out of MeTube at any time
 
 Users should be able to upload video, audio, and images
 
+**Steps**
+
 1. Sign into MeTube
 2. Create 3 different Media: 1 video file, 1 audio file, and 1 image (See Test Case 4)
 3. Each time, confirm that the Media has been successfully created
@@ -576,6 +614,8 @@ Users should be able to upload video, audio, and images
 ### Test Case 25
 
 Users should not be able to upload a file over 20 MB
+
+**Steps**
 
 1. Sign into MeTube
 2. Click on "Upload"
@@ -589,6 +629,8 @@ Users should not be able to upload a file over 20 MB
 
 Users should not be able to view the Playlists of other Users
 
+**Steps**
+
 1. Sign into Metube on two different browsers for two different Users
 2. Create a Playlist on the first browser (See Test Case 9)
 3. View the Playlist on the first browser
@@ -601,6 +643,8 @@ Users should not be able to view the Playlists of other Users
 
 Users should not be able to view Messages they have not sent or received
 
+**Steps**
+
 1. Create 3 different Users (see Test Case 1)
 1. Sign into MeTube on two different browsers for Users #1 and #2
 2. Send a Message from User #2 to User #1 (See Test Cast 14)
@@ -608,6 +652,8 @@ Users should not be able to view Messages they have not sent or received
 3. View the Message as User #1 (The first browser)
 4. Copy the URL for the Message from the first browser to the second browser
 5. Confirm that the second browser cannot access the Message, and is redirected to the home page
+
+**Status**: Passed
 
 ## User Manual
 
