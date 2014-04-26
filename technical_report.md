@@ -26,7 +26,7 @@
 
 ## An important note about this group
 
-Due to changes in the class enrollment, I do not have a Team Evaluation in this submission because my partner dropped the class.
+There is no Team Evaluation in this submission because the team lost members due to circumstances with the class.
 
 ## System design
 
