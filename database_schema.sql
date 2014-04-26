@@ -159,6 +159,56 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+
+INSERT INTO `migrations` (`migration`, `batch`)
+VALUES
+  ('2014_02_23_161117_create_users_table',1),
+  ('2014_02_26_215107_create_messages_table',1),
+  ('2014_03_06_022416_rename_crypted_password_to_password',1),
+  ('2014_03_06_035400_add_uniqueness_index_on_username_in_users',1),
+  ('2014_03_06_141955_create_media_table',1),
+  ('2014_03_18_130229_create_keywords_table',1),
+  ('2014_03_18_131523_remove_keywords_from_media_table',1),
+  ('2014_03_18_171132_create_interactions_table',1),
+  ('2014_03_18_213442_create_subscription_table',1),
+  ('2014_03_19_013915_create_playlist_table',1),
+  ('2014_03_19_013958_create_playlist_item_table',1),
+  ('2014_03_19_155105_create_comment_table',1),
+  ('2014_04_05_160639_set_users_created_at_default_value_to_non_null',2),
+  ('2014_04_05_161136_add_created_at_to_messages',2),
+  ('2014_04_05_183300_rename_username_to_channel_name',3),
+  ('2014_04_05_183614_require_unique_email_in_users',3),
+  ('2014_04_06_033432_change_primary_key_on_playlist_item',3),
+  ('2014_04_06_154847_change_created_on_to_created_at_in_media',3),
+  ('2014_04_06_171222_add_id_to_comments',3),
+  ('2014_04_06_171532_rename_timestamp_to_created_at_in_comments',3),
+  ('2014_04_18_042731_change_description_fields_to_text',4),
+  ('2014_04_18_051235_remove_salt_from_users',4),
+  ('2014_04_18_051550_add_count_field_to_interactions',4),
+  ('2014_04_18_052524_change_index_on_interactions_and_allow_user_id_to_be_null',4),
+  ('2014_04_21_034602_add_parent_messsage_id_to_messages',5),
+  ('2014_04_21_045918_change_message_fields_to_fit_correct_keytypes',5),
+  ('2014_04_21_050500_change_media_to_innodb',5),
+  ('2014_04_21_050545_add_foreign_keys_to_messages',5),
+  ('2014_04_21_051039_change_comments_fields_to_match_correct_datatypes',5),
+  ('2014_04_21_051208_add_foreign_keys_to_comments',5),
+  ('2014_04_21_051830_change_interactions_fields_to_match_correct_datatypes',5),
+  ('2014_04_21_051950_add_foreign_keys_to_interactions',5),
+  ('2014_04_21_053042_add_foreign_keys_to_keywords',5),
+  ('2014_04_21_053636_change_media_fields_to_correct_datatype',5),
+  ('2014_04_21_053749_add_foreign_keys_to_media',5),
+  ('2014_04_21_054120_change_playlist_fields_to_correct_datatype',5),
+  ('2014_04_21_054217_add_foreign_keys_to_playlist',5),
+  ('2014_04_21_054352_change_playlist_item_fields_to_correct_datatype',5),
+  ('2014_04_21_054456_add_foreign_keys_to_playlist_item',5),
+  ('2014_04_21_054715_change_subscriptions_fields_to_match_datatype',5),
+  ('2014_04_21_054842_add_foreign_keys_to_subscriptions',5);
+
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
 -- --------------------------------------------------------
 
 --
