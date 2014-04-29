@@ -135,11 +135,11 @@ In the ER Diagram, there are 3 distinct entities that can be described as "Inter
 
 The primary key for this table is the unique combination of the `user_id`, `media_id`, and `category`.
 
-With this structure it is very easy to determine how many times an action has been performed, and querying for overall analytics on the interaction is simple. For example, this is a query to get the count of all the downloads for the Media with `id = 123`:
+With this structure it is very easy to determine how many times an action has been performed, and querying for overall analytics on the interaction is simple. For example, this is a query to get the count of all the views for the Media with `id = 123`:
 
 
 ~~~SQL
-SELECT SUM(count) as count FROM interactions WHERE category='downloaded' AND media_id = 123
+SELECT SUM(count) as count FROM interactions WHERE category='viewed' AND media_id = 123
 ~~~
 
 ### Displaying Media on as many browsers as possible
